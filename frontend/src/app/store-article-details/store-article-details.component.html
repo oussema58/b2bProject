@@ -1,0 +1,340 @@
+<main class="main">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/store"><i
+                            style="font-weight: 800;font-size: 14px;"><mat-icon>home</mat-icon></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Produits</a></li>
+            </ol>
+        </nav>
+
+        <div class="product-single-container product-single-default">
+            <div class="cart-message d-none">
+                <strong class="single-cart-notice">“{{article.articleIntitule}}”</strong>
+                <span>has been added to your cart.</span>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-5 col-md-6 product-single-gallery">
+                    <div class="product-slider-container">
+                        <div class="label-group">
+                            <div class="product-label label-hot">HOT</div>
+
+                            <div class="product-label label-sale">
+                                -16%
+                            </div>
+                        </div>
+
+                        <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
+                            <div class="product-item">
+                            <!--<img class="product-single-image" [src]="article.imagePath"
+                                    data-zoom-image="assets/images/products/zoom/product-1-big.jpg" width="468"
+                                    height="468" alt="product" />-->
+                                <img class="product-single-image" [src]="article.imageContent"
+                                data-zoom-image="assets/images/products/zoom/product-1-big.jpg" width="468"
+                                height="468" alt="product" />
+                            </div>
+
+                        </div>
+                        <!-- End .product-single-carousel -->
+                        <span class="prod-full-screen">
+                            <i class="icon-plus"></i>
+                        </span>
+                    </div>
+                </div>
+                <!-- End .product-single-gallery -->
+
+                <div class="col-lg-7 col-md-6 product-single-details">
+                    <h1 class="product-title">{{article.articleIntitule}}</h1>
+
+                    <!--<div class="product-nav">
+                        <div class="product-prev">
+                            <a href="#">
+                                <span class="product-link"></span>
+
+                                <span class="product-popup">
+                                    <span class="box-content">
+                                        <img alt="product" width="150" height="150"
+                                            src="assets/images/products/product-3.jpg"
+                                            style="padding-top: 0px;">
+
+                                        <span>Circled Ultimate 3D Speaker</span>
+                                </span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="product-next">
+                            <a href="#">
+                                <span class="product-link"></span>
+
+                                <span class="product-popup">
+                                    <span class="box-content">
+                                        <img alt="product" width="150" height="150"
+                                            src="assets/images/products/product-4.jpg"
+                                            style="padding-top: 0px;">
+
+                                        <span>Blue Backpack for the Young</span>
+                                </span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>-->
+
+
+                    <!-- End .ratings-container -->
+
+                    <hr class="short-divider">
+
+                    <div class="price-box">
+                        <span class="old-price">1,999.00</span>
+                        <span class="new-price">{{article.tarifPrix}} TND</span>
+                    </div>
+                    <!-- End .price-box -->
+
+                    <div class="product-desc">
+                        <p>
+                            {{article.description}}
+                        </p>
+                    </div>
+                    <!-- End .product-desc -->
+
+                    <ul class="single-info-list">
+
+                        <li>
+                            Nombre de Ventes <strong>{{article.nbArticleSold}}</strong>
+                        </li>
+
+                        <li>
+                            CATALOGUE: <strong><a (click)="navigateUsingCategory(article)"
+                                    class="product-category">{{article.catalogueIntitule}}</a></strong>
+                        </li>
+
+                    </ul>
+
+                    <div class="yo" style="display: flex;justify-content: flex-start;align-items: flex-start;">
+                        <div style="width: fit-content;margin-right: 10px;">
+
+                            <button class="horizontal-quantity form-control" style="width: 10px;display: inline;"
+                                (click)="updateQuantity(quantite-1)" *ngIf="quantite!=1">-</button>
+
+                            <input class="horizontal-quantity form-control" [ngModel]="quantite"
+                                (blur)="changeValue(input)" #input type="text" style="width: 36px;display: inline;">
+                            <button class="horizontal-quantity form-control" style="width:10px;display: inline;"
+                                (click)="updateQuantity(quantite+1)">+</button>
+                        </div>
+                        <!-- End .product-single-qty -->
+                        <div style="height: 52px;width: 100px;">
+                            <button href="javascript:;"
+                                style="margin-inline:5px;width: 180px;
+                            height: 100%;text-align: center;background-color: black;color: white;font-size: 16px;text-wrap: nowrap;"
+                                (click)="addPanierLigne(article.articleID,0)">
+                                AJOUTER AU PANIER
+                            </button>
+                        </div>
+
+                        <a routerLink="/store/panier" class="btn btn-gray view-cart d-none">Voir Panier</a>
+                    </div>
+                    <!-- End .product-action -->
+                    <hr class="divider mb-0 mt-0">
+
+                    <div class="product-single-share mb-3">
+
+
+                        <a (click)="addToWishlist(article)" class="btn-icon-wish add-wishlist"
+                            title="Add to Wishlist"><i><mat-icon>favorite</mat-icon></i><span>Ajouter au liste des
+                                souhaits
+                            </span></a>
+                    </div>
+                    <!-- End .product single-share -->
+                </div>
+                <!-- End .product-single-details -->
+            </div>
+            <!-- End .row -->
+        </div>
+        <!-- End .product-single-container -->
+
+
+
+        <div class="products-section pt-0" *ngIf="relatedArticles.length!=0">
+            <h2 class="section-title">Produits similaires</h2>
+            <div class="gallery-wrap">
+                <img class="arrow" src="assets/images/avatar/previous.png" alt="" (click)="navigateBackward()">
+                <div class="products-slider owl-carousel owl-theme dots-top dots-small" id="gallery" ngClass="gallery">
+                    <ng-container *ngFor="let art of relatedArticles">
+                        
+                        <div class="product-default">
+                            <figure>
+                                <a [routerLink]="'/store/article/'+art.articleID+'/detail'">
+                                    <!-- <img [src]="art.imagePath" width="280" height="280" alt="product"> -->
+                                    <img [src]="art.imageContent" width="280" height="280" alt="product">
+
+                                </a>
+                                <div class="label-group">
+                                    <div class="product-label label-hot">HOT</div>
+                                    <div class="product-label label-sale">-20%</div>
+                                </div>
+                            </figure>
+                            <div class="product-details">
+                                <div class="category-list">
+                                    <a (click)="navigateUsingCategory(art)"
+                                        class="product-category">{{art.catalogueIntitule}}</a>
+                                </div>
+                                <h3 class="product-title">
+                                    <a
+                                        [routerLink]="'/store/article/'+art.articleID+'/detail'">{{art.articleIntitule}}</a>
+                                </h3>
+
+                                <!-- End .product-container -->
+                                <div class="price-box">
+                                    <del class="old-price">59.00</del>
+                                    <span class="product-price">{{art.tarifPrix}} TND</span>
+                                </div>
+                                <!-- End .price-box -->
+                                <div class="product-action">
+
+                                    <a class="btn-icon btn-add-cart" (click)="addPanierLigne(art.articleID,1)"><i
+                                            class="fa fa-arrow-right"></i><span>AJOUTER
+                                            AU PANIER</span></a>
+
+                                </div>
+                            </div>
+                            <!-- End .product-details -->
+                        </div>
+                    
+                    </ng-container>
+                </div>
+                <!-- End .products-slider -->
+                <img class="arrow" src="assets/images/avatar/next.png" alt="" (click)="navigateForward()">
+            </div>
+        </div>
+        <!-- End .products-section -->
+
+        <hr class="mt-0 m-b-5" />
+
+        <div class="row products-widgets">
+            <div class="col-sm-6 col-md-4 pb-4 pb-md-0" *ngIf="bestConsultedArticles.length!=0">
+                <div class="product-column">
+                    <h3 class="section-sub-title ls-n-20">Produits les plus consultés</h3>
+                    <div ngClass="gallery2">
+                        <ng-container *ngFor="let art of bestConsultedArticles">
+                            <div class="" style="display: flex;justify-content: flex;">
+                                <figure>
+                                    <a [routerLink]="'/store/article/'+art.articleID+'/detail'">
+                                        <!-- <img [src]="art.imagePath" width="84" height="84" alt="product"> -->
+                                        <img [src]="art.imageContent" width="84" height="84" alt="product">
+                                    </a>
+                                </figure>
+                                <div class="product-details"
+                                    style="display: flex;justify-content: space-evenly;flex-direction: column;">
+                                    <div>
+                                        <a ngClass="customCategory" (click)="navigateUsingCategory(art)"
+                                            class="product-category">{{art.catalogueIntitule.toUpperCase()}}</a>
+                                    </div>
+
+                                    <span style="margin: 0px;padding: 0px;"> <a
+                                            [routerLink]="'/store/article/'+art.articleID+'/detail'"
+                                            style="font-size: 14px;color: black">{{art.articleIntitule}}</a>
+                                    </span>
+
+                                    <div class="price-box">
+                                        <span class="product-price">{{art.tarifPrix}} TND</span>
+                                    </div>
+                                    <!-- End .price-box -->
+                                </div>
+                                <!-- End .product-details -->
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <!-- End .product-column -->
+            </div>
+            <!-- End .col-md-4 -->
+
+            <div class="col-sm-6 col-md-4 pb-4 pb-md-0" *ngIf="bestSellingArticles.length!=0">
+                <div class="product-column">
+                    <h3 class="section-sub-title ls-n-20">Produits les plus vendus</h3>
+                    <div ngClass="gallery2">
+                        <ng-container *ngFor="let art of bestSellingArticles">
+                            <div class="" style="display: flex;justify-content: flex;">
+                                <figure>
+                                    <a [routerLink]="'/store/article/'+art.articleID+'/detail'">
+                                        <!-- <img [src]="art.imagePath" width="84" height="84" alt="product"> -->
+                                        <img [src]="art.imageContent" width="84" height="84" alt="product">
+                                    </a>
+                                </figure>
+                                <div class="product-details"
+                                    style="display: flex;justify-content: space-evenly;flex-direction: column;">
+                                    <div>
+                                        <a ngClass="customCategory" (click)="navigateUsingCategory(art)"
+                                            class="product-category">{{art.catalogueIntitule.toUpperCase()}}</a>
+                                    </div>
+
+                                    <span style="margin: 0px;padding: 0px;"> <a
+                                            [routerLink]="'/store/article/'+art.articleID+'/detail'"
+                                            style="font-size: 14px;color: black">{{art.articleIntitule}}</a>
+                                    </span>
+
+                                    <div class="price-box">
+                                        <span class="product-price">{{art.tarifPrix}} TND</span>
+                                    </div>
+                                    <!-- End .price-box -->
+                                </div>
+                                <!-- End .product-details -->
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <!-- End .product-column -->
+            </div>
+            <!-- End .col-md-4 -->
+
+            <div class="col-sm-6 col-md-4 pb-4 pb-md-0" *ngIf="recentArticles.length!=0">
+                <div class="product-column">
+                    <h3 class="section-sub-title ls-n-20">Produits récents</h3>
+                    <div ngClass="gallery2">
+                        <ng-container *ngFor="let art of recentArticles">
+                            <div class="" style="display: flex;justify-content: flex;">
+                                <figure>
+                                    <a [routerLink]="'/store/article/'+art.articleID+'/detail'">
+                                        <!-- <img [src]="art.imagePath" width="84" height="84" alt="product"> -->
+                                        <img [src]="art.imageContent" width="84" height="84" alt="product">
+                                    </a>
+                                </figure>
+                                <div class="product-details"
+                                    style="display: flex;justify-content: space-evenly;flex-direction: column;">
+                                    <div>
+                                        <a ngClass="customCategory" (click)="navigateUsingCategory(art)"
+                                            class="product-category">{{art.catalogueIntitule.toUpperCase()}}</a>
+                                    </div>
+
+                                    <span style="margin: 0px;padding: 0px;"> <a
+                                            [routerLink]="'/store/article/'+art.articleID+'/detail'"
+                                            style="font-size: 14px;color: black">{{art.articleIntitule}}</a>
+                                    </span>
+
+                                    <div class="price-box">
+                                        <span class="product-price">{{art.tarifPrix}} TND</span>
+                                    </div>
+                                    <!-- End .price-box -->
+                                </div>
+                                <!-- End .product-details -->
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <!-- End .product-column -->
+            </div>
+            <!-- End .col-md-4 -->
+        </div>
+        <!-- End .row -->
+        <hr class="mt-0 m-b-5" />
+
+
+    </div>
+    <!-- End .container -->
+</main>
+<!-- End .main -->
+
+<app-store-footer></app-store-footer>
+<!-- End .footer -->

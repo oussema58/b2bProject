@@ -1,0 +1,167 @@
+<div class="box">
+    <div class="title">
+        <h3>inscrire Societe</h3>
+    </div>
+    <button ngClass="close" (click)="close()">x</button>
+    <!--<a ngClass="close2" (click)="close()">x</a>-->
+    <br>
+    <div style="height: 72vh;overflow-y: auto;">
+        <form  [formGroup]="myForm" (ngSubmit)="signup()">
+        <table class="table">
+                <tr>
+                    <td><label class="bold" for="codeClient">*code client:</label></td>
+                    <td><label class="bold" for="matricule_fiscale">*matricule fiscale client:</label></td>
+                    <td ><label for="" class="bold">Article image</label></td>
+                    
+                    
+                </tr>
+                <tr>
+                    <td><input (blur)="codeClientValidator()" type="text" id="codeClient" formControlName="codeClient"></td>
+                    <td><input (blur)="matricule_fiscaleValidator()" type="text" id="matricule_fiscale"
+                        formControlName="matricule_fiscale"></td>
+                    <td style="text-align: left;"><input type="file" (change)="selectFile($event);"></td>
+                   
+                </tr>
+                <tr>
+                    <td *ngIf="displayCodeClientRequired" class="error"><span>*Client code est obligatoire</span></td>
+                    <td *ngIf="displayCodeClientFormat" class="error"><span>*Code client doit etre formée par des lettres et chiffres et il doit commencer par lettre</span></td>
+                    <td *ngIf="!displayCodeClientRequired && !displayCodeClientFormat"><span class="empty"></span></td>
+
+                    <td *ngIf="displayMatricule_fiscaleRequired" class="error"><span>*matricule fiscale est
+                        obligatoire</span></td>
+                    <td *ngIf="displayMatricule_fiscaleFormat" class="error"><span>*matricule fiscale doit etre formé par une combinaison de 13 lettre et chiffres
+                            </span></td>
+                    <td *ngIf="!displayMatricule_fiscaleRequired && !displayMatricule_fiscaleFormat"><span class="empty"></span></td>
+
+                    
+                    
+
+                </tr>
+                <tr>
+                    <td><label class="bold" for="intituleClient">*intitule Client:</label></td>
+                </tr>
+                <tr>
+                    <td><input (blur)="intituleClientValidator()" type="text" id="intituleClient"
+                        formControlName="intituleClient"></td>
+                </tr>
+                <tr>
+                    <td *ngIf="displayIntituleClientRequired" class="error"><span>*intitule client est obligatoire</span></td>
+                    <td *ngIf="!displayIntituleClientRequired"><span class="empty"></span></td>
+                </tr>
+        
+                <tr>
+                    <td><label class="bold" for="emailSociete">email client:</label></td>
+                    <td><label class="bold" for="telephoneClient">*telephone Client:</label></td>
+                    
+                </tr>
+                <tr>
+                    <td><input (blur)="emailClientValidator()" type="text" id="emailClient"
+                        formControlName="emailClient"></td>
+                    <td><input (blur)="telephoneClientValidator()" type="text" id="telephoneClient"
+                            formControlName="telephoneClient"></td>
+                </tr>
+                <tr>
+
+                    <td *ngIf="displayEmailClientFormat" class="error"><span>*client email format est incorrect</span></td>
+                    <td *ngIf="!displayEmailClientFormat"><span class="empty"></span></td>
+
+                    <td *ngIf="displayTelephoneClientRequired" class="error"><span>*telephone client est obligatoire</span></td>
+                    <td *ngIf="displayTelephoneClientFormat" class="error"><span>*doit etre formé par 8 chiffre</span></td>
+                    <td *ngIf="!displayTelephoneClientRequired && !displayTelephoneClientFormat"><span class="empty"></span></td>
+                </tr>
+
+                <tr>
+                    <td><label class="bold" for="adresseClient">*adresse Client:</label></td>
+                    <td><label class="bold" for="ville">ville:</label></td>
+                    <td><label class="bold" for="codePostale">code Postale:</label></td>
+                </tr>
+                <tr>
+                    <td><input (blur)="adresseClientValidator()" type="text" id="adresseClient"
+                            formControlName="adresseClient"></td>
+                    <td><input  type="text" id="ville"
+                            formControlName="ville"></td>
+                    <td><input (blur)="codePostaleValidator()" type="text" id="codePostale"
+                            formControlName="codePostale"></td>
+                </tr>
+
+                <tr>
+                    <td *ngIf="displayAdresseClientRequired" class="error"><span>*adress client est obligatoire</span></td>
+                    <td *ngIf="!displayAdresseClientRequired"><span class="empty"></span></td>
+
+                    <td><span class="empty"></span></td>
+
+                    <td *ngIf="displayCodePostaleFormat" class="error"><span>*code postale doit etre formé de 4 digits</span>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td><label class="bold" for="entTarif">*tarif</label></td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        <select id="entTarif" (blur)="tarifEntValidator()" formControlName="entTarif">
+                        <option value=""></option>
+                        <ng-container *ngFor="let tarifEnt of tarifsEnt">
+                            <option [value]="tarifEnt.tarifEnteteId">{{tarifEnt.tarif_Entete_intitule}}</option>
+                        </ng-container>
+                        </select>
+                    </td>
+                </tr>
+                <tr>                   
+                    <td *ngIf="!displayEntTarifRequired"><span class="empty"></span></td>
+                    <td *ngIf="displayEntTarifRequired"><span class="error">*le tarif est obligatoire</span></td>
+                </tr>
+
+                
+                <tr>
+                    <td><label class="bold" for="name">*Nom complet:</label></td>
+                </tr>
+                <tr>
+                    <td><input (blur)="nameValidator()" type="text" id="name" formControlName="name"></td>
+                </tr>
+                <tr>
+                    <td *ngIf="displayNameRequired" class="error"><span>*Nom est obligatoire</span></td>
+                    <td *ngIf="displayNameFormat" class="error"><span>*respecter le format nom prenom</span></td>
+                    <td *ngIf="!displayNameRequired && !displayNameFormat"><span class="empty"></span></td>
+                </tr>
+
+                <tr>
+                    <td><label class="bold" for="telephoneUser">*nom d'utlisateur:</label></td>
+                    <td><label class="bold" for="password">*mot de passe:</label></td>
+                    
+                </tr>
+                <tr>
+                    <td><input (blur)="usernameValidator()" type="text" id="username" formControlName="username"></td>
+                    <td><input (blur)="passwordValidator()" type="password" id="password" formControlName="password"></td>
+                </tr>
+
+                <tr>
+                    <td *ngIf="!displayUsernameRequired && !displayUsernameFormat"><span class="empty"></span></td>
+                    <td *ngIf="displayUsernameRequired" class="error"><span>*nom d'utlisateur est obligatoire</span></td>
+                    <td *ngIf="displayUsernameFormat" class="error"><span>*nom d'utlisateur doit etre formé par une combinaison des lettres et chiffres et commence par lettre</span></td>
+
+                    <td *ngIf="displayPasswordFormat" class="error"><span>*le longeur minimum est 6</span>
+                        <br>
+                        <span>*doit contenir au moins:</span>
+                        <br>
+                        <span>1 miniscule et 1 majuscule</span>
+                        <br>
+                        <span>1 caractere special</span>
+                        <br>
+                        <span>un chiffre</span>
+                    </td>
+                    <td *ngIf="displayPasswordRequired" class="error"><span>*mot de passe est obligatoire</span></td>
+                    <td *ngIf="!displayPasswordRequired && !displayPasswordFormat"><span class="empty"></span></td>
+
+                </tr>
+                
+                
+
+            </table>
+
+            <button class="btn btn-primary m-2 p-2">creer</button>
+            <button class="btn btn-danger p-2" type="reset" (click)="reset()">reinitialiser</button>
+        </form>
+    </div>
+</div>

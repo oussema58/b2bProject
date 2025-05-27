@@ -1,0 +1,35 @@
+export class ArticleInStore{
+    articleCode:string
+    articleIntitule:string
+    tarifPrix:number
+    articleID:number
+    tarifEnteteId:number
+    catalogueId:number
+    catalogueIntitule:string
+    catalogueParentId:number
+    taxeId:number
+    taxeTaux:number
+    nbArticleSold:number
+    dateCreate:Date
+    imagePath:string
+    imageContent:string=""
+    description:string
+    constructor(articleCode:string,articleIntitule:string,tarifPrix:number,articleID:number,
+        tarifEnteteId:number,catalogueId:number,catalogueIntitule:string,catalogueParentId:number,taxeId:number,taxeTaux:number
+        ,nbArticleSold:number,imagePath:string,description:string){
+this.articleCode=articleCode
+this.articleIntitule=articleIntitule
+this.tarifPrix=tarifPrix
+this.articleID=articleID
+this.tarifEnteteId=tarifEnteteId
+this.catalogueId=catalogueId
+this.catalogueIntitule=catalogueIntitule
+this.catalogueParentId=catalogueParentId
+this.taxeId=taxeId
+this.taxeTaux=taxeTaux
+this.nbArticleSold=nbArticleSold
+this.dateCreate=new Date()
+this.imagePath=imagePath
+this.description=description
+    }
+}

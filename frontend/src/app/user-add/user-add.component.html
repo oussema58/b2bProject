@@ -1,0 +1,82 @@
+
+<div class="box">
+    <div class="title">
+        <h3>Ajouter Compte Client</h3>
+    </div>
+    <button class="close" (click)="close()">x</button>
+    <br> 
+    <div>
+        <form action="" [formGroup]="myForm" (ngSubmit)="create()">
+    <table class="table"> 
+        
+        <tr>
+            <td><label class="bold" for="name">*Nom complet:</label></td>
+            <td ><label for="" class="bold">Utilisateur image</label></td> 
+            
+        </tr>
+        <tr>
+            <td><input (blur)="nameValidator()" type="text" id="name" formControlName="name"></td>
+            <td style="text-align: left;"><input type="file" (change)="selectFile($event);"></td>
+        </tr>
+        
+        <tr >
+            <td *ngIf="displayNameRequired" class="error"><span>*Nom est obligatoire</span></td>
+            <td *ngIf="displayNameFormat" class="error"><span>*respecter le format nom prenom</span></td>
+            <td *ngIf="!displayNameRequired && !displayNameFormat"><span class="empty"></span></td>
+        </tr>
+        <tr>  
+            <td><label class="bold" for="email">email:</label></td>  
+            <td><label class="bold" for="telephone">telephone</label></td>
+            
+        </tr>
+        <tr>
+            <td><input  type="email" id="email" (blur)="emailValidator()" formControlName="email"></td>
+            <td><input (blur)="telephoneValidator()" type="text" id="telephone" formControlName="telephone"></td>
+        </tr>
+        <tr>
+            
+            <td *ngIf="displayEmailFormat"><span class="error" >*email is in the wrong format</span></td>
+            <td *ngIf="!displayEmailFormat"><span class="empty"></span></td>
+
+            <td *ngIf="displayTelephoneFormat" class="error"><span>*telephone User format  is incorrect it is formed of 8 digits only</span></td>
+            <td *ngIf="!displayTelephoneFormat"><span class="empty"></span></td>
+        </tr>
+
+        <tr>
+            <td><label class="bold" for="telephoneUser">*nom d'utlisateur:</label></td>
+            <td><label class="bold" for="password">*mot de passe:</label></td>
+            
+        </tr>
+        <tr>
+            <td><input (blur)="usernameValidator()" type="text" id="username" formControlName="username"></td>
+            <td><input (blur)="passwordValidator()" type="password" id="password" formControlName="password"></td>
+        </tr>
+
+        <tr>
+            <td *ngIf="displayUsernameRequired" class="error"><span>*nom d'utlisateur est obligatoire</span></td>
+            <td *ngIf="!displayUsernameRequired"><span class="empty"></span></td>
+
+            <td *ngIf="displayPasswordFormat" class="error"><span>*le longeur minimum est 6</span>
+            <br>
+                <span>*doit contenir au moins:</span>
+            <br>
+                <span>1 miniscule et 1 majuscule</span>
+            <br>
+            <span>1 caractere special</span>
+            <br>
+            <span>un chiffre</span>
+            </td>
+            <td *ngIf="displayPasswordRequired" class="error"><span>*mot de passe est obligatoire</span></td>
+            <td *ngIf="!displayPasswordRequired && !displayPasswordFormat"><span class="empty"></span></td>
+            
+        </tr> 
+
+
+    </table>
+
+    <button class="btn btn-primary m-2 p-2">creer</button>
+    <button class="btn btn-danger p-2" type="reset" (click)="reset()">reinitialiser</button>
+            
+        </form>
+    </div>   
+    </div>

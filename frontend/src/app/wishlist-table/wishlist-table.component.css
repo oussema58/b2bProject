@@ -1,0 +1,82 @@
+.tableCart{
+    /* border-collapse: separate; */
+    border-spacing: 0 !important;
+    margin:0px !important;
+    padding: 0px !important;
+    /*table-layout: fixed;*/
+  
+  
+  
+    border: none
+  }
+  
+  .tableCart td{
+    /* padding: 0px 10px; */
+    /* border: 2px solid blue; */
+    text-align: center ;
+    z-index: -6;
+    padding: 0px !important;
+    margin: 0px !important;
+    border: 2px solid blue;
+    text-align: center !important;
+    box-shadow: none !important;
+    display: table-cell !important;
+    border-collapse: collapse !important;
+  }
+  .tableCart tr td figure{
+    /* border: 2px solid black; */
+    padding:0px;
+    margin: 0px;
+    width: 100px;
+    height: 100px;
+    position: relative;
+  }
+  .tableCart tr th{
+    /* border: 2px solid red; */
+    padding:5px;
+  margin: 0px;
+  font-size: 13px;
+  border: none;
+  /* position: sticky; */
+  /* top: 1px;  */
+  z-index: 1;
+  background-color: lightgray;
+  text-align: center;
+  /* border-bottom:1px solid black ; */
+  }
+  .tableCart tr{
+    border:none;
+    border-bottom: 1px solid black;
+  }
+  
+  .tableCart tr td figure button{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 10px;
+    border: none;
+  box-shadow: 1px 1px 1px black;
+  cursor: pointer;
+  }
+  .delete{
+  
+   
+    width: fit-content;
+    overflow-x: visible;
+    overflow-y: unset;
+    line-height: normal;
+    font-size: 14px;
+    margin: 0;
+    
+    display: inline;
+    align-items: unset;
+    justify-content: unset;
+    padding: 0;
+    border: none;  
+    overflow: visible;   
+    padding: 5px;
+    color: white;
+    background-color: red;
+  }

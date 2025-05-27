@@ -1,0 +1,26 @@
+<div class="formContainer" style="padding: 10px;">
+    <div style="margin:5px 0px;">
+<h3>Valider commande</h3>
+</div>
+    <form >
+        <table class="table">
+            <tr>
+                <td><label class="bold" for="tarif_Entete_Code">*Date Livraison prevue</label></td>
+                
+            </tr>
+            <tr>
+                <td><input (blur)="tarif_Entete_DateFinValidator()" [(ngModel)]="datePrevue" type="date" id="tarif_Entete_DateFin"
+                    [ngModelOptions]="{standalone:true}">
+                
+                    <span style="display: block;" *ngIf="displayTarif_Entete_DateFinRequired" class="error">*date fin est obligatoire</span>
+                    <span style="display: block;" *ngIf="displayTarif_Entete_DateFinWrong" class="error">*date fin doit etre au futur</span>
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+    <div style="margin-top: 10px;">
+        <button class="btn btn-primary mr-2" style="margin-right: 7px;padding: 5px;"  (click)="updateStaus()">Confirmer</button>
+        <button class="btn btn-danger ml-2"  style="padding: 5px;" (click)="annuler()">Annuler</button>
+    </div>
+</div>

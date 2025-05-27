@@ -1,0 +1,293 @@
+<div class="box">
+    <div class="title">
+        <h3>Mise a jour Article</h3>
+    </div>
+    <button class="close" (click)="close()">x</button>
+    <br>
+    <div style="height: 85vh;overflow-x: auto;">
+        <form action="" [formGroup]="myForm" (ngSubmit)="update()">
+            <table class="table">
+
+                <tr>
+                    <td colspan="2"><label class="bold" for="articleIntitule" >*Intitule:</label></td>
+                </tr>
+                <tr> 
+                    <td colspan="2"><input (blur)="articleIntituleValidator()" type="text" id="articleIntitule"
+                        formControlName="articleIntitule" ></td>
+                   
+                     
+                </tr>
+                <tr>
+                    <td colspan="2" *ngIf="displayArticleIntituleRequired"><span class="error">*Intitule est obligatoire</span></td>
+                    <td colspan="2" *ngIf="!displayArticleIntituleRequired"><span class="empty"></span></td>
+                </tr>
+
+                <tr>
+                    <td><label class="bold" for="articlePrixHT">*Prix Hors Tax:</label></td>
+                    
+                    <td><label class="bold" for="etat">*Afficher produit dans la vente</label></td>
+                    <td><label class="bold" for="statistique">*Afficher article statistique</label></td>
+                </tr>
+                <tr>
+                    <td><input (blur)="articlePrixHTValidator()" type="number" step="any" id="articlePrixHT"
+                        formControlName="articlePrixHT"></td>
+
+                     <td>
+                        <select formControlName="etat" id="etat">
+                            <option value="1">oui</option>
+                            <option value="">non</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select formControlName="statistique" id="statistique">
+                            <option value="1">oui</option>
+                            <option value="">non</option>
+                        </select>
+                    </td>
+                   
+                </tr>
+
+                <tr>
+                    <td *ngIf="displayArticlePrixHTMin" class="error"><span>*Prix article doit etre superieur a 0</span></td>
+                    <td *ngIf="!displayArticlePrixHTMin"><span class="empty"></span></td>
+                </tr>
+                
+                
+               
+                <tr>
+                    <td><label class="bold" for="familly">*Famille:</label></td>
+                    <td><label class="bold" for="taxe">*Impot</label></td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        <select formControlName="familly" id="familly" (blur)="famillyValidator()">
+                            <option value=""></option>
+                            <ng-container *ngFor="let fam of famillies">
+                                <option [value]="fam.familleId">{{fam.familleIntitule}}</option>
+                            </ng-container>
+                        </select>
+                    </td>
+                    <td>
+                        <select formControlName="taxe" id="taxe" (blur)="taxeValidator()">
+                            <option value=""></option>
+                            <ng-container *ngFor="let tax of taxes">
+                                <option [value]="tax.id">{{tax.taxeIntitule}}</option>
+                            </ng-container>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td *ngIf="displayFamillyRequired" class="error"><span>*Famille est obligatoire</span></td>
+                    <td *ngIf="!displayFamillyRequired" class="empty"><span></span></td>
+
+                    <td *ngIf="displayTaxeRequired" class="error"><span>*Impot est obligatoire</span></td>
+                    <td *ngIf="!displayTaxeRequired"><span class="empty"></span></td>
+                </tr>
+                <tr>
+                    <td >
+                        <label class="bold" for="">Catalogue Niveau 1:</label>
+                    </td>
+                    <td *ngIf="showLevel2"><label for="level1">Niveau 1:</label></td>
+                    <td *ngIf="showLevel3"><label for="level2">Niveau 2:</label></td>
+                    
+                </tr> 
+                <tr>
+                    <td>
+                        <select formControlName="level1" id="level1" (change)="changeCatalogueLevel1()">
+                            <option value=""></option>
+                           <ng-container *ngFor="let cat1 of catalogueDivided">
+                                <option [value]="cat1.id">{{cat1.name}}</option>
+                           </ng-container>
+                        </select>
+                    </td>
+                    <td *ngIf="showLevel2">
+                        
+                        <select formControlName="level2" id="level2" (change)="changeCatalogueLevel2()">
+                            <option value=""></option>
+                            <ng-container *ngFor="let cat2 of level2">
+                                <option [value]="cat2.id">{{cat2.name}}</option>
+                           </ng-container>
+                        </select>
+                    </td>
+                    <td *ngIf="showLevel3">
+                        <select formControlName="catalogue" id="catalogue" (blur)="catalogueValidator()">
+                            <option value=""></option>
+                            <ng-container *ngFor="let cat3 of level3">
+                                <option [value]="cat3.id">{{cat3.name}}</option>
+                           </ng-container>
+                        </select>
+                        <span style="display: block;" *ngIf="displayCatalogueRequired"  class="error">*catalogue est obligatoire</span>
+                        <span style="display: block;" *ngIf="!displayCatalogueRequired"  class="empty"></span>
+                    </td>
+
+                </tr>   
+                
+                <tr>
+                    <td colspan="2"><label for="" class="bold">Article description</label></td>
+                    <td><label for="" class="bold">Article image</label></td> 
+                </tr>
+                <tr>
+                    <td colspan="2"><textarea formControlName="description" id="description" (blur)="descriptionValidator()" cols="20" rows="10" style="border: 2px solid black;"></textarea></td>
+                    <td><input type="file" id="image" (change)="selectFile($event);" (blur)="imageValidators()">
+                        <span style="display: block;" *ngIf="displayImageTypeError "  class="error">*le type de fichier ne convient pas a une image</span>
+                        <span style="display: block;" *ngIf="!displayImageTypeError" class="empty"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" *ngIf="displayArticleDescriptionRequired" class="error"><span>*description est obligatoire</span></td>
+                    <td colspan="2" *ngIf="!displayArticleDescriptionRequired"><span class="empty"></span></td>
+                </tr>
+
+
+
+            <!--<tr>
+                    <td colspan="2"><label for="" class="bold">Article description</label></td>
+                    <td ><label for="" class="bold">Article image</label></td> 
+                </tr>
+                <tr>
+                    <td colspan="2"><textarea formControlName="description" id="description" (blur)="descriptionValidator()" cols="20" rows="10" style="border: 2px solid black;"></textarea></td>
+                    <td style="text-align: left;"><input type="file" (change)="selectFile($event);"></td>
+                </tr>
+                <tr>
+                    <td *ngIf="displayArticleDescriptionRequired" class="error"><span>*description est obligatoire</span></td>
+                    <td *ngIf="!displayArticleDescriptionRequired"><span class="empty"></span></td>
+                    
+                </tr>-->
+
+            </table>
+        <!--<table class="table">
+
+                <tr>
+                    <td><label class="bold" for="articleIntitule">*Intitule:</label></td>
+                </tr>
+                <tr>
+                    <td><input (blur)="articleIntituleValidator()" type="text" id="articleIntitule"
+                        formControlName="articleIntitule"></td>
+                </tr>
+                <tr>
+                    <td><span class="empty"></span></td>
+                    <td *ngIf="displayArticleIntituleRequired"><span class="error">*Intitule est obligatoire</span></td>
+                    <td *ngIf="!displayArticleIntituleRequired"><span class="empty"></span></td>
+
+                    <td><span class="empty"></span></td>
+                    <td *ngIf="displayArticlePrixHTMin" class="error"><span>*prix minimum est 0</span></td>
+                    <td *ngIf="!displayArticlePrixHTMin"><span class="empty"></span></td>
+                </tr>
+                <tr>
+                    <td><label class="bold" for="articlePrixHT">*Prix Hors Tax:</label></td>
+                </tr>
+                <tr>
+                    <td><input (blur)="articlePrixHTValidator()" type="number" step="any" id="articlePrixHT"
+                        formControlName="articlePrixHT"></td>
+                </tr>
+                <tr>
+                    <td *ngIf="displayArticlePrixHTMin" class="error"><span>*prix minimum est 0</span></td>
+                    <td *ngIf="!displayArticlePrixHTMin"><span class="empty"></span></td>
+                </tr>
+
+         
+                <tr>
+                    <td><label class="bold" for="familly">*Famille:</label></td>
+                    <td>
+                        <select formControlName="familly" id="familly" (blur)="famillyValidator()">
+                            <option value=""></option>
+                            <ng-container *ngFor="let fam of famillies">
+                                <option [value]="fam.familleId">{{fam.familleIntitule}}</option>
+                            </ng-container>
+                        </select>
+                    </td>
+
+               
+                </tr>
+                <tr>
+                    <td><span class="empty"></span></td>
+                    <td *ngIf="displayFamillyRequired" class="error"><span>*Famille est obligatoire</span></td>
+                    <td *ngIf="!displayFamillyRequired" class="empty"><span></span></td>
+
+                </tr>
+                <tr>
+                    <td><label class="bold" for="">Catalogue</label></td>
+                    <td>
+                        <label for="level1">Level 1:</label>
+                        <select formControlName="level1" id="level1" (change)="changeCatalogueLevel1()">
+                            <option value=""></option>
+                           <ng-container *ngFor="let cat1 of catalogueDivided">
+                                <option [value]="cat1.id">{{cat1.name}}</option>
+                           </ng-container>
+                        </select>
+
+                    </td>
+                    <td *ngIf="showLevel2">
+                        <label for="level2">Level 2:</label>
+                        <select formControlName="level2" id="level2" (change)="changeCatalogueLevel2()">
+                            <option value=""></option>
+                            <ng-container *ngFor="let cat2 of level2">
+                                <option [value]="cat2.id">{{cat2.name}}</option>
+                           </ng-container>
+                        </select>
+                    </td>
+                    <td *ngIf="showLevel3">
+                        <label for="level3">Level 3:</label>
+                        <select formControlName="catalogue" id="catalogue" (blur)="catalogueValidator()">
+                            <option value=""></option>
+                            <ng-container *ngFor="let cat3 of level3">
+                                <option [value]="cat3.id">{{cat3.name}}</option>
+                           </ng-container>
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="empty"></span></td>
+                    <td><span class="empty"></span></td>
+                    <td><span class="empty"></span></td>
+                    <td *ngIf="displayCatalogueRequired" class="error"><span>*catalogue est obligatoire</span></td>
+                    <td *ngIf="!displayCatalogueRequired"><span class="empty"></span></td>
+                </tr>
+
+                <tr>
+                    <td><label class="bold" for="etat">*affiher article dans les ventes</label></td>
+                    <td>
+                        <select formControlName="etat" id="etat">
+                            <option value="1">oui</option>
+                            <option value="">non</option>
+                        </select>
+                    </td>
+                    <td><label class="bold" for="statistique">*afficher Article statisistique</label></td>
+                    <td>
+                        <select formControlName="statistique" id="statistique">
+                            <option value="1">oui</option>
+                            <option value="">non</option>
+                        </select>
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td><label class="bold" for="taxe">*Impot:</label></td>
+                    <td>
+                        <select formControlName="taxe" id="taxe" (blur)="taxeValidator()">
+                            <option value=""></option>
+                            <ng-container *ngFor="let tax of taxes">
+                                <option [value]="tax.id">{{tax.taxeIntitule}}</option>
+                            </ng-container>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="empty"></span></td>
+                    <td *ngIf="displayTaxeRequired" class="error"><span>*taux d'impot est obligatoire</span></td>
+                    <td *ngIf="!displayTaxeRequired"><span class="empty"></span></td>
+                </tr>
+
+
+            </table>-->
+
+            <button class="btn btn-primary m-2 p-2">Mise a jour</button>
+            <button class="btn btn-danger p-2" type="reset" (click)="reset()">Reinitialiser</button>
+
+        </form>
+    </div>
+</div>

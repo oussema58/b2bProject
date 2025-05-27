@@ -1,0 +1,19 @@
+export class LigneDemandeRetourDto{
+    motidId:number
+nbArticleRetenue:number
+commandeLigneId:number
+articleCode:string
+articleIntitule:string
+ligneQuantite:number
+checked:boolean
+constructor(motidId:number,nbArticleRetenue:number,commandeLigneId:number,articleCode:string,
+    articleIntitule:string,ligneQuantite:number,checked:boolean){
+this.motidId=motidId
+this.nbArticleRetenue=nbArticleRetenue
+this.commandeLigneId=commandeLigneId
+this.articleCode=articleCode
+this.articleIntitule=articleIntitule
+this.ligneQuantite=ligneQuantite
+this.checked=checked
+}
+}

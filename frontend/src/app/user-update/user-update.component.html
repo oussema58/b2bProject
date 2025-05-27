@@ -1,0 +1,81 @@
+
+<div class="box">
+    <div class="title">
+        <h3>Mise a Jour Compte Client</h3>
+    </div>
+    <button class="close" (click)="close()">x</button>
+    <br> 
+    <div>
+        <form action="" [formGroup]="myForm" (ngSubmit)="update()">
+    <table class="table"> 
+           
+        <tr>
+            <td><label class="bold" for="email">Email:</label></td>
+            <td><label class="bold" for="name">*Nom Complet:</label></td>
+            
+        </tr>
+        <tr>
+            <td><input  type="email" id="email" (blur)="emailValidator()" formControlName="email"></td>
+            <td><input (blur)="nameValidator()" type="text" id="name" formControlName="name"></td>
+        </tr>
+
+        <tr >
+            <td *ngIf="!displayEmailFormat"><span class="empty"></span></td>
+            <td *ngIf="displayEmailFormat"><span class="error" >*email format est incorrecte</span></td>
+            
+           
+            <td *ngIf="!displayNameRequired && !displayNameFormat"><span class="empty"></span></td>
+            <td *ngIf="displayNameRequired" class="error"><span>*Nom est obligatoire</span></td>
+            <td *ngIf="displayNameFormat" class="error"><span>*respecter le format firstName LastName</span></td>
+            
+        </tr>
+        <br>
+        
+    <tr>
+        <td><label class="bold" for="telephone">Telephone</label></td>
+        
+        <td><label class="bold" for="status">Status</label></td>
+        
+        
+    </tr>
+    <tr>
+        <td><input (blur)="telephoneValidator()" type="text" id="telephone" formControlName="telephone"></td>
+        <td><select formControlName="status" id="status">
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+          </select></td>
+    </tr>
+    <tr>
+        <td *ngIf="displayTelephoneFormat" class="error"><span>*telephone format est incorrect il doit etre formé par  8 chiffre </span></td>
+        <td *ngIf="displayTelephoneRequired" class="error"><span>*telephone est obligatoire</span></td>
+        <td *ngIf="!displayTelephoneRequired && !displayTelephoneFormat"><span class="empty"></span></td>
+    </tr> 
+    <tr>
+        <!--<td><label class="bold" for="username">Username</label></td>-->
+        <td><label class="bold" for="password">Password</label></td>
+    </tr>
+
+    <tr>
+        <!--<td><input  type="email" id="username" (blur)="usernameValidator()" formControlName="username"></td>-->
+        <td><input type="password" id="password" formControlName="password"></td>
+    </tr>
+    <tr>
+        <!--<td *ngIf="displayUsernameRequired" class="error"><span>*nom d'utilisateur est obligatoire</span></td>-->
+        <td *ngIf="!displayUsernameRequired"><span class="empty"></span></td>
+    </tr>
+    <tr>
+        <td><label class="bold" for="image">image</label></td>
+    </tr>
+    <tr>
+        <td style="text-align: left;"><input type="file" (change)="selectFile($event);"></td>
+    </tr> 
+
+    </table>
+
+    <button class="btn btn-primary m-2 p-2">Mise a jour</button>
+    <button class="btn btn-danger p-2" type="reset" (click)="reset()">Rinitialiser</button>
+            
+        </form>
+    </div>   
+    </div>
+

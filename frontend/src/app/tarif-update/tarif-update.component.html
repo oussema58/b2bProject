@@ -1,0 +1,171 @@
+<div class="main-content">
+
+    <div class="main-content-inner">
+
+        <div class="main-content-wrap">
+            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                <h3>mise a jour tarif</h3>
+                <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                    <li>
+                        <a routerLink="/dashboard">
+                            <div class="text-tiny">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a routerLink="/dashboard/client">
+                            <div class="text-tiny">Mise a jour tarif</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wg-box">
+            <!--<div class="flex items-center justify-between gap10 flex-wrap">
+                    <div class="wg-filter flex-grow">
+                        <form class="form-search">
+                            <fieldset class="name">
+                                <input type="text" placeholder="chercher famille article par intitule..." class=""
+                                    name="name" tabindex="2" [(ngModel)]="intituleTarif">
+                            </fieldset>
+
+                        </form>
+                    </div>
+                </div>-->
+                <div class="formContainer">
+                <form [formGroup]="myForm">
+                    <table class="table">
+                        <tr>
+                            <td><label class="bold" for="tarif_Entete_intitule">*Intitule:</label></td>
+                            <td><label class="bold" for="tarif_Entete_DateFin">*Date Fin:</label></td>
+                        </tr>
+
+                        <tr>
+                            <td><input (blur)="tarif_Entete_intituleValidator()" id="tarif_Entete_intitule" type="text"
+                                    formControlName="tarif_Entete_intitule">
+                                <span style="display: block;" *ngIf="displayTarif_Entete_intituleRequired" class="error">*intitule est obligatoire</span> 
+                            </td> 
+
+                             <td><input (blur)="tarif_Entete_DateFinValidator()" id="tarif_Entete_DateFin" type="date"
+                                formControlName="tarif_Entete_DateFin">
+                                <span style="display: block;" *ngIf="displayTarif_Entete_DateFinRequired" class="error">*date fin est obligatoire</span>
+                                <span style="display: block;" *ngIf="displayTarif_Entete_DateFinWrong" class="error">*date fin doit etre au futur</span>
+                            </td>
+                        </tr>
+                       
+                        
+                        
+                       
+                    </table>
+                    
+                </form>
+            </div>
+            <div ngClass="tableContainer">
+                <table class="table" ngClass="myTable">
+
+                    <tr>
+                        <th scope="col">Intitule</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Prix_HT</th>
+                        <th scope="col">Prix dans tarif</th>
+                        <th scope="col">*Afficher produit dans la vente</th>
+                        
+                    </tr>
+
+                    
+                        <!--<ng-container *ngIf="intituleFamille=='' || fam.familleIntitule.toLowerCase().includes(intituleFamille)">-->
+                            <tr *ngFor="let ligne of tarifLignes">
+                                <td>{{ligne.article.articleIntitule}}</td>
+                                <td>{{ligne.article.articleCode}}</td>
+                                <td>{{ligne.article.articlePrixHT}}</td>
+                                <td><input style="text-align: center;margin: 2px 0px;padding: 5px;" type="number" step="any" min="0" [(ngModel)]="ligne.tarifPrix"
+                                     (blur)="prixValidator(ligne)"></td>
+                                <td><input [(ngModel)]="ligne.enVente" type="checkbox"></td>
+                            </tr>
+                        <!--</ng-container>-->
+                    
+                </table>
+            </div>
+                <div class="p-2">
+                    <button class="btn btn-primary mr-2" style="margin-right: 7px;"  (click)="update()">Confirmer</button>
+                    
+                    <button class="btn btn-danger ml-2" (click)="reset()">reset</button>
+                </div>
+                <!--<div class="divider"></div>
+                <div class="flex items-center justify-between flex-wrap gap10" *ngIf="!inCreateMode && !inEditMode">
+                    <div class="text-tiny">Showing 10 entries</div>
+                    <ul class="wg-pagination">
+                        <li *ngIf="nbGroup>1">
+                            <a [routerLink]="'/dashboard/family/group/'+(nbGroup-1)"><i class="icon-chevron-left" ></i></a>
+                        </li>
+                        <li *ngIf="nbGroup>1">
+                            <a [routerLink]="'/dashboard/family/group/'+(nbGroup-1)">{{nbGroup-1}}</a>
+                        </li>
+                        <li class="active">
+                            <a routerLink="#">{{nbGroup}}</a>
+                        </li>
+                        <li *ngIf="nbGroup<lastIndex">
+                            <a [routerLink]="'/dashboard/family/group/'+nbGroup+1">{{nbGroup+1}}</a>
+                        </li>
+                        <li *ngIf="nbGroup<lastIndex">
+                            <a [routerLink]="'/dashboard/family/group/'+(nbGroup+1)"><i class="icon-chevron-right"></i></a>
+                        </li>
+                    </ul>
+                </div>-->
+            </div>
+        </div>
+
+
+
+
+<!--<h2>Mises a jour tarif</h2>
+    <button class="btn btn-primary m-3" (click)="update()" [disabled]="!canSubmit">Confirmer</button>
+    <button class="btn btn-danger m-3" (click)="reset()">Reinitialiser</button>
+        <form [formGroup]="myForm">
+<table class="table">
+            <tr>
+            <td><label for="tarif_Entete_intitule" class="bold">Intitule</label></td>-->
+          <!--  <td *ngIf="!onEdit"><span>{{tarifOriginal.tarif_Entete_intitule}}</span></td>-->
+            <!--<td><input (blur)="tarif_Entete_intituleValidator()" id="tarif_Entete_intitule" type="text"
+                    formControlName="tarif_Entete_intitule"></td>
+
+            <td><label for="tarif_Entete_Code" class="bold">Code</label></td>
+            <td><span>{{tarifOriginal.tarif_Entete_Code}}</span></td>
+            
+
+        </tr>
+        <tr>
+            <td class="empty"></td>
+            <td *ngIf="displayTarif_Entete_intituleRequired" class="error">*Intitule est obligatoire</td>
+            <td *ngIf="!displayTarif_Entete_intituleRequired" class="empty"></td>
+        </tr>
+        <tr>
+            <td><label for="tarif_Entete_DateFin">Date Fin</label></td>
+            <td ><input  (blur)="tarif_Entete_DateFinValidator()" id="tarif_Entete_DateFin" type="date"
+                    formControlName="tarif_Entete_DateFin"></td>
+        </tr>
+        <tr>
+            <td class="empty"></td>
+            <td *ngIf="displayTarif_Entete_DateFinRequired" class="error">*date fin est obligatoire</td>
+            <td *ngIf="displayTarif_Entete_DateFinWrong" class="error">le date fin du tarif doit etre en futur</td>
+            <td *ngIf="!displayTarif_Entete_DateFinRequired && !displayTarif_Entete_DateFinWrong" class="empty"></td>
+        </tr>
+    </table>
+</form>
+<table class="table">
+    <tr>
+        <th scope="col">Intitule</th>
+        <th scope="col">Code</th>
+        <th scope="col">Prix_HT</th>
+        <th scope="col">Prix Tarif</th>
+    </tr>
+
+    <tr *ngFor="let ligne of tarifOriginal.tarifs">
+        <td>{{ligne.article.articleIntitule}}</td>
+        <td>{{ligne.article.articleCode}}</td>
+        <td>{{ligne.article.articlePrixHT}}</td>
+        <td><input type="number" step="any" min="0" [(ngModel)]="ligne.tarifPrix"></td>
+        
+    </tr>
+</table>-->

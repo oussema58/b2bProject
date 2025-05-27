@@ -1,0 +1,52 @@
+.wg-box {
+    
+    box-shadow: none
+  }
+  .wg-box .row .info{
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .wg-box .row .info img{
+    width: 120px !important;
+    height: 120px !important;
+    border-radius:20px !important;
+    margin-bottom: 10px;
+    /*border: 2px solid red !important;*/
+  }
+  .info2 p a{
+    margin: 10px 0px;
+  }
+  .list{
+   /* border: 2px solid red;*/
+  }
+  .list li{
+    /*border: 2px solid blue;*/
+    padding: 10px;
+    border-bottom: 3px solid black;
+  }
+  .list li span{
+    font-size: 14px;
+  }
+  .list li strong{
+   font-size: 14px;
+  }
+
+  .part2{
+    
+    display: flex;flex-direction: column;
+    /*height: 300px;*/
+  }
+  .part2 .div1{
+    
+    /*height: 100%;*/
+    background-color: white;margin-bottom:10px ;
+  }
+  .stat{
+    /*height: 300px;*/
+    background-color: white;margin: 2% 2% 2% 0%;
+  }
+  
+ 

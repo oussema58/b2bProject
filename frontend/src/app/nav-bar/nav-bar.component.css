@@ -1,0 +1,14 @@
+
+.customNav ul{
+    list-style: none;
+    border: 2px solid red;
+} 
+.f1{
+border: 2px solid green;
+}
+.f2{
+    border: 2px solid blue;
+    }
+    .f3{
+        border: 2px solid purple;
+        }

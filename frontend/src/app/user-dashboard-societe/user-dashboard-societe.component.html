@@ -1,0 +1,82 @@
+<div ngClass="center">
+    <!-- <img  [src]="(client.imagePath==''||client.imagePath==null)?defaultImage:client.imagePath" alt=""> -->
+    <img  [src]="(client.imageContent==''||client.imageContent==null)?defaultImage:client.imageContent" alt="">
+</div>-
+<h3 class="account-sub-title d-none d-md-block mt-0 pt-1 ml-1">Détails du compte</h3>
+    <!--
+
+    -->
+<div class="account-content">
+<form [formGroup]="societeUpdateForm" (ngSubmit)="openUpdateSocieteConfirmation()">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="acc-name">intitule societe<span class="required">*</span></label>
+                <input type="text" class="form-control" id="intitule"  formControlName="intitule" (blur)="intituleValidator()" />
+                <p *ngIf="displayIntituleRequired" style="color: red;">*intitule societe est obligatoire</p>
+            </div>
+        </div>
+
+        
+        
+        
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="acc-email">email adresse </label>
+                <input  class="form-control" id="email"  formControlName="email" (blur)="emailValidator()"/>
+                <p *ngIf="displayEmailFormat" style="color: red;">*email doit etre sous format a@d.s</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="acc-lastname">Telephone </label>
+                <input type="text" class="form-control" id="telephone"  formControlName="telephone" (blur)="telephoneValidator()" />
+                <p *ngIf="displayTelephoneFormat" style="color: red;">*respecter format de telephone</p>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-md-4">
+        <div class="form-group mb-4">
+            <label for="acc-email">Adresse <span class="required"></span></label>
+            <input  class="form-control" id="adresse"  formControlName="adresse" (blur)="adresseValidator()"/>
+            <p *ngIf="displayAdressRequired" style="color: red;">*adresse societe est obligatoire</p>
+        </div>
+        </div>
+
+        <div class="col-md-4">
+        <div class="form-group mb-4">
+            <label for="acc-email">Ville</label>
+            <input  class="form-control" id="ville"  formControlName="ville" />
+            
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="form-group mb-4">
+            <label for="acc-email">Code Postale</label>
+            <input  class="form-control" id="codePostale"  formControlName="codePostale" />
+            
+        </div>
+        </div>
+    </div>
+   
+        
+    <div class="form-group mb-4">
+        <label >changer image: </label>
+        <input class="form-control" id="f1" type="file" (change)="selectFile($event);">       
+    </div>
+    
+    
+
+    <div class="form-footer">
+        <button type="submit" class="btn btn-dark mr-0">
+            Confirmer modifications
+        </button>
+    </div>
+</form>
+</div>

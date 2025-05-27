@@ -1,0 +1,19 @@
+export class LoginResult{
+    token:string;
+    fname:string;
+    email:string;
+    username:string
+    role:string;
+    idClient:number;
+    entTarifId:number
+    id:string=""
+    constructor(token:string,name:string,email:string,role:string,username:string,idClient:number,entTarifId:number){
+this.email=email;
+this.fname=name;
+this.role=role;
+this.token=token;
+this.username=username
+this.idClient=idClient
+this.entTarifId=entTarifId
+    }
+}

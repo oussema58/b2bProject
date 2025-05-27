@@ -1,0 +1,122 @@
+.formContainer td:has( label)
+{
+text-align: left;
+}
+.formContainer td:has( button)
+{
+text-align: left;
+}
+.formContainer td:has( span) 
+{
+text-align: left;
+}
+
+.formContainer .title{
+  /*text-align: center;*/
+  background-color: white;
+  color: black;
+  padding: 10px 25px;
+  margin-bottom:  15px;
+  border-bottom: 1px solid black;
+ /* border: 2px solid black;*/
+  background-color: #2377FC;
+}
+.title h3{
+color: white;
+}
+.formContainer button{
+  margin-bottom: 2px;
+  width: fit-content;
+  overflow-x: visible;
+  overflow-y: unset;
+  line-height: normal;
+  font-size: 16px;
+  margin: 0;
+  
+  display: inline;
+  align-items: unset;
+  justify-content: unset;
+  padding: 0;
+  border: none;  
+  overflow: visible;   
+}
+.formContainer .bold{
+  font-weight: 800;
+}
+
+.formContainer .empty{
+  width: 100px; 
+}
+
+.formContainer .table tr td.error span{
+  font-size: 14px;
+  color: red;
+}
+.formContainer .table tr input.inputError{
+  border: 1px solid red;
+}
+.formContainer .table tr input{
+  border: 1px solid black;
+}
+.formContainer .table tr select.inputError{
+  border: 1px solid red;
+}
+.formContainer .table tr select{
+  border: 1px solid black;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.formContainer th{
+  font-weight: normal;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+}
+.formContainer td {
+  font-weight: normal;
+  text-align: center;
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px 5px;
+  border: none;
+}
+.formContainer table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 1px 0 0 1px;
+  margin:0px;
+  padding: 0px;
+  table-layout: fixed;
+  width: 100%;
+  border: none;
+}
+.formContainer 
+.error{
+  color: red;
+  font-size: 14px;
+}
+
+.myTable th{
+position: sticky;
+top: 0;
+background-color: lightgray;
+padding: 10px;
+}
+
+.tableContainer{
+max-height: 250px;
+overflow-y: auto;
+
+}
+.tableContainer::-webkit-scrollbar-thumb{
+  width: 20px;
+}
+.tableContainer::-webkit-scrollbar-track{
+  width: 20px;
+}
+.tableContainer::-webkit-scrollbar-track-piece{
+  width: 20px;
+}
+.tableContainer::-webkit-scrollbar-button{
+  display: none;
+}

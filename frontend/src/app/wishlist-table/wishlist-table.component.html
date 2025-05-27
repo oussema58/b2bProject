@@ -1,0 +1,57 @@
+<table class="table" ngClass="tableCart" style="width: 80%;">
+    <tr>
+
+        <th scope="col">Produit</th>
+        <th scope="col">Intitule</th>
+        <th scope="col">Prix_HT</th>
+        <th scope="col">Prix_TTC</th>
+        <th scope="col">Actions</th>
+    </tr>
+
+
+    <tbody>
+    <!--<ng-container *ngIf="isEmpty">
+            <tr>
+                <td colspan="5" style="text-align: center;font-size: 16px;padding: 10px;">Aucun
+                    produit trouvé dans le panier</td>
+            </tr>
+        </ng-container>-->
+        <ng-container >
+            <tr >
+                <td style="">
+                    <figure>
+                        <a>
+                            <img src="assets/images/products/product-4.jpg" alt="product"
+                                style="width: 100px;height: 100px;">
+                            <button >x</button>
+                        </a>
+                    </figure>
+                </td>
+                <td style="display: flex;justify-content: center;align-items: center;">
+                    <h5 style="border: 2px solid red;">
+                        <a href="product.html">aaaa</a>
+                    </h5>
+                </td>
+                <td style="font-size: 14px;"> <span>50 TND</span></td>
+                
+                <td style="font-size: 14px;"><span>40 TND</span></td>
+                
+                <td style="border: 2px solid red;">
+                    <a style="border: 2px solid blue;" [routerLink]="'/store/article/'+6+'/detail'"  class="btn btn-quickview"
+                        title="Quick View">Voir Plus</a>
+                        <button style="border: 2px solid green;height: fit-content;" class="btn btn-dark btn-add-cart product-type-simple btn-shop">
+                            AJOUTER AU PANIER
+                        </button>
+                </td>
+
+            </tr>
+
+        </ng-container>
+
+    </tbody>
+
+
+    <tfoot >
+    
+    </tfoot>
+</table>

@@ -1,0 +1,162 @@
+<div class="main-content">
+
+    <div class="main-content-inner">
+
+        <div class="main-content-wrap">
+            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                <h3>Gestion motifs</h3>
+                <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                    <li>
+                        <a href="index-2.html">
+                            <div class="text-tiny">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a routerLink="/dashboard/motif">
+                            <div class="text-tiny">Gestion motif</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wg-box">
+                <div class="flex items-center justify-between gap10 flex-wrap" *ngIf="!inCreateMode">
+                    <div class="wg-filter flex-grow">
+                        <form class="form-search">
+                            <fieldset class="name">
+                                <input type="text" placeholder="chercher motif par intitule..." class="" name="name"
+                                    tabindex="2" [(ngModel)]="intituleMotif" (ngModelChange)="change()">
+                            </fieldset>
+
+                        </form>
+                    </div>
+                   <a class="tf-button style-1 w208" (click)="openCreate()"><i class="icon-plus"></i>Ajouter motif</a>
+                </div>
+
+                <div *ngIf="inCreateMode" class="formContainer"> 
+                    <form [formGroup]="myForm">
+                        
+                        <table class="table">
+                            <tr>
+                                <td><label class="bold" for="code">*Code:</label></td>
+                                <td><label class="bold" for="intitule">*Intitule:</label></td>
+                            </tr>
+                            <tr>
+                                <td><input (blur)="codeValidator()" type="text" id="code" formControlName="code">
+                                <span style="display: block;" *ngIf="displayCodeRequired"  class="error">*code est obligatoire</span>
+                                </td>
+                                <td><input (blur)="intituleValidator()" id="intitule" type="text" formControlName="intitule">
+                                <span style="display: block;" *ngIf="displayIntituleRequired"  class="error">*intitule est obligatoire</span>
+                                </td>
+                            </tr>
+                            
+                        
+                        </table>
+                        <button class="btn btn-primary m-2 p-2" (click)="create()" type="submit">Creer</button>
+                        <button class="btn btn-danger p-2"  (click)="annuler()" >Annuler</button>
+
+                        
+                    </form>
+                </div>
+                <mat-card *ngIf="!inCreateMode">
+                    <mat-card-header></mat-card-header>
+                    <mat-card-content>
+                        <table mat-table [dataSource]="dataSource" class="table table-striped">
+                            <ng-container matColumnDef="Code">
+                                <th mat-header-cell *matHeaderCellDef>Code</th>
+                                <td mat-cell *matCellDef="let element">{{element.code}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Intitule">
+                                <th mat-header-cell *matHeaderCellDef>Intitule</th>
+                                <td mat-cell *matCellDef="let element">{{element.intitule}}</td>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="Action">
+                                <th mat-header-cell *matHeaderCellDef>Action</th>
+                                <td mat-cell *matCellDef="let element">    
+                                    <button (click)="delete(element.id)" class="btn btn-danger"><i class="icon-trash-2"></i></button>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row;columns: displayedColumns"></tr>
+                            <tr *matNoDataRow >
+                                <td colspan="8"
+                                 style="text-align: center;">Aucun motif trouvé</td>
+                            </tr>
+                        </table>
+                    </mat-card-content>
+                    <mat-card-footer>
+                        <mat-paginator [pageSizeOptions]="[2,10,20]" showFirstLastButtons></mat-paginator>
+                    </mat-card-footer>
+                </mat-card>
+
+            </div>
+
+<!--<div class="container">
+    <h2>Tout Motifs</h2>
+    <table class="table">
+        <tr>
+            <td colspan="2"><input type="text" class="col-6 m-2 p-2 search" placeholder="chercher vos motif">
+            </td>
+            <td></td>
+            <td></td>
+            <td colspan="2"><button class="btn btn-primary" (click)="openCreate()">Ajouter Motif</button></td>
+        </tr>
+    </table>
+        <div *ngIf="inCreateMode">
+        <hr>
+        <div style="float: right;margin-bottom: 10px;">
+            <button style="margin-inline: 5px;" *ngIf="inCreateMode" (click)="create()"
+                class="btn btn-primary">Creer</button>
+            
+            <button *ngIf="inCreateMode" (click)="annuler()" class="btn btn-danger">Annuler</button>
+
+            <br>
+        </div>
+        <form [formGroup]="myForm">
+            <table class="table">
+            
+                <tr>
+                    <td><label for="intitule">Intitule</label></td>
+                    <td><input (blur)="intituleValidator()" id="intitule" type="text" formControlName="intitule"></td>
+                    <td class="empty"></td>
+                    <td><label for="code">Code</label></td>
+                    <td><input (blur)="codeValidator()" type="text" id="code" formControlName="code"></td>
+
+                </tr>
+                <tr>
+                    <td class="empty"></td>
+                    <td *ngIf="displayIntituleRequired" class="error">*Intitule est obligatoire</td>
+                    <td *ngIf="!displayIntituleRequired" class="empty"></td>
+                    <td class="empty"></td>
+                    <td colspan="2" class="empty"></td>
+                    <td *ngIf="displayCodeRequired" class="error">*Code est obligatoire</td>
+                    <td *ngIf="!displayCodeRequired" class="empty"></td>
+                </tr>
+            
+            </table>
+        </form>
+        <hr>
+    </div>
+
+    <div class="catalog-container">
+        <table class="table">
+            <tr>
+                <th scope="col">Intitule</th>
+                <th scope="col">Code</th>
+                
+            </tr>
+
+            <tr *ngFor="let motif of motifs">
+                <td>{{motif.code}}</td>
+                <td>{{motif.intitule}}</td>-->
+                <!--9<td><button (click)="openEdit(fam)" class="btn btn-primary">Editer</button></td>-->
+                <!--<td><button (click)="delete(motif.id)" class="btn btn-danger">Supprimer</button></td>
+            </tr>
+        </table>
+    </div>
+
+</div>-->

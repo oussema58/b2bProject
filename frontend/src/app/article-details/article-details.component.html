@@ -1,0 +1,169 @@
+
+<div class="main-content">
+
+    <div class="main-content-inner">
+
+        <div class="main-content-wrap">
+            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                <h3>Article Detail</h3>
+                <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                    <li>
+                        <a href="index-2.html">
+                            <div class="text-tiny">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a routerLink="/dashboard/article">
+                            <div class="text-tiny">article</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a [routerLink]="'/dashboard/article'+this.idArticle+'detail'">
+                            <div class="text-tiny">{{this.idArticle}}</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wg-box">
+                
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 product-single-gallery">
+                        <div class="product-slider-container">
+                            <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
+                                <div class="product-item">
+                                <!--<img class="product-single-image" [src]="article.imagePath"
+                                        data-zoom-image="assets/images/products/zoom/product-1-big.jpg" width="468"
+                                        height="468" alt="product" />-->
+                                    <img class="product-single-image" [src]="article.imageContent"
+                                    data-zoom-image="assets/images/products/zoom/product-1-big.jpg" width="468"
+                                    height="468" alt="product" />
+                                </div>
+    
+                            </div>
+                            <!-- End .product-single-carousel -->
+                            <span class="prod-full-screen">
+                                <i class="icon-plus"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- End .product-single-gallery -->
+    
+                    <div class="col-lg-7 col-md-6 product-single-details">
+                        <h1 class="product-title">{{article.articleIntitule}}</h1>
+    
+                        <!--<div class="product-nav">
+                            <div class="product-prev">
+                                <a href="#">
+                                    <span class="product-link"></span>
+    
+                                    <span class="product-popup">
+                                        <span class="box-content">
+                                            <img alt="product" width="150" height="150"
+                                                src="assets/images/products/product-3.jpg"
+                                                style="padding-top: 0px;">
+    
+                                            <span>Circled Ultimate 3D Speaker</span>
+                                    </span>
+                                    </span>
+                                </a>
+                            </div>
+    
+                            <div class="product-next">
+                                <a href="#">
+                                    <span class="product-link"></span>
+    
+                                    <span class="product-popup">
+                                        <span class="box-content">
+                                            <img alt="product" width="150" height="150"
+                                                src="assets/images/products/product-4.jpg"
+                                                style="padding-top: 0px;">
+    
+                                            <span>Blue Backpack for the Young</span>
+                                    </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>-->
+    
+    
+                        <!-- End .ratings-container -->
+    
+                        <hr class="short-divider">
+    
+                        <div class="price-box">
+                            <span class="old-price">1,999.00</span>
+                            <span class="new-price">{{article.articlePrixHT}} TND</span>
+                        </div>
+                        <!-- End .price-box -->
+    
+                        <div class="product-desc">
+                            <p>
+                                {{article.description}}
+                            </p>
+                        </div>
+                        <!-- End .product-desc -->
+    
+                        <ul class="single-info-list">
+    
+                            <li>
+                                nombre des ventes <strong>{{article.nbArticleSold}}</strong>
+                            </li>
+    
+                            <li>
+                                catalogue: <strong><a class="product-category">{{article.catalogue.catalogueIntitule}}</a></strong>
+                            </li>
+                            <li >
+                                etat: <strong [ngStyle]="{'color':article.articleEtat?'green':'red'}">{{article.articleEtat?'En Vente':'Hors Vente'}}</strong>
+                            </li>
+                            <li >
+                                famille: <strong >{{article.famille.familleIntitule}}</strong>
+                            </li>
+                            <li >
+                                taxe taux: <strong >{{article.taxe.taxeTaux}} %</strong>
+                            </li>
+                            <li >
+                                code a barre: <strong >{{article.articleBarCode}}</strong>
+                            </li>
+                            
+                            <li >
+                                date création: <strong >{{article.dateCreate | date:'longDate'}}</strong>
+                            </li>
+    
+                        </ul>
+    
+                        <div class="yo" style="display: flex;justify-content: flex-start;align-items: flex-start;">
+                            
+                            <!-- End .product-single-qty -->
+                            <div style="width:fit-content;">
+                                <button class="btn btn-primary" (click)="openEdit(article)"
+                                    style="margin-inline:5px;width: fit-content;
+                                    height: fit-content;text-align: center;font-size: 16px;text-wrap: nowrap;">
+                                    EDITER
+                                </button>
+                                <button class="btn btn-danger" (click)="delete(article.articleID)"
+                                    style="margin-inline:5px;width: fit-content;
+                                    height: fit-content;text-align: center;font-size: 16px;text-wrap: nowrap;">
+                                    SUPPRIMER
+                                </button>
+                                <button>
+
+                                </button>
+                            </div>
+    
+                            <a routerLink="/store/panier" class="btn btn-gray view-cart d-none">Voir Panier</a>
+                        </div>
+                        <!-- End .product-action -->
+                        <hr class="divider mb-0 mt-0">
+                        <!-- End .product single-share -->
+                    </div>
+                    <!-- End .product-single-details -->
+                </div>
+                <!-- End .row -->
+                
+            </div>

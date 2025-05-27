@@ -1,0 +1,159 @@
+<div class="dashboard-content">
+    <p>
+        Bonjour <strong class="text-dark">Editeur</strong> (non
+        <strong class="text-dark">Editeur</strong>?
+        <a (click)="deconnecter()" class="btn btn-link ">Deconnecter</a>)
+    </p>
+
+    <p>
+        D'aprés votre Dashboard vous pouvez voir
+        
+        <a class="btn btn-link link-to-tab" [routerLink]="'/client/dashboard/order'">
+            vos commandes récentes</a>,
+          et
+        <a class="btn btn-link link-to-tab" [routerLink]="'/client/dashboard/account/detail'">modifier votre mot de passe et détails du compte .</a>
+    </p>
+
+    <div class="mb-4"></div>
+
+    <div class="row row-lg">
+    <!--<ng-container *ngIf="ready">
+        <div class="col-6 col-md-4" *ngFor="let link of links">
+            <div class="feature-box pb-4" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                <a  [routerLink]="link.src"  class="link-to-tab"><img style="width: 60px;height: 60px;"  [src]="link.img" alt=""></a>
+            
+                
+                <div class="feature-box-content" >
+                    <h3 >{{link.value}}</h3>
+                </div>
+            </div>
+        </div>
+        </ng-container>-->
+        <ng-container *ngIf="ready">
+            <div class="col-6 col-md-4">
+                <div class="feature-box pb-4" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <a  [routerLink]="'/client/dashboard/order'"  class="link-to-tab"><img style="width: 60px;height: 60px;"  [src]="'assets/dashboard images/orders.png'" alt=""></a>
+                
+                    
+                    <div class="feature-box-content" >
+                        <h3 >COMMANDES {{"("+this.dashboard.nbCommandeClient+"|"+ this.dashboard.nbCommandeSociete+ ")" }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="feature-box pb-4" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <a  [routerLink]="'/client/dashboard/demandeRetour'"  class="link-to-tab"><img style="width: 60px;height: 60px;"  [src]="'assets/dashboard images/retour.png'" alt=""></a>
+                
+                    
+                    <div class="feature-box-content" >
+                        <h3 > DEMANDE DE RETOUR {{"("+this.dashboard.nbRetourClient+"|"+this.dashboard.nbRetourSociete+")"}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="feature-box pb-4" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <a  [routerLink]="'/store/panier'"  class="link-to-tab"><img style="width: 60px;height: 60px;"  [src]="'assets/dashboard images/cart.png'" alt=""></a>
+                
+                    
+                    <div class="feature-box-content" >
+                        <h3 >PANIER {{"("+this.dashboard.nbPanier+")"}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="feature-box pb-4" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <a  [routerLink]="'/store/wishlist'"  class="link-to-tab"><img style="width: 60px;height: 60px;"  [src]="'assets/dashboard images/wishlist.png'" alt=""></a>
+                
+                    
+                    <div class="feature-box-content" >
+                        <h3 >LISTE DE SOUHAIT {{"("+this.dashboard.nbWishlist+")"}}</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-6 col-md-4">
+                <div class="feature-box pb-4" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <a  [routerLink]="'/client/dashboard/societe/detail'"  class="link-to-tab"><img style="width: 60px;height: 60px;"  [src]="'assets/dashboard images/info.png'" alt=""></a>
+                
+        
+                    <div class="feature-box-content" >
+                        <h3 >MON SOCIETE DETAILS</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4">
+                <div class="feature-box pb-4" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <a  [routerLink]="'/client/dashboard/account/detail'"  class="link-to-tab"><img style="width: 60px;height: 60px;"  [src]="'assets/dashboard images/info.png'" alt=""></a>
+                
+        
+                    <div class="feature-box-content" >
+                        <h3 >MON COMPTE DETAILS</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4">
+                <div class="feature-box pb-4" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <a  [routerLink]="'/client/dashboard/'+this.idClient+'/user'"  class="link-to-tab"><img style="width: 60px;height: 60px;"  [src]="'assets/dashboard images/users.png'" alt=""></a>
+                
+                    
+                    <div class="feature-box-content" >
+                        <h3 >GESTION DES COMPTES{{"("+this.dashboard.nbCompte+")"}}</h3>
+                    </div>
+                </div>
+            </div>
+            
+            </ng-container>
+
+        
+
+    <!--<div class="col-6 col-md-4">
+            <div class="feature-box text-center pb-4">
+                <a [routerLink]="'/client/dashboard/demandeRetour'" class="link-to-tab"><i
+                        class="sicon-location-pin"></i></a>
+                <div class="feature-box-content">
+                    <h3>DEMANDE DE RETOUR</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-4">
+            <div class="feature-box text-center pb-4">
+                <a href="#edit" class="link-to-tab"><i class="icon-user-2"></i></a>
+                <div class="feature-box-content p-0">
+                    <h3>DETAILS DU COMPTE</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-4">
+            <div class="feature-box text-center pb-4">
+                <a [routerLink]="'/client/dashboard/'+idClient+'/user'"><i class="sicon-logout"></i></a>
+                <div class="feature-box-content">
+                    <h3>GESTION DES COMPTES DE SOCIETE</h3>
+                </div>
+            </div>
+        </div> 
+
+        <div class="col-6 col-md-4">
+            <div class="feature-box text-center pb-4">
+                <a routerLink="/store/panier"><i class="sicon-heart"></i></a>
+                <div class="feature-box-content">
+                    <h3>LISTE DE SOUHAIT</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-4">
+            <div class="feature-box text-center pb-4">
+                <a routerLink="/store/wishlist"><i class="sicon-logout"></i></a>
+                <div class="feature-box-content">
+                    <h3>PANIER</h3>
+                </div>
+            </div>
+        </div>-->
+
+       
+    </div><!-- End .row -->
+</div>

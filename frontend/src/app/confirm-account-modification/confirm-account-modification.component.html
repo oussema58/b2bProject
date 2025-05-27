@@ -1,0 +1,30 @@
+<div style="overflow-x: hidden;padding: 10px;">
+<h3 class="account-sub-title d-none d-md-block mt-0 pt-1 ml-1">Confirmation</h3>
+<div  class="account-content" >
+    <form >
+        <p>ecrire mot de passe pour confirmer modification</p>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="acc-password" style="font-weight: 800;">Mot de Passe Actuelle</label>
+                    <input type="password" class="form-control" id="passwordConfirmation" [(ngModel)]="password" 
+                     (blur)="passwordValidator()" [ngModelOptions]="{standalone:true}"/>
+                    <p *ngIf="displayPasswordRequired" style="color: red;">*ecrire mot de passe</p>
+                </div>
+            </div>
+    
+            
+        </div>
+        <div>
+           
+            <button ngClass="action"  (click)="annuler()" class="btn btn-danger">
+                Annuler
+            </button>
+            <button ngClass="action" (click)="update()" class="btn btn-primary">
+                Confirmer
+            </button>
+        </div>
+    </form>
+</div> 
+</div>   

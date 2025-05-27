@@ -1,0 +1,378 @@
+<div class="main-content">
+
+    <div class="main-content-inner">
+
+        <div class="main-content-wrap">
+            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                <h3>Gestion des Catalogues de Produit</h3>
+                <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                    <li>
+                        <a routerLink="/dashboard">
+                            <div class="text-tiny">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a routerLink="/dashboard/category">
+                            <div class="text-tiny">Tous les catalogues</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wg-box">
+                <div class="flex items-center justify-between gap10 flex-wrap" *ngIf="!inCreateMode && !inEditMode">
+                    <!-- <div class="wg-filter flex-grow" *ngIf="!inCreateMode && !inEditMode"
+                        style="justify-content:space-between">
+                        <div style="display: flex;justify-content: flex-start">
+                            <div >
+                                <span style="font-size: 14px;">chercher nom par niveau</span>
+                                <select name="lvl" id="" tabindex="2"
+                                    style="border: 1px solid black;text-align: center;width: max-content;">
+                                    <option value="v1">Niveau 1</option>
+                                    <option value="v2">Niveau 2</option>
+                                    <option value="v3">Niveau 3</option>
+
+                                </select>
+                            </div>
+                            <div class="name">
+                                <input type="text" placeholder="chercher catalogue par nom..." class="" name="name"
+                                    style="width: max-content;" tabindex="3" [(ngModel)]="intituleCatalogue">
+                            </div>
+
+                        </div> -->
+
+                    <form style="display: flex;justify-content: flex-start;width: 60%;">
+                        <fieldset class="lvl" style="display: flex;justify-content: flex-start;align-items: center;">
+                            <span style="font-size: 14px;">chercher nom par niveau:&ThickSpace;</span>
+                            <select name="lvl" id="" tabindex="2" [(ngModel)]="searchLevel"
+                                (ngModelChange)="filterCatalogues()"
+                                style="border: 1px solid black;text-align: center;width: max-content;">
+                                <option value="lvl1">Niveau 1</option>
+                                <option value="lvl2">Niveau 2</option>
+                                <option value="lvl3">Niveau 3</option>
+
+                            </select>
+                        </fieldset>
+                        <fieldset class="name">
+                            <input type="text" placeholder="chercher catalogue par nom..." class="" name="name"
+                                style="width: max-content;" tabindex="3" [(ngModel)]="intituleCatalogue"
+                                (ngModelChange)="filterCatalogues()">
+                        </fieldset>
+
+                    </form>
+
+
+                    <div>
+                        <a *ngIf="!inCreateMode && !inEditMode" class="tf-button style-1 w208" (click)="openCreate()"><i
+                                class="icon-plus"></i>Ajouter
+                            catalogue</a>
+                    </div>
+                </div>
+
+
+
+                <!--<div class="wg-filter flex-grow" *ngIf="!inCreateMode && !inEditMode">
+                    <span style="margin: 0px 5px;">
+                        <label for="">tous les niveaux</label>
+                        <input type="radio" value="all" [(ngModel)]="currentLevel" (ngModelChange)="changeLevel()" style="width: 15px;height: 15px;">
+                    </span>
+                    <span style="margin: 0px 5px;">
+                        <label for="">Niveau 1</label>
+                        <input type="radio" value="1" [(ngModel)]="currentLevel" (ngModelChange)="changeLevel()" style="width: 15px;height: 15px;">
+                    </span>
+                    <span style="margin: 0px 5px;">
+                        <label for="">Niveau 2</label>
+                        <input type="radio" value="2" [(ngModel)]="currentLevel" (ngModelChange)="changeLevel()" style="width: 15px;height: 15px;">
+                    </span>
+                    <span style="margin: 0px 5px;">
+                        <label for="">Niveau 3</label>
+                        <input type="radio" value="3" [(ngModel)]="currentLevel" (ngModelChange)="changeLevel()" style="width: 15px;height: 15px;">
+                    </span>
+                </div>-->
+                <div *ngIf="inCreateMode || inEditMode" class="formContainer">
+                    <form>
+                        <!--<div style="float: right;margin-bottom: 10px;">
+
+                            <button style="margin-inline: 5px;" *ngIf="inCreateMode" (click)="create()"
+                                class="btn btn-primary">Creer</button>
+                            <button *ngIf="inEditMode" (click)="update()" type="submit" class="btn btn-primary">Mise a
+                                jour</button>
+                            <button *ngIf="inCreateMode || inEditMode" (click)="annuler()"
+                                class="btn btn-danger">Annuler</button>
+                            <br>
+                        </div>-->
+                        <table class="table">
+                            <tr>
+                                <td><label class="bold" for="intitule">*Intitule:</label></td>
+                                <td><label class="bold" for="level">*Niveau:</label></td>
+                                <td *ngIf="level!='1'"><label class="bold" for="parentId">*Parent:</label></td>
+                            </tr>
+                            <tr>
+                                <td><input (blur)="intituleValidator()" [(ngModel)]="intitule" type="text"
+                                        [ngModelOptions]="{standalone:true}" id="intitule"></td>
+
+                                <td><select [(ngModel)]="level" id="level" [ngModelOptions]="{standalone:true}"
+                                        (ngModelChange)="updateParentId()">
+                                        <option value="3">Contenaire des Articles</option>
+                                        <option value="2">Contenaire des Categorys</option>
+                                        <option value="1">Root</option>
+                                    </select>
+                                </td>
+
+                                <td *ngIf="level!='1'">
+                                    <ng-container *ngIf="level=='2'">
+                                        <select [(ngModel)]="parentId" id="parentId" (blur)="parentValidator()"
+                                            [ngModelOptions]="{standalone:true}">
+
+                                            <ng-container *ngFor="let catParent of categoriesDividedBackup">
+                                                <option *ngIf="catParent.name!=catalogue?.catalogueIntitule"
+                                                    [value]="catParent.id">
+                                                    {{catParent.name}}</option>
+                                            </ng-container>
+                                            <option value="0"></option>
+
+                                        </select>
+                                    </ng-container>
+
+
+                                    <ng-container *ngIf="level=='3'">
+                                        <select [(ngModel)]="parentId" id="parentId" (blur)="parentValidator()"
+                                            [ngModelOptions]="{standalone:true}">
+                                            <ng-container *ngFor="let catParent of categoriesDividedBackup">
+                                                <optgroup [label]="catParent.name" *ngIf="catParent.value.length>0">
+                                                    <ng-container *ngFor="let elem of catParent.value">
+                                                        <option *ngIf="elem.name!=catalogue?.catalogueIntitule"
+                                                            [value]="elem.id">
+                                                            {{elem.name}}</option>
+                                                    </ng-container>
+                                                </optgroup>
+
+
+                                            </ng-container>
+                                            <optgroup>
+                                                <option value="0"></option>
+                                            </optgroup>
+                                        </select>
+                                    </ng-container>
+
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td *ngIf="!diplayIntituleRequired && !diplayIntituleFormatError" class="empty"></td>
+                                <td *ngIf="diplayIntituleRequired" class="error"><span style="color: red;">*Intitule est
+                                        obligatoire</span></td>
+                                <td *ngIf="diplayIntituleFormatError" class="error"><span style="color: red;">*Intitule
+                                        doit etre formée par des lettres seulement
+                                    </span></td>
+                                <td *ngIf="displayParentRequired" class="empty"></td>
+                                <td *ngIf="displayParentRequired" class="error"><span style="color: red;">*tu dois
+                                        spécifier un parent</span></td>
+                            </tr>
+
+                        </table>
+                        <button *ngIf="inCreateMode" (click)="create()" class="btn btn-primary m-2 p-2">Creer</button>
+                        <button class="btn btn-primary m-2 p-2" *ngIf="inEditMode" (click)="update()" type="submit">Mise
+                            a jour</button>
+                        <button class="btn btn-danger p-2" *ngIf="inCreateMode || inEditMode" (click)="annuler()"
+                            (click)="annuler()">Annulez</button>
+                    </form>
+
+                </div>
+
+                <mat-card [ngStyle]="{'display':(!inCreateMode && !inEditMode)?'block':'none'}">
+                    <mat-card-header></mat-card-header>
+                    <mat-card-content>
+                        <table mat-table [dataSource]="dataSource" class="table table-striped" multiTemplateDataRows>
+                            <ng-container matColumnDef="Intitule">
+                                <th mat-header-cell *matHeaderCellDef>Intitule</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.name.slice(0,20)}} <span *ngIf="element.name.length>20">...</span>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="Niveau">
+                                <th mat-header-cell *matHeaderCellDef>Niveau</th>
+                                <td mat-cell *matCellDef="let element">1</td>
+                            </ng-container>
+                            <ng-container matColumnDef="catalogueParent">
+                                <th mat-header-cell *matHeaderCellDef>Catalogue Parent</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <span class="bold" *ngIf="element.catalogueParent==null">Racine</span>
+
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="Action">
+                                <th mat-header-cell *matHeaderCellDef>Action</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button class="btn btn-primary" (click)="openEdit(element)">
+                                        <i class="icon-edit-3"></i>
+                                    </button>
+                                    <button class="btn btn-danger" (click)="delete(element.id)">
+                                        <i class="icon-trash-2"></i>
+                                    </button>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="expand">
+                                <th mat-header-cell *matHeaderCellDef></th>
+                                <td mat-cell *matCellDef="let element">
+                                    <span (click)="expand(element)"
+                                        *ngIf="element.value.length!=0 && !element.isExpanded"><mat-icon>keyboard_arrow_up</mat-icon></span>
+                                    <span (click)="expand(element)"
+                                        *ngIf="element.value.length!=0 && element.isExpanded"><mat-icon>keyboard_arrow_down</mat-icon></span>
+                                </td>
+                            </ng-container>
+
+                            <!---second table info-->
+                            <ng-container matColumnDef="expandedDetail">
+                                <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                                    <div class="example-element-detail"
+                                        [@detailExpand]="element.isExpanded? 'expanded' : 'collapsed'">
+
+                                        <table mat-table [dataSource]="element.value" multiTemplateDataRows
+                                            class="table" style="margin-left: 15px;width: 80%; ">
+                                            <ng-container matColumnDef="Intitule">
+                                                <th mat-header-cell *matHeaderCellDef>Intitule</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    <span style="display: flex;justify-content: center;">
+                                                        <!-- <mat-icon>chevron_right</mat-icon> -->
+                                                        <span>{{element.name.slice(0,20)}}</span> <span
+                                                            *ngIf="element.name.length>20">...</span>
+                                                    </span>
+                                                </td>
+
+                                            </ng-container>
+                                            <ng-container matColumnDef="Niveau">
+                                                <th mat-header-cell *matHeaderCellDef>Niveau</th>
+                                                <td mat-cell *matCellDef="let element">2</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="catalogueParent">
+                                                <th mat-header-cell *matHeaderCellDef>Catalogue Parent</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    <span class="bold"
+                                                        *ngIf="element.catalogueParent==null">Racine</span>
+
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="Action">
+                                                <th mat-header-cell *matHeaderCellDef>Action</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    <button class="btn btn-primary" (click)="openEdit(element)">
+                                                        <i class="icon-edit-3"></i>
+                                                    </button>
+                                                    <button class="btn btn-danger" (click)="delete(element.id)">
+                                                        <i class="icon-trash-2"></i>
+                                                    </button>
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="expand">
+                                                <th mat-header-cell *matHeaderCellDef></th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    <span (click)="expand(element)"
+                                                        *ngIf="element.value.length!=0 && !element.isExpanded"><mat-icon>keyboard_arrow_up</mat-icon></span>
+                                                    <span (click)="expand(element)"
+                                                        *ngIf="element.value.length!=0 && element.isExpanded"><mat-icon>keyboard_arrow_down</mat-icon></span>
+                                                </td>
+                                            </ng-container>
+
+
+                                            <!--- thired table info-->
+                                            <ng-container matColumnDef="catalogue3">
+                                                <td mat-cell *matCellDef="let element" [attr.colspan]="4">
+                                                    <div class="example-element-detail"
+                                                        [@detailExpand]="element.isExpanded? 'expanded' : 'collapsed'">
+
+                                                        <table mat-table [dataSource]="element.value" class="table"
+                                                            style="margin-left: 40px;width: 70%; ">
+                                                            <ng-container matColumnDef="Intitule">
+                                                                <th mat-header-cell *matHeaderCellDef>Intitule</th>
+                                                                <td mat-cell *matCellDef="let element">
+                                                                    <span
+                                                                        style="display: flex;justify-content: center;">
+                                                                        <!-- <mat-icon>chevron_right</mat-icon> -->
+                                                                        <span>{{element.name.slice(0,20)}}</span> <span
+                                                                            *ngIf="element.name.length>20">...</span>
+                                                                    </span>
+                                                                </td>
+                                                            </ng-container>
+                                                            <ng-container matColumnDef="Niveau">
+                                                                <th mat-header-cell *matHeaderCellDef>Niveau</th>
+                                                                <td mat-cell *matCellDef="let element">3</td>
+                                                            </ng-container>
+                                                            <ng-container matColumnDef="catalogueParent">
+                                                                <th mat-header-cell *matHeaderCellDef>Catalogue Parent
+                                                                </th>
+                                                                <td mat-cell *matCellDef="let element">
+                                                                    <span class="bold"
+                                                                        *ngIf="element.catalogueParent==null">Racine</span>
+
+                                                                </td>
+                                                            </ng-container>
+
+                                                            <ng-container matColumnDef="Action">
+                                                                <th mat-header-cell *matHeaderCellDef>Action</th>
+                                                                <td mat-cell *matCellDef="let element">
+                                                                    <button class="btn btn-primary"
+                                                                        (click)="openEdit(element)">
+                                                                        <i class="icon-edit-3"></i>
+                                                                    </button>
+                                                                    <button class="btn btn-danger"
+                                                                        (click)="delete(element.id)">
+                                                                        <i class="icon-trash-2"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </ng-container>
+
+                                                            <tr mat-row
+                                                                *matRowDef="let row;columns: displayedColumnsWithoutExpand"
+                                                                class="example-element-row"></tr>
+
+
+
+
+
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+
+                                            <tr mat-row *matRowDef="let row;columns: displayedColumns"
+                                                class="example-element-row" style="background-color: #F2F2F2;"
+                                                [class.example-expanded-row]="row.isExpanded"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: ['catalogue3']"
+                                                class="example-detail-row"></tr>
+
+
+
+
+                                        </table>
+
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row;columns: displayedColumns" class="example-element-row"
+                                [class.example-expanded-row]="row.isExpanded" style="background-color: #DCDCDC;"></tr>
+                            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row">
+                            </tr>
+
+
+
+                            <tr *matNoDataRow>
+                                <td colspan="8" style="text-align: center;">Aucun catalogue trouvé</td>
+                            </tr>
+                        </table>
+                    </mat-card-content>
+                    <mat-card-footer>
+                        <mat-paginator [pageSizeOptions]="[2,10,20]" showFirstLastButtons></mat-paginator>
+                    </mat-card-footer>
+                </mat-card>
+            </div>

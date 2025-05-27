@@ -1,0 +1,143 @@
+<main class="main">
+    <div class="page-header">
+        <div class="container d-flex flex-column align-items-center">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/store">Acceuil</a></li>
+                        <li class="breadcrumb-item active" >
+                            Liste de Souhaits
+                        </li>
+                    </ol>
+                </div>
+            </nav>
+
+            <h1>Liste de Souhaits</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="wishlist-table-container"  style="display: flex;justify-content: center;align-items: center;" >
+            <mat-card style="width: 80%;background-color: transparent;">
+                <mat-card-header></mat-card-header>
+                <mat-card-content>
+                    <table mat-table [dataSource]="dataSource" class="table" ngClass="tableCart" style="width: 100%;background-color: transparent;">
+                        <ng-container matColumnDef="Produit">
+                            <th mat-header-cell *matHeaderCellDef>Produit</th>
+                            <td mat-cell *matCellDef="let element">
+                                <figure>
+                                    <a style="display: flex;justify-content: flex-start;position: relative;">
+                                        <img  [src]="element.articleImage" alt="product"
+                                            style="width: 140px;height: 100px;margin-left: 50px;">
+                                        <button  (click)="deleteLigneWishlist(element.id)">x</button>
+                                    </a>
+                                </figure>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Intitule">
+                            <th mat-header-cell *matHeaderCellDef>Intitule</th>
+                            <td mat-cell *matCellDef="let element">
+                                <h5 >
+                                    <a href="product.html">{{element.articleIntitule}}</a>
+                                </h5>
+                        </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Prix_HT">
+                            <th mat-header-cell *matHeaderCellDef>Prix_HT</th>
+                            <td mat-cell *matCellDef="let element" ><span style="font-size: 14px;">{{element.tarif}} TND</span></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Prix_TTC">
+                            <th mat-header-cell *matHeaderCellDef >Prix_TTC</th>
+                            <td mat-cell *matCellDef="let element"><span style="font-size: 14px;">{{element.tarifttc}} TND</span></td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="Actions">
+                            <th mat-header-cell *matHeaderCellDef>Actions</th>
+                            <td mat-cell *matCellDef="let element">
+                               
+                                <a  [routerLink]="'/store/article/'+element.articleId+'/detail'"  class="btn btn-quickview"
+                                    title="Quick View" style="">Voir Plus</a>
+                                    <button style="height: fit-content;width: max-content;" class="btn btn-dark btn-add-cart product-type-simple btn-shop" (click)="addPanierLigne(element)">
+                                        AJOUTER AU PANIER
+                                    </button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row;columns: displayedColumns"></tr>
+                        <tr *matNoDataRow >
+                            <td colspan="10"
+                             style="text-align: center;">Aucun produit trouvé</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+
+                    <mat-card-footer style="background-color: transparent;" >
+                        <mat-paginator style="background-color: transparent;" [pageSizeOptions]="[4,10,20]" showFirstLastButtons></mat-paginator>
+                    </mat-card-footer>
+            </mat-card>
+            
+
+        <!--<table class="table" ngClass="tableCart" style="width: 80%;">
+                <tr>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Intitule</th>
+                    <th scope="col">Prix_HT</th>
+                    <th scope="col">Prix_TTC</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                
+
+
+                <tbody>
+                    <ng-container *ngIf="isEmpty">
+                        <tr>
+                            <td colspan="5" style="text-align: center;font-size: 16px;padding: 10px;">Aucun
+                                produit trouvé dans le panier</td>
+                        </tr>
+                    </ng-container>
+                    <ng-container *ngIf="!isEmpty">
+                        <tr *ngFor="let ligne of lignes">
+                            <td >
+                                <figure>
+                                    <a style="display: flex;justify-content: flex-start;position: relative;">
+                                        <img  [src]="ligne.articleImage" alt="product"
+                                            style="width: 140px;height: 100px;margin-left: 50px;">
+                                        <button  (click)="deleteLigneWishlist(ligne.id)">x</button>
+                                    </a>
+                                </figure>
+                            </td>
+                            <td >
+                                <h5 >
+                                    <a href="product.html">{{ligne.articleIntitule}}</a>
+                                </h5>
+                            </td>
+                            <td style="font-size: 14px;"> <span>{{ligne.tarif}} TND</span></td>
+                            
+                            <td style="font-size: 14px;"><span>{{ligne.tarifttc}} TND</span></td>
+                            
+                            <td >
+                                <a  [routerLink]="'/store/article/'+ligne.articleId+'/detail'"  class="btn btn-quickview"
+                                    title="Quick View" style="">Voir Plus</a>
+                                    <button style="height: fit-content;width: max-content;" class="btn btn-dark btn-add-cart product-type-simple btn-shop" (click)="addPanierLigne(ligne)">
+                                        AJOUTER AU PANIER
+                                    </button>
+                            </td>
+
+                        </tr>
+
+                    </ng-container>
+
+                </tbody>
+
+
+                <tfoot >
+                
+                </tfoot>
+            </table>-->
+            
+        </div><!-- End .cart-table-container -->
+    </div><!-- End .container -->
+</main><!-- End .main -->
+
+<app-store-footer></app-store-footer>

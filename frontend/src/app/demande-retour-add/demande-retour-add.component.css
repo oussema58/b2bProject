@@ -1,0 +1,141 @@
+
+button{
+  margin-bottom: 2px;
+  overflow-x: unset;
+  overflow-y: unset;
+  line-height: normal;
+  font-size: 16px;
+  line-height: inherit;
+  margin: 0;
+  vertical-align: baseline;
+}
+th{
+  font-weight: 800;
+  text-align: center;
+  /*border: 2px solid black;*/
+  /*font-size: 14px;*/
+  /*border: none;*/
+
+height: auto;
+padding: 0px;
+display: table-cell;
+border: none;
+position: sticky;
+top: 0;
+}
+td {
+  font-weight: normal;
+  text-align: center;
+  /*font-size: 14px;*/
+  margin: 0px;
+  padding: 0px;
+
+  border: none;
+
+
+  border: none;
+}
+tr{
+  border: none;
+  padding: 0px;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin:0px;
+  padding: 0px;
+  /*table-layout: fixed;*/
+  width: 100%;
+
+
+  border: none
+}
+.noPadding{
+  padding:0px
+}
+.tableContainer{
+  max-height: 250px;
+  overflow-y: scroll;
+  position: relative;
+}
+/*.title{
+    text-align: center;
+    background-color: white;
+    color: black;
+    padding: 5px 0px;
+    margin-bottom: 1px solid black;
+  }
+  
+  .bold{
+    font-weight: 800;
+  }
+  
+  .empty{
+    width: 100px; 
+  }
+  add or update 
+  .close{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .table tr td.error span{
+    font-size: 14px;
+    color: red;
+  }
+  .table tr input.inputError{
+    border: 2px solid red;
+  }
+  .table tr input{
+    border: 2px solid black;
+  }
+  .table tr select.inputError{
+    border: 2px solid red;
+  }
+  .table tr select{
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  th{
+    font-weight: normal;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+  }
+  td {
+    font-weight: normal;
+    text-align: center;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+  }
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-width: 1px 0 0 0px;
+    margin:0px;
+    padding: 0px;
+    table-layout: fixed;
+    width: 100%;
+  }
+  .error{
+    color: red;
+  }
+  button{
+    margin-bottom: 2px;
+    width: fit-content;
+    overflow-x: visible;
+    overflow-y: unset;
+    line-height: normal;
+    font-size: 16px;
+    margin: 0;
+    
+    display: inline;
+    align-items: unset;
+    justify-content: unset;
+    padding: 0;
+    border: 4px solid black;  
+    overflow: visible;   
+  }*/

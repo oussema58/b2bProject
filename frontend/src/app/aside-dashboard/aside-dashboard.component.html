@@ -1,0 +1,81 @@
+<div class="section-menu-left">
+        <div class="box-logo" >
+        <a href="index-2.html" id="site-logo-inner">
+    <!--<img class="" id="logo_header" alt="" src="assets/images/logo/logo.png"
+                data-light="assets/images/logo/logo.png" data-dark="assets/images/logo/logo-dark.png" style="border: 2px solid red;">-->
+                
+    
+        <h3 style="background-color:#2275fc;padding: 5px;"><span style="color: black;">Pet</span><span style="color:white;">Store</span></h3>
+        </a>
+        <!-- <div class="button-show-hide">
+            <i class="icon-menu-left"></i>
+        </div> -->
+    </div>
+    <div class="center">
+        <div class="center-item">
+            <div class="center-heading">Accueil</div>
+            <ul class="menu-list">
+                <li class="menu-item has-children">
+                <a routerLink="/dashboard" class="menu-item-button" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <div class="icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="text">Dashboard</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="center-item">
+            <div class="center-heading">Gestion</div>
+            <ul class="menu-list">
+                <ng-container *ngFor="let element of elements">
+                <li class="menu-item" style="border: 2px solid red;" >
+                    <a  [routerLink]="'/dashboard/'+element.route" class="menu-item-button" routerLinkActive="active">
+                        <div class="icon"><i [class]="element.src"></i></div>
+                        <div class="text">{{element.text}}</div>
+                    </a>
+                <!--<a  [routerLink]="'/dashboard/'+element.route" class="menu-item-button" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <div class="icon"><i [class]="element.src"></i></div>
+                        <div class="text">{{element.text}}</div>
+                    </a>-->
+                </li>
+            <!--<li class="menu-item has-children">
+                    <a href="javascript:void(0);" class="menu-item-button">
+                        <div class="icon"><i class="icon-shopping-cart"></i></div>
+                        <div class="text">Ecommerce</div>
+                    </a>
+                </li>
+                <li class="menu-item has-children">
+                    <a href="javascript:void(0);" class="menu-item-button">
+                        <div class="icon"><i class="icon-layers"></i></div>
+                        <div class="text">Category</div>
+                    </a>
+                </li>
+                <li class="menu-item has-children">
+                    <a href="javascript:void(0);" class="menu-item-button">
+                        <div class="icon"><i class="icon-file-plus"></i></div>
+                        <div class="text">Order</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="report.html" class="">
+                        <div class="icon"><i class="icon-pie-chart"></i></div>
+                        <div class="text">Report</div>
+                    </a>
+                </li>-->
+                </ng-container>
+            </ul>
+        </div>
+        
+</div>
+
+<!--<ul class="aside">
+    <ng-container *ngFor="let elem of elements">
+        
+            <li (mouseenter)="changeIcon(elem)" (mouseleave)="originalIcon(elem)" >
+                <i [class]="elem.src" class="image"></i>
+                <a [id]="elem.id" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                    [routerLink]="'/dashboard'+elem.route">
+                    {{elem.text}}
+                </a>
+            </li>
+    </ng-container>
+</ul>-->

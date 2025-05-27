@@ -1,0 +1,10 @@
+.error{
+    color:red;
+font-size: 16px;
+}
+input.inputError{
+    border-color: red ;
+}
+.tf-button{
+    cursor: pointer;
+}

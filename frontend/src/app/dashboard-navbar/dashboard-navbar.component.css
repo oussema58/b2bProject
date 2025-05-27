@@ -1,0 +1,114 @@
+.logoutBtn{
+  background-color: white;
+  border:none;
+}
+
+
+/*.nav{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  font-size: 24px;
+  padding: 0px 5px;
+}
+.head{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: black;
+  font-size: 40px;
+  height: 55px;
+  padding: 10px; 
+}
+.nav li{
+  list-style-type: none;
+  color: white;
+}
+.nav li:first-child{
+  list-style-type: none;
+  color: white;
+  margin-right: 100px;
+}
+.nav li button{
+  color: white;
+  text-decoration: none;
+  background-color: black;
+  border: 2px solid transparent;
+}
+
+.result{
+  text-align: center;
+  width: 40%;
+  border: 3px solid purple;
+  padding: 5px;
+  margin: auto;
+  z-index: 111110000000000000000;
+}
+.success{
+  background-color: green;
+  animation-name: disapear;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  }
+  .failed{
+  background-color: red;
+  animation-name: disapear;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  }
+  @keyframes disapear {
+      0% {
+        opacity: 1;
+      }
+      100% {
+  opacity: 0;
+      }
+    }
+    .account{
+position: relative;
+    }
+    .image{
+      width: 30px;
+      height: 30px;
+    }
+    .imageHolder{
+      width: 100px;
+      display: flex;
+      justify-content: center;
+    }
+    .accountParams{
+      position: absolute;
+      top:45px;
+      left:0px;
+      width:100px;
+      background-color: grey;
+      
+    }
+    .accountParam{
+      color:black;
+      font-size: 16px;
+      border-bottom: 1px solid black;
+      margin-bottom: 4px;
+      background-color: white;
+    }
+ 
+    .image1{
+      width: 40px;
+      height: 40px;
+      border: 50%;
+    }
+    .image2{
+      width: 50px;
+      height: 50px;
+      border: 50%;
+      padding: 5px;
+    }
+    .flex{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .link{
+      text-decoration: none;
+      color: black;
+    }*/

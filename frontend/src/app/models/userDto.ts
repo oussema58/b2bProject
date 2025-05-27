@@ -1,0 +1,23 @@
+export class UserDto{
+    id:string; 
+name:string;
+etat:boolean;
+creationDate:Date;
+userName:string;
+email:string;
+phoneNumber:string;
+idClient:number;
+imagePath=""
+imageContent=""
+clientIntitule=""
+constructor(Id:string,Name:string,etat:boolean,creationDate:Date,UserName:string,Email:string,PhoneNumber:string,idClient:number){
+this.id=Id
+this.name=Name
+this.etat=etat
+this.creationDate=creationDate
+this.userName=UserName
+this.email=Email
+this.phoneNumber=PhoneNumber
+this.idClient=idClient
+}
+}

@@ -1,0 +1,231 @@
+<main class="main">
+
+    <div class="page-header" style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+        <div class="container d-flex flex-column align-items-center">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb" style="display: flex;justify-content: center;align-items:center;">
+                        <li class="breadcrumb-item"><a routerLink="/store">Acceuil</a></li>
+                        <li class="breadcrumb-item">
+                            Panier
+                        </li>
+                    </ol>
+                </div>
+            </nav>
+
+            <h1 style="margin: 0px;">Panier</h1>
+        </div>
+    </div>
+    <div class="container" style="width: 100%;margin: auto;">
+        <!--<ul class="checkout-progress-bar d-flex justify-content-center flex-wrap" style="text-align: center;">
+            <li class="active">
+                <a href="cart.html">Panier</a>
+            </li>
+           
+        </ul>-->
+
+        <div>
+            <div class=""
+                style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                <div class="cart-table-container"
+                    style="display: flex;justify-content: center;align-items: center;margin: 0px;">
+                    <mat-card style="width: 100%">
+                        <mat-card-header></mat-card-header>
+                        <mat-card-content>
+                            <table mat-table [dataSource]="dataSource" class="table" ngClass="tableCart" style="width: 100%;background-color: transparent;">
+                                <ng-container matColumnDef="Produit">
+                                    <th mat-header-cell *matHeaderCellDef>Produit</th>
+                                    <td mat-cell *matCellDef="let element" style="display: flex;justify-content: center;">
+                                        <figure>
+                                            <a>
+                                                <img [src]="element.articleImage" alt="product"
+                                                    style="width: 100px;height: 100px;">
+                                                <button (click)="deleteLignePanier(element.id)">x</button>
+                                            </a>
+                                        </figure>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Intitule">
+                                    <th mat-header-cell *matHeaderCellDef>Intitule</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <h5 >
+                                            <a href="product.html">{{element.articleIntitule}}</a>
+                                        </h5>
+                                </td>
+                                </ng-container>
+                               
+                                <ng-container matColumnDef="Prix_TTC">
+                                    <th mat-header-cell *matHeaderCellDef >Prix_TTC</th>
+                                    <td mat-cell *matCellDef="let element"><span style="font-size: 14px;">{{element.tarifttc}} TND</span></td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="Quantite">
+                                    <th mat-header-cell *matHeaderCellDef>Quantite</th>
+                                    <td mat-cell *matCellDef="let element" >
+                                     <div>
+                                            <button *ngIf="element.ligneQuantite!=1"
+                                                class="horizontal-quantity form-control" style="height: 50px"
+                                                (click)="updateLignePanier(element,element.ligneQuantite-1)">-</button>
+                                            <input class="horizontal-quantity form-control" style="width: 32px;"
+                                                type="text" [ngModel]="element.ligneQuantite" #input
+                                                (blur)="changeValue(element,input)">
+                                            <button class="horizontal-quantity form-control" style="height: 50px;"
+                                                (click)="updateLignePanier(element,element.ligneQuantite+1)">+</button>
+                                        </div>
+                                    
+                                    </td>
+                                </ng-container>
+                                
+                                <ng-container matColumnDef="Sous-total">
+                                    <th mat-header-cell *matHeaderCellDef>Sous-total</th>
+                                    <td mat-cell *matCellDef="let element" style="font-size: 14px;" class="text-right">
+                                        <span class="subtotal-price">{{element.ligneTotalTtc|number: '1.3-3'}} TND</span>
+                                    </td>
+                                </ng-container>
+        
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row;columns: displayedColumns"></tr>
+                                <tr *matNoDataRow >
+                                    <td colspan="10"
+                                     style="text-align: center;">Aucun produit trouvé</td>
+                                </tr>
+                            </table>
+                        </mat-card-content>
+        
+                            <mat-card-footer style="background-color: transparent;" >
+                                <mat-paginator style="background-color: transparent;" [pageSizeOptions]="[3,10,20]" showFirstLastButtons></mat-paginator>
+                            </mat-card-footer>
+                    </mat-card>
+                    
+                <!--<table class="table" ngClass="tableCart" style="width: 80%;">
+                        <tr>
+
+                            <th scope="col">Produit</th>
+                            <th scope="col">Intitule</th>
+                            <th scope="col">Prix_TTC</th>
+                            <th scope="col">Quantite</th>
+                            <th scope="col">Sous-total</th>
+                        </tr>
+
+
+                        <tbody>
+                            <ng-container *ngIf="isEmpty">
+                                <tr>
+                                    <td colspan="5" style="text-align: center;font-size: 16px;padding: 10px;">Aucun
+                                        produit trouvé dans le panier</td>
+                                </tr>
+                            </ng-container>
+                            <ng-container *ngIf="!isEmpty">
+                                <tr *ngFor="let ligne of lignes">
+                                    <td style="display: flex;justify-content: center;">
+                                        <figure>
+                                            <a>
+                                                <img [src]="ligne.articleImage" alt="product"
+                                                    style="width: 100px;height: 100px;">
+                                                <button (click)="deleteLignePanier(ligne.id)">x</button>
+                                            </a>
+
+
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <a href="product.html">{{ligne.articleIntitule}}</a>
+                                        </h5>
+                                    </td>
+                                    <td style="font-size: 14px;">{{ligne.tarifttc}} TND</td>
+                                    <td>
+                                        <div>
+
+                                            <button *ngIf="ligne.ligneQuantite!=1"
+                                                class="horizontal-quantity form-control" style="height: 50px"
+                                                (click)="updateLignePanier(ligne,ligne.ligneQuantite-1)">-</button>
+                                            <input class="horizontal-quantity form-control" style="width: 32px;"
+                                                type="text" [ngModel]="ligne.ligneQuantite" #input
+                                                (blur)="changeValue(ligne,input)">
+                                            <button class="horizontal-quantity form-control" style="height: 50px;"
+                                                (click)="updateLignePanier(ligne,ligne.ligneQuantite+1)">+</button>
+
+                                        </div>
+                                    </td>
+                                    <td style="font-size: 14px;" class="text-right"><span
+                                            class="subtotal-price">{{ligne.ligneTotalTtc|number: '1.3-3'}} TND</span>
+                                    </td>
+
+                                </tr>
+
+                            </ng-container>
+
+                        </tbody>
+                        <tfoot >
+                        
+                        </tfoot>
+                    </table>-->
+                    
+                </div><!-- End .cart-table-container -->
+                <div style="width: 80%;padding: 10px;display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <div>
+                        <b style="font-size: 22px;">TOTAL: </b>
+                        <span style="font-size: 20px;">{{subTotal|number: '1.3-3' }} TND</span>
+                    </div>
+                    <div>
+                        <button type="submit" style="margin: 5px;border: 1px solid black;cursor: pointer;" (click)="deleteAllLignes()"
+                            class="btn btn-shop btn-delete">
+                            Supprimer Panier
+                        </button>
+
+                        -<button (click)="AddCommand()" style="margin: 5px;border: 1px solid black;cursor: pointer;" type="submit"
+                            class="btn btn-shop btn-update-cart">
+                            Passer Commande
+                        </button>
+                        <!-- <button (click)="AddCommandForTest()" style="margin: 5px;border: 1px solid black;cursor: pointer;" type="submit"
+                            class="btn btn-shop btn-update-cart">
+                            Passer Commande
+                        </button> -->
+                    </div>
+                </div>
+            </div><!-- End .col-lg-8 -->
+
+
+            <!--<div class="col-lg-4" style="width: 33%">
+                <div class="cart-summary">
+                    <h3>CART TOTALS</h3>
+
+                    <table class="table table-totals">
+                        <tbody>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td>${{subTotal|number: '1.2-2'}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Shipping</td>
+                                <td>$50</td>
+                            </tr>
+                            <tr>    
+                                <td colspan="2" class="text-left">
+                                    <button type="submit" (click)="AddCommand()" class="btn btn-shop btn-update-total">
+                                            Passer commande
+                                    </button>
+                                   
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td>Total</td>
+                                <td>${{subTotal+50|number: '1.2-2'}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>**** End .cart-summary ***
+            </div>-->
+            <!-- End .col-lg-4 -->
+        </div><!-- End .row -->
+
+    </div><!-- End .container -->
+
+
+</main><!-- End .main -->

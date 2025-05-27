@@ -1,0 +1,415 @@
+<main class="main">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/store"><i><mat-icon>home</mat-icon></i></a></li>
+                <li class="breadcrumb-item">{{nameCategoryLvl1}}</li>
+                <li class="breadcrumb-item">{{nameCategoryLvl2}}</li>
+                <li class="breadcrumb-item active">{{nameCategoryLvl3}}</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-9">
+            <!--<div class="boxed-slider owl-carousel owl-carousel-lazy owl-theme owl-theme-light">
+                    <div class="boxed-slide boxed-slide-1">
+                        <figure>
+                            <img class="slide-bg owl-lazy" data-src="assets/images/banners/banner-fashion-1.jpg" src="assets/images/banners/banner-fashion-1.jpg" alt="banner" width="870" height="300">
+                        </figure>
+                        <div class="slide-content">
+                            <h4>Fashion</h4>
+                            <h5>mega sale</h5>
+                            <span>extra</span>
+                            <b>60<i>%</i> OFF</b>
+                            <p>On order above $555</p>
+                        </div>
+                    </div>
+
+                    <div class="boxed-slide boxed-slide-2">
+                        <figure>
+                            <img class="slide-bg owl-lazy" data-src="assets/images/banners/banner-fashion-2.jpg" src="assets/images/banners/banner-fashion-2.jpg" alt="banner" width="870" height="300">
+                        </figure>
+                        <div class="slide-content">
+                            <h5>Check out over <span>200</span><i>+</i></h5>
+                            <h4>Men's jackets & coats</h4>
+                            <a href="#" class="btn btn-sm btn-dark">SHOP NOW</a>
+                        </div>
+                    </div>
+                </div>-->
+
+                <nav class="toolbox sticky-header mt-2" data-sticky-options="{'mobile': true}">
+                    <div class="toolbox-left">
+                        <a href="#" class="sidebar-toggle"><svg data-name="Layer 3" id="Layer_3"
+                                viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="15" x2="26" y1="9" y2="9" class="cls-1"></line>
+                                <line x1="6" x2="9" y1="9" y2="9" class="cls-1"></line>
+                                <line x1="23" x2="26" y1="16" y2="16" class="cls-1"></line>
+                                <line x1="6" x2="17" y1="16" y2="16" class="cls-1"></line>
+                                <line x1="17" x2="26" y1="23" y2="23" class="cls-1"></line>
+                                <line x1="6" x2="11" y1="23" y2="23" class="cls-1"></line>
+                                <path
+                                    d="M14.5,8.92A2.6,2.6,0,0,1,12,11.5,2.6,2.6,0,0,1,9.5,8.92a2.5,2.5,0,0,1,5,0Z"
+                                    class="cls-2"></path>
+                                <path d="M22.5,15.92a2.5,2.5,0,1,1-5,0,2.5,2.5,0,0,1,5,0Z" class="cls-2"></path>
+                                <path d="M21,16a1,1,0,1,1-2,0,1,1,0,0,1,2,0Z" class="cls-3"></path>
+                                <path
+                                    d="M16.5,22.92A2.6,2.6,0,0,1,14,25.5a2.6,2.6,0,0,1-2.5-2.58,2.5,2.5,0,0,1,5,0Z"
+                                    class="cls-2"></path>
+                            </svg>
+                            <span>Filter</span>
+                        </a>
+
+                        <div class="toolbox-item toolbox-sort">
+                            <label>Filtrer Par:</label>
+
+                            <div class="">
+                                <select name="orderby" class="form-control" [(ngModel)]="orderBy" (change)="navigate()">
+                                    <option value="date-desc">Trier par le plus ancien </option>
+                                    
+                                    <option value="date">Trier par le plus récent</option>
+                                    <option value="price">Trier par prix : croissant</option>
+                                    <option value="price-desc">Trier par prix : decroissant</option>
+                                </select>
+                            </div>
+                            <!-- End .select-custom -->
+
+
+                        </div>
+                        <!-- End .toolbox-item -->
+                    </div>
+                    <!-- End .toolbox-left -->
+
+                    <div class="toolbox-right">
+                        <div class="toolbox-item toolbox-show">
+                            <label>Afficher:</label>
+
+                            <div>
+                                <select class="form-control" style="width: 50px;text-align: center;"
+                                 [(ngModel)]="articleByPage" (ngModelChange)="navigate()">
+                                    <option value="4" >4</option>
+                                    <option value="8">8</option>
+                                    <option value="16">16</option>
+                                </select>
+                            </div>
+                            <!-- End .select-custom -->
+                        </div>
+                        <!-- End .toolbox-item -->
+                    </div>
+                    <!-- End .toolbox-right -->
+                </nav>
+
+                <div class="row" style="border: 2px solid black;" *ngIf="ready && !noArticleFound" >
+                    <ng-container *ngFor="let art of articlesInStores">
+                    <div class="col-6 col-sm-4">
+                        <div class="product-default">
+                            <figure>
+                                <a [routerLink]="'/store/article/'+art.articleID+'/detail'">
+                                    <!-- <img [src]="art.imagePath" width="280" height="280" alt="product" /> -->
+                                    <img [src]="art.imageContent" width="280" height="280" alt="product" />
+                                    
+                                </a>
+
+                            <!--<div class="label-group">
+                                    <div class="product-label label-sale">-20%</div>
+                                </div>-->
+                            </figure>
+
+                            <div class="product-details">
+                                <div class="category-wrap">
+                                    <div class="category-list">
+                                        <a (click)="navigateUsingCategory(art)"
+                                        
+                                        class="product-category">{{art.catalogueIntitule}}</a>
+                                    </div>
+                                </div>
+
+                                <h3 class="product-title"> <a [routerLink]="'/store/article/'+art.articleID+'/detail'">{{art.articleIntitule}}</a></h3>
+
+                                
+
+                            <div class="price-box">
+                                    <!--<span class="old-price">90.00</span>-->
+                                    <span class="product-price">{{art.tarifPrix}} TND</span>
+
+                                </div>
+                                <!-- End .price-box -->
+                                <div class="product-action">
+                                    <a (click)="addPanierLigne(art)" style="display: flex;align-items: center;" class="btn-icon btn-add-cart product-type-simple"><i
+                                            ><mat-icon>shopping_cart</mat-icon></i>AJOUTER AU PANIER</a>
+                                    
+                                </div>
+                            </div>
+                            <!-- End .product-details -->
+                        </div>
+                    </div>
+                    <!-- End .col-sm-4 -->
+                </ng-container>
+                </div>
+                <!-- End .row -->
+                <p style="text-align: center;" *ngIf="noArticleFound">aucun article trouvé</p>
+
+                <nav class="toolbox toolbox-pagination">
+
+                    <ul class="pagination toolbox-item">
+                        <li class="page-item disabled">
+                            <a class="page-link page-link-btn" href="#"><i class="icon-angle-left"></i></a>
+                        </li>
+                        <li class="page-item" *ngIf="currentGroup>1">
+                            <a class="page-link" [routerLink]="['/store/article/category/'+nameCategoryLvl1+'/'+nameCategoryLvl2+'/'+nameCategoryLvl3]" 
+                            [queryParams]="{group:currentGroup-1,show:articleByPage,lowest:lowestPrice,highest:highestPrice,order:this.orderBy}">{{currentGroup-1}}</a>
+                        </li>
+                        <li class="page-item active" *ngIf="currentGroup!=0">
+                            <a [routerLink]="['/store/article/category/'+nameCategoryLvl1+'/'+nameCategoryLvl2+'/'+nameCategoryLvl3]" 
+                            [queryParams]="{group:currentGroup,show:articleByPage,lowest:lowestPrice,highest:highestPrice,order:this.orderBy}" class="page-link">{{currentGroup}}</a>
+                        </li>
+                        
+                        <li class="page-item" *ngIf="currentGroup<lastGroup">
+                            <a [routerLink]="['/store/article/category/'+nameCategoryLvl1+'/'+nameCategoryLvl2+'/'+nameCategoryLvl3]" 
+                            [queryParams]="{group:currentGroup+1,show:articleByPage,lowest:lowestPrice,highest:highestPrice,order:this.orderBy}" class="page-link">{{currentGroup+1}}</a>
+                        </li>
+                        <li *ngIf="currentGroup!=lastGroup" class="page-item"><span class="page-link">...</span></li>
+                        
+                    </ul>
+                </nav>
+            </div>
+            <!-- End .col-lg-9 -->
+
+            <div class="sidebar-overlay"></div>
+            <aside class="sidebar-shop col-lg-3 order-lg-first mobile-sidebar">
+                <div class="sidebar-wrapper">
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <b data-toggle="collapse" href="#widget-body-2" role="button" aria-expanded="true" aria-controls="widget-body-2">Catalogues</b>
+                        </h3>
+
+                        <div class="collapse show" id="widget-body-2">
+                            <div class="widget-body">
+                                <ul class="cat-list" *ngIf="ready">
+                                <ng-container *ngFor="let cat of catalogue1.value" >
+                                    <li  class="active">
+                                        <a style="display: flex;align-items: center;" [ngStyle]="{'color': cat.name==nameCategoryLvl2?'#08C':'black'}"  [ngClass]="{'showSubMenu':cat.name==nameCategoryLvl2,'hideSubMenu':cat.name!=nameCategoryLvl2}" 
+                                        (click)="doLogic(elem,elem2)" #elem>
+                                            {{cat.name}}<span class="products-count">{{"("+cat.value.length+")"}}</span>
+                                        <mat-icon >keyboard_arrow_down</mat-icon>
+                                        <!--<span class="toggle"></span>-->
+                                        </a>
+                                        <div #elem2>
+                                            <ul class="cat-sublist" >
+                                                <ng-container *ngFor="let subCat of cat.value">
+                                                <li> <a [routerLink]="'/store/article/category/'+nameCategoryLvl1+'/'+cat.name+'/'+subCat.name"
+                                                    [ngClass]="{'activeItem':nameCategoryLvl3==subCat.name}"
+                                                    [queryParams]="{group:1,show:4}">{{subCat.name}}<span class="products-count">{{"("+subCat.nbArticle+")"}}</span></a>
+                                                    </li>
+                                                <!--i am setting article number in this catalogue level 3-->
+                                                </ng-container>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ng-container>   
+                                </ul>
+                            </div>
+                            <!-- End .widget-body -->
+                        </div>
+                        <!-- End .collapse -->
+                    </div>
+                    <!-- End .widget -->
+
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <b data-toggle="collapse" href="#widget-body-3" role="button" aria-expanded="true" aria-controls="widget-body-3">Prix</b>
+                        </h3>
+
+                        <div class="collapse show" id="widget-body-3">
+                            <div class="widget-body pb-0">
+                                <form action="#">
+                                    <div class="price-slider-wrapper" *ngIf="priceFilterReady">
+                                        <mat-slider  [max]="highestPriceConst" discrete="true">
+                                            <input matSliderStartThumb [(ngModel)]="lowestPrice" [ngModelOptions]="{standalone:true}">
+                                            <input matSliderEndThumb [(ngModel)]="highestPrice" [ngModelOptions]="{standalone:true}">
+                                        </mat-slider>
+                                        <!-- End #price-slider -->
+                                    </div>
+                                    <!-- End .price-slider-wrapper -->
+
+                                    <div class="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
+                                        <div class="filter-price-text">
+                                            Prix:
+                                            <span> {{lowestPrice}} TND </span>
+                                            <span> - </span>
+                                            <span> {{highestPrice}} TND</span>
+                                        </div>
+                                        <!-- End .filter-price-text -->
+
+                                        <button type="submit" class="btn btn-primary" (click)="navigateUsingFilter()">Filter</button>
+                                    </div>
+                                    <!-- End .filter-price-action -->
+                                </form>
+                            </div>
+                            <!-- End .widget-body -->
+                        </div>
+                        <!-- End .collapse -->
+                    </div>
+                    <!-- End .widget -->
+
+                    
+
+                <!--<div class="widget widget-featured">
+                        <h3 class="widget-title">En Promotion</h3>
+
+                        <div class="widget-body">
+                            <div class="owl-carousel widget-featured-products" ngClass="gallery" >
+                                <div class="featured-col" >
+                                    <ng-container *ngFor="let art of featuredArticles">
+                                    <div class="product-default left-details product-widget">
+                                        <figure>
+                                            <a [routerLink]="'/store/article/'+art.articleID+'/detail'">
+                                                <img [src]="art.imagePath" width="75" height="75" alt="product" /> 
+                                            </a>
+                                        </figure>
+                                        <div class="product-details">
+                                            <div class="category-wrap">
+                                                <div class="category-list">
+                                                    <a (click)="navigateUsingCategory(art)"
+                                                    
+                                                    class="product-category">{{art.catalogueIntitule}}</a>
+                                                </div>
+                                            </div>
+                                            <h3 class="product-title"> <a [routerLink]="'/store/article/'+art.articleID+'/detail'">{{art.articleIntitule}}</a> </h3>
+                                           
+                                            <div class="price-box">
+                                                <span class="product-price">{{art.tarifPrix}} TND</span>
+                                            </div>
+                                            **** End .price-box ***
+                                        </div>
+                                        **** End .product-details ***
+                                    </div>
+                                </ng-container>
+                                </div>
+                                **** End .featured-col ***
+                            </div>
+                            **** End .widget-featured-slider ***
+                        </div>
+                        **** End .widget-body ***
+                    </div>-->
+                    <!-- End .widget -->
+
+                    <div class="widget widget-featured">
+                        <h3 class="widget-title">Le Plus Vendues</h3>
+
+                        <div class="widget-body">
+                            <div class="owl-carousel widget-featured-products" ngClass="gallery" >
+                                <div class="featured-col" >
+                                    <ng-container *ngFor="let art of bestSellingArticles">
+                                    <div class="product-default left-details product-widget">
+                                        <figure>
+                                            <a [routerLink]="'/store/article/'+art.articleID+'/detail'">
+                                                <!-- <img [src]="art.imagePath" width="75" height="75" alt="product" /> -->
+                                                <img [src]="art.imageContent" width="75" height="75" alt="product" />  
+                                            </a>
+                                        </figure>
+                                        <div class="product-details">
+                                            <div class="category-wrap">
+                                                <div class="category-list">
+                                                    <a (click)="navigateUsingCategory(art)"
+                                                    
+                                                    class="product-category">{{art.catalogueIntitule}}</a>
+                                                </div>
+                                            </div>
+                                            <h3 class="product-title"> <a [routerLink]="'/store/article/'+art.articleID+'/detail'">{{art.articleIntitule}}</a> </h3>
+                                           
+                                            <div class="price-box">
+                                                <span class="product-price">{{art.tarifPrix}} TND</span>
+                                            </div>
+                                            <!-- End .price-box -->
+                                        </div>
+                                        <!-- End .product-details -->
+                                    </div>
+                                </ng-container>
+                                </div>
+                                <!-- End .featured-col -->
+                            </div>
+                            <!-- End .widget-featured-slider -->
+                        </div>
+                        <!-- End .widget-body -->
+                    </div>
+                    <!-- End .widget -->
+
+                </div>
+                <!-- End .sidebar-wrapper -->
+            </aside>
+            <!-- End .col-lg-3 -->
+        </div>
+        <!-- End .row -->
+    </div>
+    <!-- End .container -->
+
+    <div class="mb-4"></div>
+    <!-- margin -->
+</main>
+<!-- End .main -->
+
+<app-store-footer></app-store-footer>
+
+
+
+<!--<div style="width:90%;border: 2px solid black;height: 200px;margin: auto;background-color: black;color: red;
+font-size: 30px;display: flex;justify-content: center;align-items: center;">
+    {{catalogue2.name}}
+</div>
+<div style="background-color: grey;">
+    <div class="container" style="width:90%;margin:auto">
+        <div class="container-fluid sidebar">
+            <div class="row" *ngIf="ready">
+                **** Barre latérale ***
+                <div class="col-md-3 m-3" style="background-color: white">
+                    <ng-container *ngFor="let cat3 of catalogue2.value">
+                        <div class="form-check checkb1">
+                            <input class="form-check-input" type="checkbox" id="check4"
+                                [checked]="checkbox.get(cat3.name)" (change)="updateCheckbox(cat3.name)">
+                            <label class="form-check-label" for="check4">
+                                {{cat3.name}}
+                            </label>
+                        </div>
+                    </ng-container>
+
+                    <button class="btn btn-primary" (click)="print()">click</button>
+                </div>
+                **** Colonne principale ***
+                <div class="col-md-8 m-3">
+                    <div class="row dd" style="background-color: white;">
+                        <h1>Computer & Desktop</h1>
+                    </div>
+                    <br>
+                    <div class="row" style="background-color: white;padding: 5px;">
+                        <div class="col-md-4"><b style="font-size: 18px;">9 Products</b> </div>
+                        <div class="col-md-4"> </div>
+                        <div class="col-md-4"><b style="float: right;font-size: 18px;">Sort by: Best selling</b></div>
+                    </div>
+                    <div class="articleContainer row">
+                        <ng-container *ngFor="let article of articlesInStores">
+                                <div class="card col-3" style="border: 2px solid black;margin-right: 10px;margin-bottom: 5px;">
+                                    <img src="assets/account.png" alt="">
+                                    <p>{{article.articleIntitule.slice(0,37)}}</p>
+                                    <span *ngIf="article.articleIntitule.length>37">...</span>
+
+                                    <p>
+                                        <span>$</span>
+                                        <span>{{article.tarifPrix}}</span>
+                                    </p>
+                                    <p>stock: 25 out of 10</p>
+                                    <p>review</p>
+                                    <div>
+                                        <button class="white"><img src="assets/heart.png" alt="" class="image"></button>
+                                        <button class="white"><i class="material-icons image white" style="color: black;">visibility</i></button>
+                                    </div>
+                                    <button class="btn btn-primary" (click)="addAndOpenCart(article)">Add to Cart</button>
+                                </div>
+                        </ng-container>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->

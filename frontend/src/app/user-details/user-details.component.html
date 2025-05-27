@@ -1,0 +1,63 @@
+<div class="main-content">
+
+    <div class="main-content-inner">
+
+        <div class="main-content-wrap">
+            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                <h3>Compte Client Detail</h3>
+                <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                    <li>
+                        <a routerLink="/dashboard">
+                            <div class="text-tiny">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a [routerLink]="'/dashboard/client/'+user.idClient+'/user'">
+                            <div class="text-tiny">compte client</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a routerLink="">
+                            <div class="text-tiny">{{user.idClient}}</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wg-box" style="background-color: transparent;">
+                <div class="row">
+                    <div class="col-4" ngClass="info">
+                        <!-- <img [src]="user.imagePath" alt=""> -->
+                        <img [src]="user.imageContent" alt="">
+                        <div ngClass="info2">
+                            <p><span>SOCIETE: </span><strong>{{user.clientIntitule}}</strong></p>
+                            <p><span>NOM D'UTILISATEUR: </span><strong>{{user.userName}}</strong></p> 
+                        </div>
+                    </div>
+                    <div class="col-8" ngClass="part2">
+                        <div ngClass="div1">
+                            <ul ngClass="list">
+                                <li><strong>NOM: </strong><span>{{user.name}}</span></li>
+                                <li><strong>EMAIL: </strong><span>{{user.email}}</span></li>
+                                <li><strong>TELEPHONE: </strong><span>{{user.phoneNumber}}</span></li>
+                                <li><strong>DATE CREATION: </strong><span>{{user.creationDate|date:'longDate'}}</span></li> 
+                                <li><strong>ETAT: </strong><span [ngStyle]="{'color':user.etat?'green':'red'}">{{user.etat?'ACTIVE':'INACTIVE'}}</span></li> 
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,74 @@
+
+<div class="box">
+    <div>
+        <h2>Society Account Confirmation</h2>
+    </div>
+    <div>
+        <form action="" [formGroup]="myForm">
+    <table> 
+           
+        <tr>
+            <td><label class="bold" for="registreCommerce">Commerce registry:</label></td>
+            <td><input (blur)="registreCommerceValidator()" type="text" id="registreCommerce" formControlName="registreCommerce"></td>
+
+            <td><label class="bold" for="matriculeFiscal">matriculeFiscal:</label></td>
+            <td><input (blur)="matriculeFiscalValidator()" type="text" id="matriculeFiscal" formControlName="matriculeFiscal"></td>
+        </tr>
+        <tr >
+            <td ><span class="empty"></span></td>
+            <td *ngIf="displayRegistreCommerceRequired"><span class="error" >*Commerce registry is required</span></td>
+            <td *ngIf="!displayRegistreCommerceRequired"><span class="empty"></span></td>
+           
+           <td ><span class="empty"></span></td>
+           <td *ngIf="displayMatriculeFiscalRequired"><span class="error" >*matricule Fiscal is required</span></td>
+           <td *ngIf="!displayMatriculeFiscalRequired"><span class="empty"></span></td>
+        </tr>
+        <br>
+        <tr>
+            <td><label class="bold" for="matricule">Matricule society:</label></td>
+            <td><input (blur)="matriculeValidator()" type="text" id="matricule" formControlName="matricule"></td>
+
+            <td><label class="bold" for="adresse">Society Adress</label></td>
+            <td><input type="text" id="adresse" formControlName="adresse"></td>
+            <!--<td><input (blur)="adresseValidator()" type="text" id="adresse" formControlName="adresse"></td>-->
+        </tr>
+
+        <tr>
+            <td ><span class="empty"></span></td>
+            <td *ngIf="displayMatriculeRequired" class="error"><span>*matricule Society is required</span></td>
+            <td *ngIf="!displayMatriculeRequired"><span class="empty"></span></td>
+
+            <!--<td ><span class="empty"></span></td>
+            <td *ngIf="displayAdresseRequired" class="error"><span>*Adress Society is required</span></td>
+            <td *ngIf="!displayAdresseRequired"><span class="empty"></span></td>-->
+            <td ><span class="empty"></span></td>
+            <td ><span class="empty"></span></td>
+
+        </tr> 
+       
+    <tr>
+        <td><label class="bold" for="codePostaleUser">code Postale User</label></td>
+        <td><input (blur)="codePostaleUserValidator()" type="text" id="codePostaleUser" formControlName="codePostaleUser"></td>
+
+        <td><label class="bold" for="telephoneUser">Telephone User</label></td>
+        <td><input (blur)="telephoneUserValidator()" type="text" id="telephoneUser" formControlName="telephoneUser"></td>
+    </tr>
+    <tr>
+        <td ><span class="empty"></span></td>
+        <td *ngIf="!displayCodePostaleUserFormat"><span class="empty"></span></td>
+        <td *ngIf="displayCodePostaleUserFormat" class="error"><span>*Code Postale Format is incorect</span></td>
+
+        <td ><span class="empty"></span></td>
+        <td *ngIf="!displayTelephoneUserRequired && !displayTelephoneUserFormat"><span class="empty"></span></td>
+        <td *ngIf="displayTelephoneUserRequired" class="error"><span>*Telephone User is required</span></td>
+        <td *ngIf="displayTelephoneUserFormat" class="error"><span>*Telephone Format is incorrect</span></td>
+    </tr> 
+    </table>
+    <button class="btn p-2" type="reset" (click)="reset()">Reset</button>
+    <button class="btn btn-primary m-2 p-2" type="submit" (click)="confirmSociety()">Confirm</button>
+    <button class="btn btn-primary m-2 p-2" type="submit" (click)="declineSociety()">Decline</button>  
+        </form>
+    </div>   
+    </div>
+
+

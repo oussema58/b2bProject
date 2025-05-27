@@ -1,0 +1,258 @@
+<div class="main-content">
+
+    <div class="main-content-inner">
+
+        <div class="main-content-wrap">
+            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                <h3>Société en détail</h3>
+                <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                    <li>
+                        <a routerLink="/dashboard">
+                            <div class="text-tiny">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a [routerLink]="'/dashboard/client'">
+                            <div class="text-tiny">Société</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a routerLink="#">
+                            <div class="text-tiny">{{idClient}}</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wg-box" style="background-color: transparent;">
+                <!--<div class="flex items-center justify-between gap10 flex-wrap" >
+              
+                    <a style="float: right;" class="tf-button style-1 w208" [routerLink]="'/dashboard/client/'+client.id+'/user'">tous les comptes clients</a>
+                </div>-->
+                <div>
+                    <div class="row" >
+                        <div class="col-4" ngClass="info">
+                            <!--<img [src]="client.imagePath" alt="">-->
+                            <img [src]="client.imageContent" alt="">
+                            <div ngClass="info2">
+                                <p><span>SOCIETE: </span><strong>{{client.intitule}}</strong></p>
+                                <p><span>CODE: </span><strong>{{client.code}}</strong></p>
+                                <p><span>MATRICULE: </span><strong>{{client.code}}</strong></p>
+                                <p> <a style="float: right;width: fit-content;" class="tf-button style-1 w208"
+                                        [routerLink]="'/dashboard/client/'+client.id+'/user'">tous les comptes
+                                        clients</a></p>
+
+                            </div>
+                        </div>
+                        <div class="col-8" ngClass="part2">
+                            <div ngClass="div1">
+                                <ul ngClass="list">
+                                    <li><strong>EMAIL: </strong><span>{{client.email}}</span></li>
+                                    <li><strong>TELEPHONE: </strong><span>{{client.telephone}}</span></li>
+                                    <li><strong>DATE CREATION:
+                                        </strong><span>{{client.dateCreate|date:'longDate'}}</span></li>
+                                    <li><strong>ETAT: </strong><span
+                                            [ngStyle]="{'color':client.etat?'green':'red'}">{{client.etat?'ACTIVE':'INACTIVE'}}</span>
+                                    </li>
+                                    <li><strong>ADRESSE: </strong><span>{{client.adresse}}</span></li>
+                                    <li><strong>VILLE: </strong><span>{{client.ville}}</span><span
+                                            *ngIf="client.ville==null">non spécifié</span></li>
+                                    <li><strong>CODE POSTALE: </strong><span>{{client.codePostale}}</span><span
+                                            *ngIf="client.codePostale==null">non spécifié</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="row" style="background-color: white;">
+                            <div style="clear: both;">
+
+                                <select style="float: right;width: fit-content;text-align: center;"
+                                    [(ngModel)]="select1" (ngModelChange)="rendernbCommandChart()">
+                                    <option value="last">last 5 years</option>
+                                    <option [value]="currentYear">{{currentYear}}</option>
+                                    <option [value]="currentYear-1">{{currentYear-1}}</option>
+                                    <option [value]="currentYear-2">{{currentYear-2}}</option>
+                                    <option [value]="currentYear-3">{{currentYear-3}}</option>
+
+                                </select>
+                                <h5>Repartition des commandes par année</h5>
+                            </div>
+
+                            <div class="col-6" style="background-color: white">
+
+                                <div>
+                                    <canvas id="nbCommandChart">{{nbCommandChart}}</canvas>
+                                </div>
+                            </div>
+                            <div class="col-6" style="background-color: white" *ngIf="role=='ADMIN'">
+
+
+                                <div>
+                                    <canvas id="nbCommandePercentage">{{nbCommandChartPercentage}}</canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="background-color: white;">
+                            <div style="clear: both;">
+
+                                <select style="float: right;width: fit-content;text-align: center;"
+                                    [(ngModel)]="select2" (ngModelChange)="renderEarningChart()">
+                                    <option value="last">last 5 years</option>
+                                    <option [value]="currentYear">{{currentYear}}</option>
+                                    <option [value]="currentYear-1">{{currentYear-1}}</option>
+                                    <option [value]="currentYear-2">{{currentYear-2}}</option>
+                                    <option [value]="currentYear-3">{{currentYear-3}}</option>
+
+                                </select>
+                                <h5>Ventes des Societes</h5>
+                            </div>
+
+                            <div class="col-6" style="background-color: white">
+
+                                <div>
+                                    <canvas id="earningsChart">{{earningsChart}}</canvas>
+                                </div>
+                            </div>
+                            <div class="col-6" style="background-color: white" *ngIf="role=='ADMIN'">
+
+
+                                <div>
+                                    <canvas id="earningPercentege">{{earningPercentege}}</canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="background-color: white;">
+                            <div style="clear: both;">
+
+                                <select style="float: right;width: fit-content;text-align: center;"
+                                    [(ngModel)]="select3" (ngModelChange)="renderProfitChart()">
+                                    <option value="last">last 5 years</option>
+                                    <option [value]="currentYear">{{currentYear}}</option>
+                                    <option [value]="currentYear-1">{{currentYear-1}}</option>
+                                    <option [value]="currentYear-2">{{currentYear-2}}</option>
+                                    <option [value]="currentYear-3">{{currentYear-3}}</option>
+
+                                </select>
+                                <h5>Revenues des Societes</h5>
+                            </div>
+
+                            <div class="col-6" style="background-color: white">
+
+                                <div>
+                                    <canvas id="profitChart">{{profitChart}}</canvas>
+                                </div>
+                            </div>
+                            <div class="col-6" style="background-color: white" *ngIf="role=='ADMIN'">
+
+
+                                <div>
+                                    <canvas id="profitChartPercentage">{{profitChartPercentage}}</canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div ngClass="stat" class="col-5">
+                            <div class="">
+                                <h5>Repartition des commandes par année</h5>
+                                <div style="border: 2px solid green;">
+                                    <canvas id="nbCommandChart">{{nbCommandChart}}</canvas>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div ngClass="stat" class="col-5">
+                            <div class="">
+
+                                <h5>Repartition des commandes de Société</h5>
+                                <div style="clear: both;">
+                                    <select style="float: right;width: fit-content;text-align: center;" [(ngModel)]="select1"
+                                        (ngModelChange)="rendernbCommandChart()">
+                                        <option value="last">last 5 years</option>
+                                        <option [value]="currentYear">{{currentYear}}</option>
+                                        <option [value]="currentYear-1">{{currentYear-1}}</option>
+                                        <option [value]="currentYear-2">{{currentYear-2}}</option>
+                                        <option [value]="currentYear-3">{{currentYear-3}}</option>
+        
+                                    </select>
+                                </div>
+                                <div style="border: 2px solid red;">
+                                    <canvas id="nbCommandePercentage">{{nbCommandChartPercentage}}</canvas>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>-->
+                        <!--<div ngClass="stat" class="col-5" >
+                            <div class="flex items-center justify-between">
+                                <h5>Earnings</h5>
+                                <div style="clear: both;">
+                                    <select style="float: right;width: fit-content;text-align: center;" [(ngModel)]="select3"
+                                        (ngModelChange)="renderEarningChart()">
+                                        <option value="last">last 5 years</option>
+                                        <option [value]="currentYear">{{currentYear}}</option>
+                                        <option [value]="currentYear-1">{{currentYear-1}}</option>
+                                        <option [value]="currentYear-2">{{currentYear-2}}</option>
+                                        <option [value]="currentYear-3">{{currentYear-3}}</option>
+        
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap40">
+                                <div>
+                                    <div class="mb-2">
+                                        <div class="block-legend">
+                                            <div class="dot t1"></div>
+                                            <div class="text-tiny">Vente</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap10">
+                                        <h4>{{totalEarning |number: '1.3-3'}} TND</h4>
+                                        <div class="box-icon-trending up">
+                                            <i class="icon-trending-up"></i>
+                                            <div class="body-title number">0.56%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="mb-2">
+                                        <div class="block-legend">
+                                            <div class="dot t2"></div>
+                                            <div class="text-tiny">Revenue</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap10">
+                                        <h4>{{totalProfit |number: '1.3-3'}} TND</h4>
+                                        <div class="box-icon-trending up">
+                                            <i class="icon-trending-up"></i>
+                                            <div class="body-title number">0.56%</div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <canvas id="earningsChart">{{earningsChart}}</canvas>
+                            </div>
+                        </div>-->
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="bottom-page">
+        <div class="body-text">Copyright © 2024 B2B. Design with</div>
+        <i class="icon-heart"></i>
+        <div class="body-text">by <a href="https://themeforest.net/user/themesflat/portfolio">Oussema Arfaoui</a> All
+            rights
+            reserved.</div>
+    </div>
+
+</div>

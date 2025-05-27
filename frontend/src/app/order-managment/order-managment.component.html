@@ -1,0 +1,218 @@
+<div class="main-content">
+
+    <div class="main-content-inner">
+
+        <div class="main-content-wrap">
+            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                <h3>Gestion des Commandes</h3>
+                <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                    <li>
+                        <a routerLink="/dashboard">
+                            <div class="text-tiny">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a [routerLink]="'/dashboard/order'">
+                            <div class="text-tiny">commandes</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wg-box">
+                <div class="flex items-center justify-between gap10 flex-wrap">
+                    <div class="wg-filter flex-grow" *ngIf="role!='ADMIN'">
+                        <label for="">Tout commandes</label>
+                        <input type="radio" value="allCommandes" [(ngModel)]="filter" (ngModelChange)="filterOrders()">
+                        <label for="">Mes commandes</label>
+                        <input type="radio" value="mesCommandes" [(ngModel)]="filter" (ngModelChange)="filterOrders()">
+                    <!--<form class="form-search">
+                            <fieldset class="name">
+                                <input type="text" placeholder="chercher societe par nom..." class="" name="name"
+                                    tabindex="2" [(ngModel)]="intituleOrder">
+                            </fieldset>
+
+                        </form>-->
+                    </div>
+                <!--<a class="tf-button style-1 w208" (click)="openCreate()"><i class="icon-plus"></i>Ajouter compte client</a>-->
+                </div>
+
+                <mat-card>
+                    <mat-card-header></mat-card-header>
+                    <mat-card-content>
+                        <table mat-table [dataSource]="dataSource" class="table table-striped" >
+                            <ng-container matColumnDef="Code">
+                                <th mat-header-cell *matHeaderCellDef>Code</th>
+                                <td mat-cell *matCellDef="let element">{{element.commandeNumero}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="nb Articles">
+                                <th mat-header-cell *matHeaderCellDef>nb Articles</th>
+                                <td mat-cell *matCellDef="let element">{{element.commandesNbrArticles}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="total ttc">
+                                <th mat-header-cell *matHeaderCellDef class="noPadding">Total_TTC</th>
+                                <td mat-cell *matCellDef="let element">{{element.commandeTotalTtc}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="statut">
+                                <th mat-header-cell *matHeaderCellDef>Statut</th>
+                                <td mat-cell *matCellDef="let element" [ngStyle]="{color:element.statut.statustIntitule==accepter?'green':(element.statut.statustIntitule==refuse?'red':'black')}" >
+                                    {{element.statut.statustIntitule}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="date creation">
+                                <th mat-header-cell *matHeaderCellDef>Date Création</th>
+                                <td mat-cell *matCellDef="let element">{{element.dateCreate |date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </ng-container>
+                            
+                        
+                            <ng-container matColumnDef="Client">
+                                <th mat-header-cell *matHeaderCellDef>Sociéte</th>
+                                <td mat-cell *matCellDef="let element">{{element.clientIntitule}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="User">
+                                <th mat-header-cell *matHeaderCellDef>Utilisateur</th>
+                                <td mat-cell *matCellDef="let element">{{element.userCreate.name}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Action">
+                                <th mat-header-cell *matHeaderCellDef>Action</th>
+                                <td mat-cell *matCellDef="let element">
+                                    
+                                <!--<button class="btn" [routerLink]="'/dashboard/'+'order/'+element.commandeId+'/detail'">
+                                        <i class="icon-eye"></i>
+                                    </button>-->
+                                    <button class="btn" [routerLink]="element.commandeId+'/detail'">
+                                        <i class="icon-eye"></i>
+                                    </button>
+
+                                    <!--using the one avec erp-->
+                                    <button class="btn btn-success"*ngIf="role=='ADMIN' && element.statut.statustIntitule==created"
+                                         (click)="updateStaus(element.commandeId,accepter)">
+                                         <i class="icon-check"></i>
+                                    </button>
+                    
+                                    <button *ngIf="role=='ADMIN' && element.statut.statustIntitule==created" class="btn btn-danger"
+                                         (click)="updateStaus(element.commandeId,refuse)">
+                                         <i class="icon-x"></i>
+                                    </button>
+
+                                    <button class="btn btn-primary" *ngIf="role!='ADMIN' && element.statut.statustIntitule==livree && element.demandeRetour==null" 
+                                    (click)="navigateToOpenDemandeRetour(element)">
+                                        <i class="icon-arrow-left-circle"></i>
+                                        <span>Demande Retour</span></button>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row;columns: displayedColumns"></tr>
+                            <tr *matNoDataRow >
+                                <td colspan="8"
+                                 style="text-align: center;">Aucun commande trouvé</td>
+                            </tr>  
+                        </table>
+                    </mat-card-content>
+                    <mat-card-footer >
+                        <mat-paginator [pageSizeOptions]="[2,10,20]" showFirstLastButtons></mat-paginator>
+                    </mat-card-footer>
+                </mat-card>
+
+            <!--<mat-card *ngIf="commandes.length==0">
+                    <mat-card-header></mat-card-header>
+                    <mat-card-content>
+                        <table mat-table [dataSource]="dataSource" class="table" >
+                            <ng-container matColumnDef="Code">
+                                <th mat-header-cell *matHeaderCellDef>Code</th>
+                                <td mat-cell *matCellDef="let element" colspan="8" style="text-align: center;">aucun commande trouvé</td>
+                            </ng-container>
+                            <ng-container matColumnDef="nb Articles">
+                                <th mat-header-cell *matHeaderCellDef>nb Articles</th>
+                                <td mat-cell *matCellDef="let element"></td>                                
+                            </ng-container>
+                            <ng-container matColumnDef="total ttc">
+                                <th mat-header-cell *matHeaderCellDef class="noPadding">Total_TTC</th>
+                                <td mat-cell *matCellDef="let element"></td>
+                            </ng-container>
+                            <ng-container matColumnDef="statut">
+                                <th mat-header-cell *matHeaderCellDef>Statut</th>
+                                <td mat-cell *matCellDef="let element"></td>
+                            </ng-container>
+                            <ng-container matColumnDef="date creation">
+                                <th mat-header-cell *matHeaderCellDef>Date Création</th>
+                                <td mat-cell *matCellDef="let element"></td>
+                            </ng-container>
+                            <ng-container matColumnDef="Client">
+                                <th mat-header-cell *matHeaderCellDef>Sociéte</th>
+                                <td mat-cell *matCellDef="let element"></td>
+                            </ng-container>
+                            <ng-container matColumnDef="User">
+                                <th mat-header-cell *matHeaderCellDef>Utilisateur</th>
+                                <td mat-cell *matCellDef="let element"></td>
+                            </ng-container>
+                            <ng-container matColumnDef="Action">
+                                <th mat-header-cell *matHeaderCellDef>Action</th>
+                                <td mat-cell *matCellDef="let element"></td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row;columns: displayedColumns"></tr>
+                        </table>
+                    </mat-card-content>
+                    <mat-card-footer></mat-card-footer>
+                </mat-card>-->
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!--<div class="container">
+    <h2>Gestion des commandes</h2>
+    <table class="table">
+        <tr>
+            <td colspan="2"><input type="text" class="col-6 m-2 p-2 search" placeholder="chercher vos commande"></td>
+        </tr>
+    </table>
+    
+        <table class="table">
+            <tr>
+                <th scope="col">Code</th>
+                <th scope="col">nb Articles</th>
+                <th scope="col">total ttc</th>
+                <th scope="col">statut</th>
+                <th scope="col">date creation</th>
+                <th scope="col">Info</th>
+                <th *ngIf="role=='ADMIN'" scope="col">Client</th>
+                <th scope="col">User</th>
+                <th>Action</th>
+                
+            </tr>
+
+            <tr *ngFor="let commande of commandes">
+                <td>{{commande.commandeNumero}}</td>
+                <td>{{commande.commandesNbrArticles}}</td>
+                <td>{{commande.commandeTotalTtc}}</td>
+                <td [ngStyle]="{color:commande.statut.statustIntitule==accepter?'green':(commande.statut.statustIntitule==refuse?'red':'black')}">
+                    {{commande.statut.statustIntitule}}</td>
+                <td>{{commande.dateCreate |date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                <td *ngIf="role=='ADMIN'">{{commande.clientIntitule}}</td>
+                <td >{{commande.userCreate.name}}</td>
+                <td>
+                    <button [routerLink]="'/dashboard/'+'order/'+commande.commandeId+'/detail'">Info</button>
+
+                <button class="btn btn-primary"*ngIf="role=='ADMIN' && commande.statut.statustIntitule==created"
+                     (click)="updateStaus(commande.commandeId,accepter)">valider</button>
+
+                    <button *ngIf="role=='ADMIN' && commande.statut.statustIntitule==created" class="btn btn-danger"
+                     (click)="updateStaus(commande.commandeId,refuse)">Refuser</button></td>
+                <button *ngIf="role=='CLIENT' && commande.statut.statustIntitule==livree" (click)="navigateToOpenDemandeRetour(commande)">
+                    Demande Retour</button>
+            </tr>
+        </table>
+
+</div>-->

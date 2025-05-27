@@ -1,0 +1,106 @@
+<div class="page-wrapper">
+		
+
+    <app-store-navbar></app-store-navbar>
+
+    <main class="main">
+        <div class="page-header">
+            <div class="container d-flex flex-column align-items-center">
+                <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                    <div class="container">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a [routerLink]="'/store'" >Acceuil</a></li>
+                            
+                            <li class="breadcrumb-item" aria-current="page">
+                                Mon Compte
+                            </li>
+                        </ol>
+                    </div>
+                </nav>
+
+                <h1>Mon Compte</h1>
+            </div>
+        </div>
+
+        <div class="container account-container custom-account-container">
+            <div class="row">
+                <div class="sidebar widget widget-dashboard mb-lg-0 mb-3 col-lg-3 order-0">
+                    <h2 class="text-uppercase">Mon compte</h2>
+                    <ul class="nav nav-tabs list flex-column mb-0" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/client/dashboard"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                               >Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/client/dashboard/order"  routerLinkActive="active">Commandes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/client/dashboard/demandeRetour"  routerLinkActive="active">Demande Retour</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="'/client/dashboard/'+clientId+'/user'"  routerLinkActive="active">Gestion des comptes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="'/client/dashboard/societe/detail'"  routerLinkActive="active">Gestion de Société</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/client/dashboard/account/detail" routerLinkActive="active">detail compte
+                                </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="deconnecter()">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-9 order-lg-last order-1 tab-content">
+                    
+                    <router-outlet></router-outlet>
+                <!--<div class="tab-pane fade" id="order" role="tabpanel">
+                        <div class="order-content">
+                            <h3 class="account-sub-title d-none d-md-block"><i
+                                    class="sicon-social-dropbox align-middle mr-3"></i>Orders</h3>
+                            <div class="order-table-container text-center">
+                                <table class="table table-order text-left">
+                                    <thead>
+                                        <tr>
+                                            <th class="order-id">ORDER</th>
+                                            <th class="order-date">DATE</th>
+                                            <th class="order-status">STATUS</th>
+                                            <th class="order-price">TOTAL</th>
+                                            <th class="order-action">ACTIONS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center p-0" colspan="5">
+                                                <p class="mb-5 mt-5">
+                                                    No Order has been made yet.
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <hr class="mt-0 mb-3 pb-2" />
+
+                                <a href="category.html" class="btn btn-dark">Go Shop</a>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!-- End .tab-pane -->
+
+                    
+                </div><!-- End .tab-content -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+
+        <div class="mb-5"></div><!-- margin -->
+    </main><!-- End .main -->
+
+    <app-store-footer></app-store-footer>
+</div><!-- End .page-wrapper -->

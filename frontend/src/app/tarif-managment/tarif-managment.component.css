@@ -1,0 +1,53 @@
+
+button{
+  margin-bottom: 2px;
+  overflow-x: unset;
+  overflow-y: unset;
+  line-height: normal;
+  font-size: 16px;
+  line-height: inherit;
+  margin: 0;
+  vertical-align: baseline;
+}
+th{
+  font-weight: 800;
+  text-align: center;
+  /*border: 2px solid black;*/
+  /*font-size: 14px;*/
+  /*border: none;*/
+
+height: auto;
+padding: 0px;
+display: table-cell;
+border: none;
+}
+td {
+  font-weight: normal;
+  text-align: center;
+  /*font-size: 14px;*/
+  margin: 0px;
+  padding: 0px;
+
+  border: none;
+
+
+  border: none;
+}
+tr{
+  border: none;
+  padding: 0px;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin:0px;
+  padding: 0px;
+  /*table-layout: fixed;*/
+  width: 100%;
+
+
+  border: none
+}
+.noPadding{
+  padding:0px
+}

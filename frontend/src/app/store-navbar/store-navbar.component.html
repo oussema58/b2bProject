@@ -1,0 +1,347 @@
+
+        <header style="color: rgba(255, 255, 255, 0.626);">
+            <div class="header-top bg-primary text-uppercase">
+                <div class="container" >
+                    <div class="header-left">
+                        <p class="top-message mb-0 d-none d-sm-block" 
+                        style="color: rgba(255, 255, 255);text-wrap: nowrap;font-family:'Lora', 'serif';">Bienvenue sur ma plateforme</p>
+                    </div>
+                    <!-- End .header-left -->
+
+                    <div class="header-right header-dropdowns ml-0 ml-sm-auto">
+                        
+                        <div class="header-dropdown dropdown-expanded mr-3">
+                            <a href="#">Links</a>
+                            <div class="header-menu">
+                                <ul>
+                                    <li><a routerLink="/client/dashboard">Mon Compte</a></li>
+                                    <li><a href="/store">Acceuil</a></li>
+                                    <li><a routerLink="/store/wishlist">liste de souhait</a></li>
+                                <!--<li><a href="#">Site Map</a></li>-->
+                                    <li><a routerLink="/store/panier">panier</a></li>
+                                    <li><a (click)="deconnecter()"  class="login-link">Deconnecter</a></li>
+                                </ul>
+                            </div>
+                            <!-- End .header-menu -->
+                        </div>
+                        <!-- End .header-dropown -->
+
+                        <span class="separator"></span>
+
+                        <!--<div class="social-icons">
+                            <a href="#" class="social-icon social-facebook icon-facebook ml-0" target="_blank"></a>
+                            <a href="#" class="social-icon social-twitter icon-twitter ml-0" target="_blank"></a>
+                            <a href="#" class="social-icon social-instagram icon-instagram ml-0" target="_blank"></a>
+                        </div>-->
+                        <!-- End .social-icons -->
+                    </div>
+                    <!-- End .header-right -->
+                </div>
+                <!-- End .container -->
+            </div>
+            <!-- End .header-top -->
+
+            <div class="header-middle text-dark sticky-header">
+                <div class="container" >
+                    <div class="header-left col-lg-2 w-auto pl-0" >
+                        <button class="mobile-menu-toggler mr-2" type="button">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <a href="demo1.html" class="logo">
+                            <!-- <img src="assets/images/logo.png" width="111" height="44" alt="Porto Logo"> -->
+                            <!-- <img src="assets/images/apps/b2b2.jpg" width="111" height="44" alt="Porto Logo"> -->
+                            <h3 style="background-color:#2275fc;;width: fit-content;padding: 5px;"><span style="color: black;">Plateforme</span><span style="color:white;">B2B</span> </h3>
+                        </a>
+                    </div>
+                    <!-- End .header-left -->
+
+                    <div class="header-right w-lg-max pl-2">
+                    <div class="header-search header-icon header-search-inline header-search-category w-lg-max" >
+                            <a href="#" class="search-toggle"><i><mat-icon>find_in_page</mat-icon>
+                            </i></a>
+                        <!--<form action="#" method="get">
+                                <div class="header-search-wrapper" >
+                                    <input type="search" class="form-control" name="q" id="q" placeholder="Chercher..." required 
+                                    style="background-color:transparent;border: 1px solid black;">
+                                    <div  style="border: 1px solid black;" >
+                                        <select [(ngModel)]="val"  name="val" id="val" style="color: black;display: unset;">
+                                            <option value="" style="color: black;display: unset;">All Categories</option>
+                                            <option value="4">Fashion</option>
+                                            <option value="12">- Women</option>
+                                            <option value="13">- Men</option>
+                                            <option value="66">- Jewellery</option>
+                                            <option value="67">- Kids Fashion</option>
+                                            <option value="5">Electronics</option>
+                                            <option value="21">- Smart TVs</option>
+                                            <option value="22">- Cameras</option>
+                                            <option value="63">- Games</option>
+                                            <option value="7">Home &amp; Garden</option>
+                                            <option value="11">Motors</option>
+                                            <option value="31">- Cars and Trucks</option>
+                                            <option value="32">- Motorcycles &amp; Powersports</option>
+                                            <option value="33">- Parts &amp; Accessories</option>
+                                            <option value="34">- Boats</option>
+                                            <option value="57">- Auto Tools &amp; Supplies</option>
+                                        </select>
+                                    </div>
+                                    **** End .select-custom ***
+                                    <button style="border-top-left-radius: unset;border-bottom-left-radius:unset ;;border: 1px solid black;" type="submit">
+                                        <mat-icon style="position: absolute;top:25%;left: 0px;width: 100%;height: 100%;text-align: center;">
+                                            search</mat-icon> 
+                                        </button>
+                                </div>
+                                *** End .header-search-wrapper ***
+                            </form>-->
+                        </div>
+                        <!--*** End .header-search ***-->
+                    
+                        <div class="header-contact d-none d-lg-flex align-items-center pr-xl-5 mr-5 mr-xl-3 ml-5">
+                            <i style="margin-top: 4px ;"><mat-icon>call</mat-icon></i>
+                            <h6 class="pt-1 line-height-1">Contactez-nous<a href="tel:#" class="d-block text-dark ls-10 pt-1">+123 5678 890</a></h6>
+                        </div>
+                        <!-- End .header-contact -->
+                        
+                    <!--<a href="login.html" class="header-icon">
+                            <i ><mat-icon>account_circle</mat-icon></i>
+                        </a>-->
+                        <div  ngClass="account" mat-trigger [mat-menu-trigger-for]="account">
+                            <!-- <i ><img [src]="(user.imagePath==''||user.imagePath==null)?defaultImage:user.imagePath"  alt=""></i> -->
+                            <i ><img [src]="(user.imageContent==''||user.imageContent==null)?defaultImage:user.imageContent"  alt=""></i>
+                            <div style="padding: 5px;">
+                                <b style="font-size: 12px;">{{user.name}}</b>
+                                <p style="font-size: 8px;">{{role}}</p>
+                            </div>
+                            
+                        </div>
+                        <mat-menu #account="matMenu">
+                            <ul [ngClass]="['submenu2']" style="padding: 0px 10px;">
+                                
+                                <li><a routerLink="/client/dashboard"
+                                        style="color: black;">Dashboard</a></li>
+                                <li><a (click)="deconnecter()"
+                                        style="color: black;cursor: pointer;">Deconnecter</a></li>
+                            </ul>
+                        </mat-menu>
+                        <a routerLink="store/wishlist" class="header-icon">
+                            <img src="assets/images/avatar/heart.png" style="width: 30px;height: 30px;" alt="">
+                        </a>
+
+                        <div class="dropdown cart-dropdown">
+                            <a title="Cart" class="dropdown-toggle cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"
+                                routerLink="/store/panier">
+                                <i class="minicart-icon"></i>
+                                <span class="cart-count badge-circle">{{dashboard.nbPanier}}</span>
+                            </a>
+
+                    <!--<div class="dropdown cart-dropdown">
+                            <a title="Cart" class="dropdown-toggle cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"
+                                (click)="openCart(elem)">
+                                <i class="minicart-icon"></i>
+                                <span class="cart-count badge-circle">3</span>
+                            </a>
+
+                            <div class="cart-overlay"></div>
+                            
+                            <div class="dropdown-menu mobile-cart" #elem>
+                                <a href="#" title="Close (Esc)" class="btn-close">×</a>
+
+                                <div class="dropdownmenu-wrapper custom-scrollbar">
+                                    <div class="dropdown-cart-header">Shopping Cart</div>
+                                    **** End .dropdown-cart-header ***
+
+                                    <div class="dropdown-cart-products">
+                                        <div class="product">
+                                            <div class="product-details">
+                                                <h4 class="product-title">
+                                                    <a href="demo1-product.html">Ultimate 3D Bluetooth Speaker</a>
+                                                </h4>
+
+                                                <span class="cart-product-info">
+                                                    <span class="cart-product-qty">1</span> × $99.00
+                                                </span>
+                                            </div>
+                                            **** End .product-details ***
+
+                                            <figure class="product-image-container">
+                                                <a href="demo1-product.html" class="product-image">
+                                                    <img src="assets/images/products/product-1.jpg" alt="product" width="80" height="80">
+                                                </a>
+
+                                                <a href="#" class="btn-remove" title="Remove Product"><span>×</span></a>
+                                            </figure>
+                                        </div>
+                                        **** End .product ***
+
+                                        <div class="product">
+                                            <div class="product-details">
+                                                <h4 class="product-title">
+                                                    <a href="demo1-product.html">Brown Women Casual HandBag</a>
+                                                </h4>
+
+                                                <span class="cart-product-info">
+                                                    <span class="cart-product-qty">1</span> × $35.00
+                                                </span>
+                                            </div>
+                                            **** End .product-details ***
+
+                                            <figure class="product-image-container">
+                                                <a href="demo1-product.html" class="product-image">
+                                                    <img src="assets/images/products/product-2.jpg" alt="product" width="80" height="80">
+                                                </a>
+
+                                                <a href="#" class="btn-remove" title="Remove Product"><span>×</span></a>
+                                            </figure>
+                                        </div>
+                                        **** End .product ***
+
+                                        <div class="product">
+                                            <div class="product-details">
+                                                <h4 class="product-title">
+                                                    <a href="demo1-product.html">Circled Ultimate 3D Speaker</a>
+                                                </h4>
+
+                                                <span class="cart-product-info">
+                                                    <span class="cart-product-qty">1</span> × $35.00
+                                                </span>
+                                            </div>
+                                            **** End .product-details ***
+
+                                            <figure class="product-image-container">
+                                                <a href="demo1-product.html" class="product-image">
+                                                    <img src="assets/images/products/product-3.jpg" alt="product" width="80" height="80">
+                                                </a>
+                                                <a href="#" class="btn-remove" title="Remove Product"><span>×</span></a>
+                                            </figure>
+                                        </div>
+                                        **** End .product ***
+                                    </div>
+                                    **** End .cart-product ***
+
+                                    <div class="dropdown-cart-total">
+                                        <span>SUBTOTAL:</span>
+
+                                        <span class="cart-total-price float-right">$134.00</span>
+                                    </div>
+                                    **** End .dropdown-cart-total ***
+
+                                    <div class="dropdown-cart-action">
+                                        <a href="cart.html" class="btn btn-gray btn-block view-cart">View
+                                            Cart</a>
+                                        <a href="checkout.html" class="btn btn-dark btn-block">Checkout</a>
+                                    </div>
+                                    **** End .dropdown-cart-total ***
+                                </div>
+                                **** End .dropdownmenu-wrapper ***
+                            </div>
+                            **** End .dropdown-menu -->
+                        </div>
+                        <!-- End .dropdown -->
+                    </div>
+                    <!-- End .header-right -->
+                </div>
+                <!-- End .container -->
+            </div>
+            <!-- End .header-middle -->
+        </header>
+        <!-- End .header -->
+
+
+
+
+
+
+
+
+
+
+<!--<div>
+    <ul class="nav" style="border-bottom: 2px solid black;border-top: 2px solid black;">
+        <li class="col-4 center">
+            <div>
+                <h2><span style="font-size: 40px;color: red;">Carthage</span><span
+                        style="color: blue;font-size: 40px;">Cafe</span></h2>
+            </div>
+        </li>
+
+        <li class="col-4 center">
+            <form action="">
+                <span style="border: 2px solid;">
+                    <select name="" id="" style="border: none;padding: 12px;">
+                        <option value="">All Categories</option>
+                        <option value="">value 1</option>
+                        <option value="">value 2</option>
+                    </select>
+                    <input type="text" placeholder="chercher vos produits"
+                        style="padding: 7px;border: none;border: left 2px; ;">
+                </span>
+                <button class="btn btn-primary">chercher</button>
+            </form>
+        </li>
+        <li class="col-4">
+            <div class="right-end">
+                <button mat-button [mat-menu-trigger-for]="settings">
+                    <i class="material-icons" style="color: black;">arrow_drop_down</i>
+                    <img class="image1" src="assets/account.png" alt="">
+                </button>
+                <mat-menu #settings="matMenu">
+                    <div class="p-2">
+                        <div class="flex">
+                            <img class="image2" src="assets/account.png" alt="">
+                            <span>Ahmed monji</span>
+                        </div>
+                        <hr>
+                        <a class="link" routerLink="/store/panier">mon panier</a>
+                        <hr>
+                        <a class="link" routerLink="/dashboard">mon dashboard</a>
+                        <hr>
+                        <button class="link" style="background-color: white;border: none;padding: 0px;"
+                            (click)="deconnecter()">Deconnecter</button>
+                    </div>
+                </mat-menu>
+            </div>
+            <span class="right-end"><button class="white"><img src="assets/shopping-cart.png" alt="" class="image white"
+                        style="margin-inline: 5px;" routerLink="/store/panier"></button></span>
+            <span class="right-end"><button class="white"><img src="assets/heart.png" alt="" class="image"
+                        style="margin-inline: 5px;"></button></span>
+        </li>
+    </ul>
+    <div *ngIf="ready">
+    <div>
+        <ul class="nav">
+            <li class="col-3 center">
+                <div>
+                    <button class="white" mat-button [mat-menu-trigger-for]="categories"><img class="image"
+                            src="assets/menu.png" alt=""><span style="color: black;">Browse All
+                            Categories</span></button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <mat-menu #categories="matMenu">
+        <ng-container *ngFor="let cat of categoriesDivided" >
+            <button (click)="openModel(cat)" class="white" mat-menu-item [mat-menu-trigger-for]="subCategories"><span>{{cat.name}}</span></button>
+        </ng-container>
+    </mat-menu>
+    
+    <mat-menu #subCategories="matMenu">
+        <div  class="row">
+            <div style="border: 2px solid green;" class="col-12">
+                <nav class="nav">
+                <ng-container *ngFor="let subCat of catChosen.value">
+                    <div class="col-6">
+                    <ul style="list-style-type: none;" >
+                        <h3 style="font-weight: 800;">{{subCat.name}}</h3>
+                        <ng-container *ngFor="let cat3 of subCat.value">
+                            <li><button class="white" style="color: black;" [routerLink]="'/store/article/category/'+subCat.id+'/'+cat3.name">{{cat3.name}}</button></li>
+                        </ng-container>
+                    </ul>
+                </div>
+                </ng-container>
+            </nav> 
+            </div>
+        </div>
+    </mat-menu>
+
+</div>
+</div>-->

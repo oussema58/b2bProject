@@ -1,0 +1,72 @@
+<div class="box">
+    <div class="title">
+        <h2>Mise a jour Societe Client</h2>
+    </div>
+    <button class="close" (click)="close()">x</button>
+    <br> 
+    <div>
+        <form action="" [formGroup]="myForm" (ngSubmit)="update()">
+    <table class="table"> 
+<tr>
+    <td><label class="bold" for="email">email client:</label></td>
+    <td><input (blur)="emailValidator()" type="text" id="email" formControlName="email"></td>
+</tr>
+<tr>
+    <td ><span class="empty"></span></td>
+    <td *ngIf="displayEmailFormat" class="error"><span>*client email est incorrecte</span></td>
+    <td *ngIf="!displayEmailFormat"><span class="empty"></span></td>      
+</tr>
+<tr>
+    <td><label class="bold" for="intitule">*intitule Client:</label></td>
+    <td><input (blur)="intituleValidator()" type="text" id="intitule" formControlName="intitule"></td>
+
+    <td><label class="bold" for="matricule_fiscale">*matricule fiscale client:</label></td>
+    <td><input (blur)="matricule_FiscaleValidator()" type="text" id="matricule_fiscale" formControlName="matricule_Fiscale"></td>
+</tr>
+<tr>
+    <td ><span class="empty"></span></td>
+    <td *ngIf="displayIntituleRequired" class="error"><span>*intitule client est obligatoire</span></td>
+    <td *ngIf="!displayIntituleRequired"><span class="empty"></span></td>
+
+    <td ><span class="empty"></span></td>
+    <td *ngIf="displayMatricule_FiscaleRequired" class="error"><span>*matricule fiscale est obligatoire</span></td>
+    <td *ngIf="!displayMatricule_FiscaleRequired"><span class="empty"></span></td>
+</tr>
+<tr>
+    <td><label class="bold" for="adresse">*adresse Client:</label></td>
+    <td><input (blur)="adresseClientValidator()" type="text" id="adresse" formControlName="adresse"></td>
+
+    <td><label class="bold" for="ville">ville:</label></td>
+    <td><input  type="text" id="ville" formControlName="ville"></td>
+</tr>
+<tr>
+    <td ><span class="empty"></span></td>
+    <td *ngIf="displayAdresseRequired" class="error"><span>*adress client est obligatoire</span></td>
+    <td *ngIf="!displayAdresseRequired"><span class="empty"></span></td>
+</tr>
+<tr>
+    <td><label class="bold" for="codePostale">code Postale:</label></td>
+    <td><input (blur)="codePostaleValidator()" type="text" id="codePostale" formControlName="codePostale"></td>
+
+    <td><label class="bold" for="telephone">*telephone Client:</label></td>
+    <td><input (blur)="telephoneValidator()" type="text" id="telephone" formControlName="telephone"></td>
+</tr>
+<tr>
+    <td ><span class="empty"></span></td>
+    <td *ngIf="displayCodePostaleFormat" class="error"><span>*code postale format is incorrect</span></td>
+    <td *ngIf="!displayIntituleRequired"><span class="empty"></span></td>
+
+    <td ><span class="empty"></span></td>
+    <td *ngIf="displayTelephoneRequired" class="error"><span>*telephone client is required</span></td>
+    <td *ngIf="displayTelephoneFormat" class="error"><span>*should be formed from 8 digits</span></td>
+    <td *ngIf="displayTelephoneRequired"><span class="empty"></span></td>
+</tr>
+
+    </table>
+
+    <button class="btn btn-primary m-2 p-2">Mise a jour</button>
+    <button class="btn btn-danger p-2" type="reset" (click)="reset()">Reinitialiser</button>
+            
+        </form>
+    </div>   
+    </div>

@@ -1,0 +1,192 @@
+<div class="main-content">
+
+    <div class="main-content-inner">
+
+        <div class="main-content-wrap">
+            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                <h3>Gestion des Produits</h3>
+                <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                    <li>
+                        <a routerLink="/dashboard">
+                            <div class="text-tiny">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a routerLink="/dashboard/client/group/1">
+                            <div class="text-tiny">Tous article</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wg-box">
+                <div class="flex items-center justify-between gap10 flex-wrap">
+                    <div class="wg-filter flex-grow">
+                        <form class="form-search">
+                            <fieldset class="name">
+                                <input type="text" placeholder="chercher article par intitule..." class="" name="name"
+                                    tabindex="2" [(ngModel)]="intituleArticle" (ngModelChange)="change()">
+                            </fieldset>
+
+                        </form>
+                    </div>
+                   <a class="tf-button style-1 w208" (click)="openCreate()"><i class="icon-plus"></i>Ajouter Produit</a>
+                </div>
+                <mat-card>
+                    <mat-card-header></mat-card-header>
+                    <mat-card-content>
+                        <table mat-table [dataSource]="dataSource" class="table table-striped">
+                            <ng-container matColumnDef="image">
+                                <th mat-header-cell *matHeaderCellDef></th>
+                                <td mat-cell *matCellDef="let element">
+                                <!--<div class="image">
+                                        <img [src]="element.imagePath" alt="" style="width: 60px;height: 60px;">
+                                    </div>-->
+                                    <div class="image">
+                                        <img [src]="element.imageContent" alt="" style="width: 60px;height: 60px;">
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="Code">
+                                <th mat-header-cell *matHeaderCellDef>Code</th>
+                                <td mat-cell *matCellDef="let element">{{element.articleCode}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Intitule">
+                                <th mat-header-cell *matHeaderCellDef>Intitule</th>
+                                <td mat-cell *matCellDef="let element">{{element.articleIntitule}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="code a barre">
+                                <th mat-header-cell *matHeaderCellDef class="noPadding">Code a barre</th>
+                                <td mat-cell *matCellDef="let element">{{element.articleBarCode}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Famille">
+                                <th mat-header-cell *matHeaderCellDef>Famille</th>
+                                <td mat-cell *matCellDef="let element">{{element.famille.familleIntitule}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Catalogue">
+                                <th mat-header-cell *matHeaderCellDef>Catalogue</th>
+                                <td mat-cell *matCellDef="let element">{{element.catalogue.catalogueIntitule}}</td>
+                            </ng-container>
+                            <!--<ng-container matColumnDef="Nb_Commande">
+                        <th mat-header-cell *matHeaderCellDef>Nb_Commande</th>
+                        <td mat-cell *matCellDef="let element">0</td>
+                    </ng-container>-->
+                            <ng-container matColumnDef="Statistique">
+                                <th mat-header-cell *matHeaderCellDef>Statistique</th>
+                                <td mat-cell *matCellDef="let element">{{element.articleStatistique}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="en vente">
+                                <th mat-header-cell *matHeaderCellDef>En Vente</th>
+                                <td mat-cell *matCellDef="let element">{{element.articleEtat}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Prix">
+                                <th mat-header-cell *matHeaderCellDef>Prix</th>
+                                <td mat-cell *matCellDef="let element">{{element.articlePrixHT}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="taux taxe">
+                                <th mat-header-cell *matHeaderCellDef>Taux Taxe</th>
+                                <td mat-cell *matCellDef="let element">{{element.taxe.taxeTaux}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Action">
+                                <th mat-header-cell *matHeaderCellDef>Action</th>
+                                <td mat-cell *matCellDef="let element">
+                                   
+                                    <button [routerLink]="'/dashboard/'+'article/'+element.articleID+'/detail'"><i class="icon-eye"></i></button>
+                                    <button (click)="openEdit(element)" class="btn btn-primary"> <i class="icon-edit-3"></i></button>
+                                    <button (click)="delete(element.articleID)" class="btn btn-danger"><i class="icon-trash-2"></i></button>
+
+                                    <button *ngIf="element.articleEtat==true" (click)="bloquer(element.articleID)" class="btn btn-warning">
+                                        <i ><img style="width: 15px;height: 15px;" src="assets/images/apps/open-padlock.png" alt=""></i>
+                                    </button>
+                                    <button *ngIf="element.articleEtat==false" (click)="debloquer(element.articleID)" class="btn">
+                                        <i ><img style="width: 15px;height: 15px;" src="assets/images/apps/unlocked.png" alt=""></i>
+                                    </button>
+                                    
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row;columns: displayedColumns"></tr>
+                            <tr *matNoDataRow >
+                                <td colspan="10"
+                                 style="text-align: center;">Aucun produit trouvé</td>
+                            </tr>
+                        </table>
+                    </mat-card-content>
+    
+                        <mat-card-footer >
+                            <mat-paginator [pageSizeOptions]="[4,10,20]" showFirstLastButtons></mat-paginator>
+                        </mat-card-footer>
+                </mat-card>
+                
+                <!--<div class="divider"></div>
+                <div class="flex items-center justify-between flex-wrap gap10" *ngIf="!inCreateMode && !inEditMode">
+                    <div class="text-tiny">Showing 10 entries</div>
+                    <ul class="wg-pagination">
+                        <li *ngIf="nbGroup>1">
+                            <a [routerLink]="'/dashboard/family/group/'+(nbGroup-1)"><i class="icon-chevron-left" ></i></a>
+                        </li>
+                        <li *ngIf="nbGroup>1">
+                            <a [routerLink]="'/dashboard/family/group/'+(nbGroup-1)">{{nbGroup-1}}</a>
+                        </li>
+                        <li class="active">
+                            <a routerLink="#">{{nbGroup}}</a>
+                        </li>
+                        <li *ngIf="nbGroup<lastIndex">
+                            <a [routerLink]="'/dashboard/family/group/'+nbGroup+1">{{nbGroup+1}}</a>
+                        </li>
+                        <li *ngIf="nbGroup<lastIndex">
+                            <a [routerLink]="'/dashboard/family/group/'+(nbGroup+1)"><i class="icon-chevron-right"></i></a>
+                        </li>
+                    </ul>
+                </div>-->
+
+            </div>
+
+<!--<div class="container">
+    <h2>Gestion des articles</h2>
+    <table class="table">
+        <tr>
+            <td colspan="2"><input type="text" class="col-6 m-2 p-2 search" placeholder="chercher vos Articles"></td>
+            <td></td>
+            <td></td>
+            <td colspan="2"><button class="btn btn-primary" (click)="openCreate()">Ajouter Article</button></td>
+        </tr>
+    </table>
+    
+        <table class="table">
+            <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Intitule</th>
+                <th scope="col">code a barre</th>
+                <th scope="col">Famille</th>
+                <th scope="col">Catalogue</th>
+                <th scope="col">Statistique</th>
+                <th scope="col">en vente</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Taux d Impot</th>
+
+            </tr>
+
+            <tr *ngFor="let article of articles">
+                <td>{{article.articleCode}}</td>
+                <td>{{article.articleIntitule}}</td>
+                <td>{{article.articleBarCode}}</td>
+                <td>{{article.famille.familleIntitule}}</td>
+                <td>{{article.catalogue.catalogueIntitule}}</td>
+                <td>{{article.articleStatistique}}</td>
+                <td>{{article.articleEtat}}</td>
+                <td>{{article.articlePrixHT|currency:'JPY':'':'1.3-3'}}</td>
+                <td>{{article.taxe.taxeTaux}}</td>
+                
+                
+                <td><button (click)="openEdit(article)" class="btn btn-primary">Editer</button></td>
+                <td><button (click)="delete(article.articleID)" class="btn btn-danger">Supprimer</button></td>
+                <td><button [routerLink]="'/dashboard/'+'article/'+article.articleID+'/detail'">Info</button></td>
+
+            </tr>
+        </table>
+
+</div>-->

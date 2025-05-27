@@ -1,0 +1,200 @@
+<div class="main-content">
+
+    <div class="main-content-inner">
+
+        <div class="main-content-wrap">
+            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                <h3>Gestion des retours</h3>
+                <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                    <li>
+                        <a routerLink="/dashboard">
+                            <div class="text-tiny">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a routerLink="/dashboard/demandeRetour">
+                            <div class="text-tiny">Retour</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wg-box">
+                <div class="flex items-center justify-between gap10 flex-wrap">
+                    <div class="wg-filter flex-grow" *ngIf="role=='ADMIN'">
+                        <form class="form-search">
+                            <fieldset class="name">
+                                <input type="text" placeholder="chercher demande retour par client..." class="" name="name"
+                                    tabindex="2" [(ngModel)]="intituleClient" (ngModelChange)="change()">
+                            </fieldset>
+                        </form>
+                    </div>
+                   
+
+                    <div class="wg-filter flex-grow" *ngIf="role!='ADMIN'">
+                        <label for="">Tous demandes de retour</label>
+                        <input type="radio" value="allDemandes" [(ngModel)]="filter" (ngModelChange)="filterDemandesForClient()">
+                        <label for="">Mes demandes de retours</label>
+                        <input type="radio" value="mesDemandes" [(ngModel)]="filter" (ngModelChange)="filterDemandesForClient()">
+                    </div>
+                    
+                   <!--<a class="tf-button style-1 w208" (click)="openCreate()"><i class="icon-plus"></i>Ajouter article</a>-->
+                </div>
+
+                <mat-card>
+                    <mat-card-header></mat-card-header>
+                    <mat-card-content>
+                        <table mat-table [dataSource]="dataSource" class="table table-striped">
+                            <ng-container matColumnDef="commandeNum">
+                                <th mat-header-cell *matHeaderCellDef>Commande num</th>
+                                <td mat-cell *matCellDef="let element">{{element.commande.commandeNumero}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="client" *ngIf="role=='ADMIN'">
+                                <th mat-header-cell *matHeaderCellDef>Société</th>
+                                <td mat-cell *matCellDef="let element">{{element.client.intitule}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="nbrArticleRetenue">
+                                <th mat-header-cell *matHeaderCellDef class="noPadding">Nbr Article Retourné</th>
+                                <td mat-cell *matCellDef="let element">{{element.nbArtcileRetenue}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="user">
+                                <th mat-header-cell *matHeaderCellDef>Créateur</th>
+                                <td mat-cell *matCellDef="let element" >
+                                    {{element.userCreatedBy.name}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="date creation">
+                                <th mat-header-cell *matHeaderCellDef>Date Création</th>
+                                <td mat-cell *matCellDef="let element">{{element.dateCreated |date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="Info">
+                                <th mat-header-cell *matHeaderCellDef>Info</th>
+                                <td mat-cell *matCellDef="let element">
+                                    
+                                <!--<button class="btn" [routerLink]="'/dashboard/'+'demandeRetour/'+element.id">
+                                        <i class="icon-eye"></i>
+                                    </button>-->
+                                    <button class="btn" [routerLink]="element.id+'/detail'">
+                                        <i class="icon-eye"></i>
+                                    </button>
+                                </td>
+
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row;columns: displayedColumns"></tr>
+                            <tr *matNoDataRow >
+                                <td colspan="8"
+                                 style="text-align: center;">Aucun demande de retour trouvé</td>
+                            </tr>
+                        </table>
+                    </mat-card-content>
+                    <mat-card-footer>
+                        <mat-paginator [pageSizeOptions]="[2,10,20]" showFirstLastButtons></mat-paginator>
+                    </mat-card-footer>
+                </mat-card> 
+            <!--<table class="table">
+                    <tr>
+                        <th scope="col">Commande num</th>
+                        <th scope="col">client</th>
+                        <th scope="col">nbr Article Retenue</th>
+                        <th scope="col">user</th>
+                        <th scope="col">date creation</th>
+                        <th scope="col">Info</th>
+                        
+                        
+                    </tr>
+
+
+                    <ng-container *ngFor="let demande of demandesRetour">
+                        ****<ng-container *ngIf="intituleFamille=='' || fam.familleIntitule.toLowerCase().includes(intituleFamille)">***
+                        <tr>
+                            <td>{{demande.commande.commandeNumero}}</td>
+                            <td>{{demande.client.intitule}}</td>
+                            <td>{{demande.nbArtcileRetenue}}</td>
+                            <td>{{demande.userCreatedBy.name}}</td>
+                            <td>{{demande.dateCreated |date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            
+                            <td style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+                                <button class="btn" [routerLink]="'/dashboard/'+'demandeRetour/'+demande.id">
+                                    <i class="icon-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    ****</ng-container>***
+                    </ng-container>
+                </table>-->
+                
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="container">
+    <h2>Gestion des commandes</h2>
+    <table class="table">
+        <tr>
+            <td colspan="2"><input type="text" class="col-6 m-2 p-2 search" placeholder="chercher vos commande"></td>
+        </tr>
+    </table>
+    
+        <table class="table">
+            <tr>
+                <th scope="col">Commande num</th>
+                <th scope="col">client</th>
+                <th scope="col">nbr Article Retenue</th>
+                <th scope="col">user</th>
+                <th scope="col">date creation</th>
+                <th scope="col">Info</th>
+                
+                
+            </tr>
+
+            <tr *ngFor="let demande of demandesRetour">
+                <td>{{demande.commande.commandeNumero}}</td>
+                <td>{{demande.client.intitule}}</td>
+                <td>{{demande.nbArtcileRetenue}}</td>
+                <td>{{demande.userCreatedBy.name}}</td>
+                <td>{{demande.dateCreated}}</td>
+                
+                <td><button [routerLink]="'/dashboard/'+'demandeRetour/'+demande.id">Info</button></td>
+
+                
+            </tr>
+        </table>
+
+</div>-->

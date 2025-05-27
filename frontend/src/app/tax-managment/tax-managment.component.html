@@ -1,0 +1,213 @@
+<div class="main-content">
+
+    <div class="main-content-inner">
+
+        <div class="main-content-wrap">
+            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                <h3>Gestion des Impots</h3>
+                <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                    <li>
+                        <a routerLink="/dashboard">
+                            <div class="text-tiny">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icon-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a routerLink="/dashboard/tax">
+                            <div class="text-tiny">gestion des impots</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wg-box">
+                <div class="flex items-center justify-between gap10 flex-wrap" *ngIf="!inCreateMode && !inEditMode">
+                    <div class="wg-filter flex-grow">
+                        <form class="form-search">
+                            <fieldset class="name">
+                                <input type="text" placeholder="chercher impot par intitule..." class="" name="name"
+                                    tabindex="2" [(ngModel)]="intituleTax" (ngModelChange)="change()">
+                            </fieldset>
+
+                        </form>
+                    </div>
+                   <a class="tf-button style-1 w208" (click)="openCreate()"><i class="icon-plus"></i>Ajouter Impot</a>
+                </div>
+
+                <div *ngIf="inCreateMode || inEditMode" class="formContainer"> 
+                    <form [formGroup]="myForm">
+                        
+                        <table class="table">
+                            <tr>
+                                <ng-container *ngIf="!inEditMode">
+                                    <td><label class="bold" for="taxeCode">Code:</label></td>
+                                </ng-container>
+                                <td><label class="bold" for="taxeIntitule">Intitule:</label></td>
+                            </tr>
+                            <tr>
+                                <ng-container *ngIf="!inEditMode">
+                                    <td><input (blur)="taxeCodeValidator()" id="taxeCode" type="text" formControlName="taxeCode">
+                                    <span *ngIf="displayTaxeCodeRequired" class="error">*code est obligatoire</span></td>
+                                </ng-container>
+                                <td><input (blur)="taxeIntituleValidator()" type="text" id="taxeIntitule" formControlName="taxeIntitule">
+                                <span *ngIf="displayTaxeIntituleRequired" class="error">*intitule est obligatoire</span></td>
+                            </tr>
+                        <!--<tr>
+                                <ng-container *ngIf="!inEditMode">
+                                    <td *ngIf="displayTaxeCodeRequired" class="error"><span>*code est obligatoire</span></td>
+                                    <td *ngIf="!displayTaxeCodeRequired" class="empty"></td>
+                                </ng-container>
+                                <td *ngIf="displayTaxeIntituleRequired" class="error"> <span>*intitule est obligatoire</span></td>
+                                <td *ngIf="!displayTaxeIntituleRequired" class="empty"></td>
+                            </tr>-->
+                        
+                            
+                            <tr>
+                                <td><label class="bold" for="taxeTaux">Taux:</label></td>
+                                
+                            </tr>
+                            <tr>
+                                <td><input (blur)="taxeTauxValidator()" id="taxeTaux" type="number" formControlName="taxeTaux">
+                                <span *ngIf="displayTaxeRequired" class="error">*tu dois specifier un taux du taxe</span>
+                                <span *ngIf="displayTaxeMin" class="error">*minimum taxe est 0</span>
+                                <span *ngIf="displayTaxeMax" class="error">*maximum taxe est 100</span></td>
+                            </tr>
+                        <!--<tr>
+                                <td *ngIf="displayTaxeRequired" class="error"><span>*tu dois specifier un taux du taxe</span></td>
+                                <td *ngIf="displayTaxeMin" class="error"><span>*minimum taxe est 0</span></td>
+                                <td *ngIf="displayTaxeMax" class="error"><span>*maximum taxe est 100</span></td>
+                                <td *ngIf="!displayTaxeMax && !displayTaxeMax  && !displayTaxeRequired" class="empty"></td>
+                            </tr>-->
+                        
+                        </table>
+                        <button  *ngIf="inCreateMode" (click)="create()"
+                                class="btn btn-primary m-2 p-2">Creer</button>
+                        <button *ngIf="inEditMode" (click)="update()" type="submit" class="btn btn-primary m-2 p-2">Mise a jour</button>
+                        <button *ngIf="inCreateMode || inEditMode"  (click)="annuler()" class="btn btn-danger p-2">Annuler</button>
+                    </form>
+                </div>
+                <mat-card [ngStyle]="{'display':(!inCreateMode && !inEditMode)?'initial':'none'}">
+                    <mat-card-header></mat-card-header>
+                    <mat-card-content>
+                        <table mat-table [dataSource]="dataSource" class="table table-striped">
+                            <ng-container matColumnDef="Code">
+                                <th mat-header-cell *matHeaderCellDef>Code</th>
+                                <td mat-cell *matCellDef="let element">{{element.taxeCode}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Intitule">
+                                <th mat-header-cell *matHeaderCellDef>Intitule</th>
+                                <td mat-cell *matCellDef="let element">{{element.taxeIntitule}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Taux">
+                                <th mat-header-cell *matHeaderCellDef>Taux</th>
+                                <td mat-cell *matCellDef="let element">{{element.taxeTaux|number: '1.2-2' }}</td>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="Action">
+                                <th mat-header-cell *matHeaderCellDef>Action</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button class="btn btn-primary" (click)="openEdit(element)">
+                                        <i class="icon-edit-3"></i>
+                                    </button>
+                                    <button class="btn btn-danger" (click)="delete(element.id)">
+                                        <i class="icon-trash-2"></i>
+                                    </button>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row;columns: displayedColumns"></tr>
+                            <tr *matNoDataRow >
+                                <td colspan="8"
+                                 style="text-align: center;">Aucun ligne trouvé</td>
+                            </tr>
+                        </table>
+                    </mat-card-content>
+                    <mat-card-footer>
+                        <mat-paginator [pageSizeOptions]="[2,10,20]" showFirstLastButtons></mat-paginator>
+                    </mat-card-footer>
+                </mat-card>
+            </div>
+
+<!--<div class="container">
+    <h2>Touts Impots</h2>
+    <table class="table">
+        <tr>
+            <td colspan="2"><input type="text" class="col-6 m-2 p-2 search" placeholder="chercher taxe">
+            </td>
+            <td></td>
+            <td></td>
+            <td colspan="2"><button class="btn btn-primary" (click)="openCreate()">Ajouter tarif</button></td>
+        </tr>
+    </table>
+    <div *ngIf="inCreateMode || inEditMode">
+
+        <hr>
+        <div style="float: right;margin-bottom: 10px;">
+            <button style="margin-inline: 5px;" *ngIf="inCreateMode" (click)="create()"
+                class="btn btn-primary">Creer</button>
+            <button *ngIf="inEditMode" (click)="update()" class="btn btn-primary">Mise a jour</button>
+            <button *ngIf="inCreateMode || inEditMode" (click)="annuler()" class="btn btn-danger">Annuler</button>
+
+            <br>
+        </div>
+        <form [formGroup]="myForm">
+            <table class="table">
+            
+                <tr>
+                    <ng-container *ngIf="!inEditMode">
+                    <td><label for="taxeCode">Code:</label></td>
+                    <td><input (blur)="taxeCodeValidator()" id="taxeCode" type="text" formControlName="taxeCode"></td>
+                    <td class="empty"></td>
+                    </ng-container>
+                    
+                    <td><label for="taxeIntitule">Intitule:</label></td>
+                    <td><input (blur)="taxeIntituleValidator()" type="text" id="taxeIntitule" formControlName="taxeIntitule"></td>
+
+                </tr>
+                <tr>
+                    <ng-container *ngIf="!inEditMode">
+                    <td *ngIf class="empty"></td>
+                    <td *ngIf="displayTaxeCodeRequired" class="error">*code est obligatoire</td>
+                    <td *ngIf="!displayTaxeCodeRequired" class="empty"></td>
+                    <td class="empty"></td>
+                    </ng-container>
+                    <td *ngIf="inEditMode" colspan="1" class="empty"></td>
+                    <td *ngIf="!inEditMode" colspan="2" class="empty"></td>
+                    <td *ngIf="displayTaxeIntituleRequired" class="error">*intitule est obligatoire</td>
+                    <td *ngIf="!displayTaxeIntituleRequired" class="empty"></td>
+                </tr>
+                <tr>
+                    <td><label for="taxeTaux">Taux:</label></td>
+                    <td><input (blur)="taxeTauxValidator()" id="taxeTaux" type="number" formControlName="taxeTaux"></td>
+                </tr>
+                <tr>
+                    <td class="empty"></td>
+                    <td *ngIf="displayTaxeMin" class="error">*minimum taxe est 0</td>
+                    <td *ngIf="displayTaxeMax" class="error">*maximum taxe est 100</td>
+                    <td *ngIf="!displayTaxeMax && !displayTaxeMax" class="empty"></td>
+                </tr>
+            </table>
+        </form>
+        <hr>
+    </div>
+    <div class="catalog-container">
+        <table class="table">
+            <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Intitule</th>
+                <th scope="col">Taux</th>
+            </tr>
+
+            <tr *ngFor="let tax of taxs">
+                <td>{{tax.taxeCode}}</td>
+                <td>{{tax.taxeIntitule}}</td>
+                <td>{{tax.taxeTaux}}</td>
+                <td><button (click)="openEdit(tax)" class="btn btn-primary">Editer</button></td>
+                <td><button (click)="delete(tax.id)" class="btn btn-danger">Supprimer</button></td>
+            </tr>
+        </table>
+    </div>
+
+</div>-->

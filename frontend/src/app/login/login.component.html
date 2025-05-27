@@ -1,0 +1,69 @@
+<div class="wrap-login-page">
+    <div class="flex-grow flex flex-column justify-center gap30">
+        <a href="index-2.html" id="site-logo-inner">
+            
+        </a>
+        <div class="login-box">
+            <div>
+                <h3>Connecter a votre compte</h3>
+                <div class="body-text">Enter votre nom d'utilisateur & mot de passe pour connecter</div>
+            </div>
+            <form class="form-login flex flex-column gap24" [formGroup]="myForm" (ngSubmit)="login()" >
+                <fieldset class="email">
+                    <div class="body-title mb-10">Nom d'utilisateur <span class="tf-color-1">*</span></div>
+                    <input class="flex-grow" type="text" placeholder="Enter votre nom d'utilisateur"  tabindex="0" (blur)="usernameValidator()" id="username" formControlName="username">
+                    <div *ngIf="displayUsernameRequired"><span class="error" >*nom d'utilisateur is required</span></div>
+                    
+                </fieldset>
+                
+                <fieldset class="password">
+                    <div class="body-title mb-10">Mot de passe <span class="tf-color-1">*</span></div>
+                    <input class="password-input" placeholder="Enter votre mot de passe" tabindex="0" (blur)="passwordValidator()" type="password" id="password" formControlName="password"  >
+                    <span class="show-pass">
+                        <i class="icon-eye view"></i>
+                        <i class="icon-eye-off hide"></i>
+                    </span>
+                    <div *ngIf="displayPasswordRequired"><span class="error">*mot de passe is required</span></div>
+                </fieldset>
+                <a (click)="login()" class="tf-button w-full">Connexion</a>
+            </form>
+            
+        </div>
+    </div>
+    <div class="text-tiny">
+        Copyright © 2024 B2B, Tous droits réservés</div>
+</div>
+<!--<div class="box">
+    <div class="title">
+        <h2>Login</h2>
+    </div>
+    <button class="close" (click)="close()">x</button>
+    <br> 
+    <div>
+        <form action="" [formGroup]="myForm" (ngSubmit)="login()">
+    <table>    
+        <tr>
+            <td><label class="bold" for="username">Username:</label></td>
+            <td><input (blur)="usernameValidator()" type="username" id="username" formControlName="username"></td>
+        </tr>
+        <tr *ngIf="displayUsernameRequired">
+            <td ><span class="empty"></span></td>
+           <td> <span class="error" >*username is required</span></td>
+        </tr>
+        <br>
+        <tr>
+            <td><label class="bold" for="password">Password:</label></td>
+            <td><input (blur)="passwordValidator()" type="password" id="password" formControlName="password"></td>
+        </tr>
+        <tr *ngIf="displayPasswordRequired">
+            <td ><span class="empty"></span></td>
+            <td class="error"><span>*password is required</span></td>
+        </tr> 
+
+
+    </table>
+    <button class="btn btn-primary m-2 p-2">Login</button>
+    <button class="btn btn-danger p-2" type="reset" (click)="reset()">Reset</button>
+        </form>
+    </div>   
+    </div>-->

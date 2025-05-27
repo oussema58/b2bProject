@@ -1,0 +1,629 @@
+<div class="main-content">
+    <!-- main-content-wrap -->
+    <div class="main-content-inner">
+        <!-- main-content-wrap -->
+        <div class="main-content-wrap">
+            <div class="tf-section-4 mb-30">
+                <!-- chart-default -->
+                <div class="wg-chart-default">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap14">
+                            <div class="image type-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="52" viewBox="0 0 48 52"
+                                    fill="none">
+                                    <path
+                                        d="M19.1094 2.12943C22.2034 0.343099 26.0154 0.343099 29.1094 2.12943L42.4921 9.85592C45.5861 11.6423 47.4921 14.9435 47.4921 18.5162V33.9692C47.4921 37.5418 45.5861 40.8431 42.4921 42.6294L29.1094 50.3559C26.0154 52.1423 22.2034 52.1423 19.1094 50.3559L5.72669 42.6294C2.63268 40.8431 0.726688 37.5418 0.726688 33.9692V18.5162C0.726688 14.9435 2.63268 11.6423 5.72669 9.85592L19.1094 2.12943Z"
+                                        fill="blue" />
+                                </svg>
+                                <i class="icon-shopping-bag"></i>
+                            </div>
+                            <div>
+                                <div class="body-text mb-2"><span style="text-wrap:nowrap;">nombre des produits
+                                        actives</span></div>
+                                <h4>{{data.nbArticles}}</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="wrap-chart">
+                        <div id="line-chart-1"></div>
+                    </div>
+                </div>
+                <!-- /chart-default -->
+                <!-- chart-default -->
+                <div class="wg-chart-default">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap14">
+                            <div class="image type-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="52" viewBox="0 0 48 52"
+                                    fill="none">
+                                    <path
+                                        d="M19.1094 2.12943C22.2034 0.343099 26.0154 0.343099 29.1094 2.12943L42.4921 9.85592C45.5861 11.6423 47.4921 14.9435 47.4921 18.5162V33.9692C47.4921 37.5418 45.5861 40.8431 42.4921 42.6294L29.1094 50.3559C26.0154 52.1423 22.2034 52.1423 19.1094 50.3559L5.72669 42.6294C2.63268 40.8431 0.726688 37.5418 0.726688 33.9692V18.5162C0.726688 14.9435 2.63268 11.6423 5.72669 9.85592L19.1094 2.12943Z"
+                                        fill="orange" />
+                                </svg>
+                                <i class="icon-user"></i>
+                            </div>
+                            <div>
+                                <div class="body-text mb-2"><span style="text-wrap:nowrap;">nombre des clients
+                                        actives</span></div>
+                                <h4>{{data.nbClients}}</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="wrap-chart">
+                        <div id="line-chart-1"></div>
+                    </div>
+                </div>
+                <!-- /chart-default -->
+                <!-- chart-default -->
+                <div class="wg-chart-default">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap14">
+                            <div class="image type-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="52" viewBox="0 0 48 52"
+                                    fill="none">
+                                    <path
+                                        d="M19.1094 2.12943C22.2034 0.343099 26.0154 0.343099 29.1094 2.12943L42.4921 9.85592C45.5861 11.6423 47.4921 14.9435 47.4921 18.5162V33.9692C47.4921 37.5418 45.5861 40.8431 42.4921 42.6294L29.1094 50.3559C26.0154 52.1423 22.2034 52.1423 19.1094 50.3559L5.72669 42.6294C2.63268 40.8431 0.726688 37.5418 0.726688 33.9692V18.5162C0.726688 14.9435 2.63268 11.6423 5.72669 9.85592L19.1094 2.12943Z"
+                                        fill="lightgrey" />
+                                </svg>
+                                <i class="icon-shopping-cart"></i>
+                            </div>
+                            <div>
+                                <div class="body-text mb-2"><span style="text-wrap:nowrap;">nombre des commandes</span>
+                                </div>
+                                <h4>{{data.nbCommandes}}</h4>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="wrap-chart">
+                        <div id="line-chart-1"></div>
+                    </div>
+                </div>
+                <!-- /chart-default -->
+                <!-- chart-default -->
+                <div class="wg-chart-default">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap14">
+                            <div class="image type-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="52" viewBox="0 0 48 52"
+                                    fill="none">
+                                    <path
+                                        d="M19.1094 2.12943C22.2034 0.343099 26.0154 0.343099 29.1094 2.12943L42.4921 9.85592C45.5861 11.6423 47.4921 14.9435 47.4921 18.5162V33.9692C47.4921 37.5418 45.5861 40.8431 42.4921 42.6294L29.1094 50.3559C26.0154 52.1423 22.2034 52.1423 19.1094 50.3559L5.72669 42.6294C2.63268 40.8431 0.726688 37.5418 0.726688 33.9692V18.5162C0.726688 14.9435 2.63268 11.6423 5.72669 9.85592L19.1094 2.12943Z"
+                                        fill="#d8bfd8" />
+                                </svg>
+                                <i class="icon-repeat"></i>
+                            </div>
+                            <div>
+                                <div class="body-text mb-2"><span style="text-wrap:nowrap;">nombre demande de
+                                        retour</span></div>
+                                <h4>{{data.nbRetours}}</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="wrap-chart">
+                        <div id="line-chart-1"></div>
+                    </div>
+                </div>
+                <!-- /chart-default -->
+
+
+                <!-- chart-default -->
+                <div class="wg-chart-default">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap14">
+                            <div class="image type-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="52" viewBox="0 0 48 52"
+                                    fill="none">
+                                    <path
+                                        d="M19.1094 2.12943C22.2034 0.343099 26.0154 0.343099 29.1094 2.12943L42.4921 9.85592C45.5861 11.6423 47.4921 14.9435 47.4921 18.5162V33.9692C47.4921 37.5418 45.5861 40.8431 42.4921 42.6294L29.1094 50.3559C26.0154 52.1423 22.2034 52.1423 19.1094 50.3559L5.72669 42.6294C2.63268 40.8431 0.726688 37.5418 0.726688 33.9692V18.5162C0.726688 14.9435 2.63268 11.6423 5.72669 9.85592L19.1094 2.12943Z"
+                                        fill="#22C55E" />
+                                </svg>
+                                <i class="icon-shopping-bag"></i>
+                            </div>
+                            <div>
+                                <div class="body-text mb-2"><span >Total Vente</span></div>
+                                <h4 style="text-wrap:nowrap;">{{data.totalVente |number: '1.3-3'}} TND</h4>
+                            </div>
+                        </div>
+                    <!--<div class="box-icon-trending up">
+                            <i class="icon-trending-up"></i>
+                            <div class="body-title number">1.56%</div>
+                        </div>-->
+                    </div>
+                    <div class="wrap-chart">
+                        <div id="line-chart-1"></div>
+                    </div>
+                </div>
+                <!-- /chart-default -->
+
+                <!-- chart-default -->
+                <div class="wg-chart-default">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap14">
+                            <div class="image type-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="52" viewBox="0 0 48 52"
+                                    fill="none">
+                                    <path
+                                        d="M19.1094 2.12943C22.2034 0.343099 26.0154 0.343099 29.1094 2.12943L42.4921 9.85592C45.5861 11.6423 47.4921 14.9435 47.4921 18.5162V33.9692C47.4921 37.5418 45.5861 40.8431 42.4921 42.6294L29.1094 50.3559C26.0154 52.1423 22.2034 52.1423 19.1094 50.3559L5.72669 42.6294C2.63268 40.8431 0.726688 37.5418 0.726688 33.9692V18.5162C0.726688 14.9435 2.63268 11.6423 5.72669 9.85592L19.1094 2.12943Z"
+                                        fill="#FF5200" />
+                                </svg>
+                                <i class="icon-dollar-sign"></i>
+                            </div>
+                            <div>
+                                <div class="body-text mb-2"><span style="text-wrap:nowrap;">Total Revenue</span></div>
+                                <h4>{{data.totalRevenue |number: '1.3-3'}} TND</h4>
+                            </div>
+                        </div>
+                    <!--<div class="box-icon-trending down">
+                            <i class="icon-trending-down"></i>
+                            <div class="body-title number">1.56%</div>
+                        </div>-->
+                    </div>
+                    <div class="wrap-chart">
+                        <div id="line-chart-2"></div>
+                    </div>
+                </div>
+                <!-- /chart-default -->
+            </div>
+            <div class="tf-section-1 mb-30">
+
+                <!-- chart -->
+                <div class="wg-box">
+
+                    <div class="">
+                        <h5>Repartition des commandes par année</h5>
+                        <div style="clear: both;">
+                            <select style="float: right;width: fit-content;text-align: center;" [(ngModel)]="select1"
+                                (ngModelChange)="rendernbCommandChart()">
+                                <option value="last">les 5 derniers années</option>
+                                <option [value]="currentYear">{{currentYear}}</option>
+                                <option [value]="currentYear-1">{{currentYear-1}}</option>
+                                <option [value]="currentYear-2">{{currentYear-2}}</option>
+                                <option [value]="currentYear-3">{{currentYear-3}}</option>
+
+                            </select>
+                        </div>
+                        <div style="text-align: center;padding: 10px;font-size: 18px;">
+                            {{nbCommande}} commande
+                        </div>
+                        <div>
+                            <canvas id="nbCommandChart">{{nbCommandChart}}</canvas>
+                        </div>
+                    </div>
+                    <div id="line-chart-5"></div>
+                </div>
+                <!-- /chart -->
+
+
+            </div>
+            <div class="tf-section-6 mb-30">
+
+                <!-- category -->
+                <div class="wg-box">
+                    <div class="flex items-center justify-between">
+                        <h5>Vente par catalogues</h5>
+                        <div style="clear: both;">
+                            <select style="float: right;width: fit-content;text-align: center;" [(ngModel)]="select2"
+                                (ngModelChange)="renderSalesByCategoryChart()">
+
+                                <option value="all">Tous</option>
+                                <option [value]="currentYear">{{currentYear}}</option>
+                                <option [value]="currentYear-1">{{currentYear-1}}</option>
+                                <option [value]="currentYear-2">{{currentYear-2}}</option>
+                                <option [value]="currentYear-3">{{currentYear-3}}</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="flex gap10 justify-between flex-wrap">
+                        <div>
+                            
+                            <div class="flex items-center gap10">
+                                
+                                <h4 style="text-align: center;">Totale: {{totalSalesByCategory |number: '1.3-3'}} TND</h4>
+                                <!--<div class="box-icon-trending up">
+                                    <i class="icon-trending-up"></i>
+                                    <div class="body-title number">0.56%</div>
+                                </div>-->
+                            </div>
+                        </div>
+                        <!--<div class="dropdown default style-box">
+                        <select name="" id="" [(ngModel)]="catalogueSelected" (ngModelChange)="changeCatalogueSelected()">
+                            <ng-container *ngFor="let cat of cataloguesOfSelect">
+                                <option [value]="cat.catalogueIntitule">{{cat.catalogueIntitule}}</option>
+                            </ng-container>
+                        </select>
+                    </div>-->
+                        <canvas id="salesByCategory">{{chart}}</canvas>
+                    </div>
+
+                </div>
+                <!-- /category -->
+                <!-- earnings -->
+
+                <div class="wg-box">
+                    <div class="flex items-center justify-between">
+                        <h5>Bénéfices</h5>
+                        <div style="clear: both;">
+                            <select style="float: right;width: fit-content;text-align: center;" [(ngModel)]="select3"
+                                (ngModelChange)="renderEarningChart()">
+                                <option value="last">les 5 derniers années</option>
+                                <option [value]="currentYear">{{currentYear}}</option>
+                                <option [value]="currentYear-1">{{currentYear-1}}</option>
+                                <option [value]="currentYear-2">{{currentYear-2}}</option>
+                                <option [value]="currentYear-3">{{currentYear-3}}</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap40">
+                        <div>
+                            <div class="mb-2">
+                                <div class="block-legend">
+                                    <div class="dot t1"></div>
+                                    <div class="text-tiny">Vente</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap10">
+                                <h4>{{totalEarning |number: '1.3-3'}} TND</h4>
+                            <!--<div class="box-icon-trending up">
+                                    <i class="icon-trending-up"></i>
+                                    <div class="body-title number">0.56%</div>
+                                </div>-->
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-2">
+                                <div class="block-legend">
+                                    <div class="dot t5"></div>
+                                    <div class="text-tiny">Revenue</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap10">
+                                <h4>{{totalProfit |number: '1.3-3'}} TND</h4>
+                            <!--<div class="box-icon-trending up">
+                                    <i class="icon-trending-up"></i>
+                                    <div class="body-title number">0.56%</div>
+                                </div>-->
+                            </div>
+                        </div>
+
+                        <canvas id="earningsChart">{{earningsChart}}</canvas>
+                    </div>
+                    <div id="line-chart-6"></div>
+                </div>
+                <!-- /earnings -->
+            </div>
+            <div class="tf-section-6 mb-30">
+                <!-- best-shop-sellers -->
+                <div class="wg-box">
+                    <div class="flex items-center justify-between">
+                        <h5>meilleur clients</h5>
+                        <div style="clear: both;">
+                            <select style="float: right;width: fit-content;text-align: center;"
+                                [(ngModel)]="table1Select" (ngModelChange)="changeTable1()">
+                                <option value="all">Tous</option>
+                                <option [value]="currentYear">{{currentYear}}</option>
+                                <option [value]="currentYear-1">{{currentYear-1}}</option>
+                                <option [value]="currentYear-2">{{currentYear-2}}</option>
+                                <option [value]="currentYear-3">{{currentYear-3}}</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="wg-table">
+                        <mat-card >
+                            <mat-card-header></mat-card-header>
+                            <mat-card-content>
+                                <table mat-table [dataSource]="clientDataSource" class="table" ngClass="myTable2">
+                                    <ng-container matColumnDef="image">
+                                        <th mat-header-cell *matHeaderCellDef></th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <!-- <img style="width: 60px;height: 60px;" [src]="(element.imagePath==''||element.imagePath==null)?defaultImage:element.imagePath"
+                                            alt=""> -->
+                                            <img style="width: 60px;height: 60px;" [src]="(element.imageContent==''||element.imageContent==null)?defaultImage:element.imageContent"
+                                            alt="">
+                                        <div style="display: flex;flex-direction: column;">
+                                            <p style="text-wrap: wrap;">{{element.intitule}}</p>
+                                            <small>{{element.nbCommandes }} commandes</small>
+                                        </div>
+                                        </td>
+                                    </ng-container>
+                                    
+                                    <ng-container matColumnDef="Vente">
+                                        <th mat-header-cell *matHeaderCellDef>Vente</th>
+                                        <td mat-cell *matCellDef="let element">{{element.totalVente |number: '1.3-3'}}  TND</td>
+                                    </ng-container>
+                                  
+                                    <ng-container matColumnDef="Reveune">
+                                        <th mat-header-cell *matHeaderCellDef>Reveune</th>
+                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'color':(element.totalRevenue>0)?'green':(element.totalRevenue<0)?'red':'orange'}"
+                                        >{{element.totalRevenue |number: '1.3-3'}} TND</td>
+                                    </ng-container>
+                                    
+        
+                                    <tr mat-header-row *matHeaderRowDef="displayClientColumm"></tr>
+                                    <tr mat-row *matRowDef="let row;columns:displayClientColumm"></tr>
+                                    <tr *matNoDataRow >
+                                        <td colspan="10"
+                                         style="text-align: center;font-size: 14px;color: red;">Aucun clients inscrits a la plateforme </td>
+                                    </tr>
+                                </table>
+                            </mat-card-content>
+                        <mat-card-footer >
+                                <mat-paginator [pageSizeOptions]="[2,10,20]" showFirstLastButtons></mat-paginator>
+                                
+                            </mat-card-footer>
+                        </mat-card>
+                    <!--<table class="table" ngClass="myTable2">
+                                <tr>
+                                    <th>Societe</th>
+                                    <th>Vente</th>
+                                    <th>Reveune</th>
+                                </tr>
+                                <tr *ngFor="let client of bestClient">
+                                    <td>
+
+                                        <img [src]="(client.imagePath==''||client.imagePath==null)?defaultImage:client.imagePath"
+                                            alt="">
+                                        <div style="display: flex;flex-direction: column;">
+                                            <p style="text-wrap: wrap;">{{client.intitule}}</p>
+                                            <small>{{client.nbCommandes }} commandes</small>
+                                        </div>
+
+                                    </td>
+
+                                    <td style="text-wrap: nowrap;">
+                                        {{client.totalVente |number: '1.3-3'}} TND
+                                    </td>
+                                    <td style="text-wrap: nowrap;"
+                                        [ngStyle]="{'color':(client.totalRevenue>0)?'green':(client.totalRevenue<0)?'red':'orange'}">
+                                        {{client.totalRevenue |number: '1.3-3'}} TND
+                                    </td>
+                                </tr>
+                        </table>-->
+
+                    </div>
+                </div>
+                <!-- /best-shop-sellers -->
+                <!-- product-overview -->
+                <div class="wg-box">
+                    <div class="flex items-center justify-between">
+                        <h5>meilleur produits vendues</h5>
+                        <div style="clear: both;">
+                            <select style="float: right;width: fit-content;text-align: center;;"
+                                [(ngModel)]="table2Select" (ngModelChange)="changeTable2()">
+                                <option value="all">Tous</option>
+                                <option [value]="currentYear">{{currentYear}}</option>
+                                <option [value]="currentYear-1">{{currentYear-1}}</option>
+                                <option [value]="currentYear-2">{{currentYear-2}}</option>
+                                <option [value]="currentYear-3">{{currentYear-3}}</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="wg-table">
+                        <mat-card >
+                            <mat-card-header></mat-card-header>
+                            <mat-card-content>
+                                <table mat-table [dataSource]="dataSource" class="table">
+                                    <ng-container matColumnDef="image">
+                                        <th mat-header-cell *matHeaderCellDef></th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <div class="image" style="margin:5px;">
+                                                <!--<img [src]="(element.article.imagePath==''||element.article.imagePath==null)?defaultImage:element.article.imagePath" alt="" style="width: 60px;height: 60px;">-->
+                                                
+                                                <img [src]="(element.article.imageContent==''||element.article.imageContent==null)?defaultImage:element.article.imageContent" alt="" style="width: 60px;height: 60px;">
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                    
+                                    <ng-container matColumnDef="Intitule">
+                                        <th mat-header-cell *matHeaderCellDef>Intitule</th>
+                                        <td mat-cell *matCellDef="let element">{{element.article.articleIntitule}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Prix">
+                                        <th mat-header-cell *matHeaderCellDef>Prix</th>
+                                        <td mat-cell *matCellDef="let element">{{element.article.articlePrixHT}} TND</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Quantite">
+                                        <th mat-header-cell *matHeaderCellDef>Quantite</th>
+                                        <td mat-cell *matCellDef="let element">{{element.article.nbArticleSold}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Vente">
+                                        <th mat-header-cell *matHeaderCellDef>Vente</th>
+                                        <td mat-cell *matCellDef="let element">{{element.totalVente |number: '1.3-3'}} TND</td>
+                                    </ng-container>
+                                  
+                                    <ng-container matColumnDef="Reveune">
+                                        <th mat-header-cell *matHeaderCellDef>Reveune</th>
+                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'color':(element.totalRevenue>0)?'green':(element.totalRevenue<0)?'red':'orange'}"
+                                        >{{element.totalRevenue |number: '1.3-3'}} TND</td>
+                                    </ng-container>
+                                    
+        
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row;columns: displayedColumns"></tr>
+                                    <tr *matNoDataRow >
+                                        <td colspan="10"
+                                         style="text-align: center;font-size: 14px;color: red;">Aucun Article trouvé</td>
+                                    </tr>
+                                </table>
+                            </mat-card-content>
+                            <mat-card-footer >
+                                <mat-paginator  [pageSizeOptions]="[4,10,20]" showFirstLastButtons></mat-paginator>
+                                
+                            </mat-card-footer>
+                        </mat-card>
+        
+                    <!--<table class="table" ngClass="myTable">
+
+                            <tr>
+                                <th></th>
+                                <th>intitule</th>
+                                <th>prix</th>
+                                <th>quantite</th>
+                                <th>Vente</th>
+                                <th>Reveune</th>
+                            </tr>
+
+
+                            <tr *ngFor="let article of bestArticles">
+                                <td style="margin:5px;">
+
+                                    <img [src]="article.article.imagePath" alt="">
+
+                                </td>
+                                <td>
+                                    {{article.article.articleIntitule}}
+                                </td>
+                                <td>
+                                    {{article.article.articlePrixHT}} TND
+                                </td>
+                                <td>
+                                    {{article.article.nbArticleSold}}
+                                </td>
+                                <td>
+                                    {{article.totalVente |number: '1.3-3'}} TND
+                                </td>
+                                <td
+                                    [ngStyle]="{'color':(article.totalRevenue>0)?'green':(article.totalRevenue<0)?'red':'orange'}">
+                                    {{article.totalRevenue |number: '1.3-3'}} TND
+                                </td>
+                            </tr>
+
+                        </table>-->
+                    </div>
+                    <div class="divider"></div>
+                    <!--<div class="flex items-center justify-between flex-wrap gap10">
+                        <div class="text-tiny">Showing 5 entries</div>
+                        <ul class="wg-pagination">
+                            <li>
+                                <a href="#"><i class="icon-chevron-left"></i></a>
+                            </li>
+                            <li>
+                                <a href="#">1</a>
+                            </li>
+                            <li class="active">
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="icon-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </div>-->
+                </div>
+                <!-- /product-overview -->
+            </div>
+            <!--<div class="tf-section-3">
+                **** orders ***
+                <div class="wg-box">
+                    <div class="flex items-center justify-between">
+                        <h5>Dernier commandes</h5>
+                        <div class="dropdown default">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <span class="icon-more"><i class="icon-more-horizontal"></i></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a href="javascript:void(0);">This Week</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Last Week</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="wg-table table-orders">
+                        <ul class="table-title flex gap10 mb-14">
+                            <li>
+                                <div class="body-title">Product</div>
+                            </li>
+                            <li>
+                                <div class="body-title">Price</div>
+                            </li>
+                            <li>
+                                <div class="body-title">Delivery date</div>
+                            </li>
+                        </ul>
+                        <ul class="flex flex-column gap18">
+                            <li class="product-item gap14">
+                                <div class="image small">
+                                    <img src="images/products/11.png" alt="">
+                                </div>
+                                <div class="flex items-center justify-between flex-grow gap10">
+                                    <div class="name">
+                                        <a href="product-list.html" class="body-text">Prodotti per il tuo cane...</a>
+                                    </div>
+                                    <div class="body-text">20 Nov 2023</div>
+                                    <div class="body-text">20 Nov 2023</div>
+                                </div>
+                            </li>
+                            <li class="product-item gap14">
+                                <div class="image small">
+                                    <img src="images/products/12.png" alt="">
+                                </div>
+                                <div class="flex items-center justify-between flex-grow gap10">
+                                    <div class="name">
+                                        <a href="product-list.html" class="body-text">Wholesome Pride...</a>
+                                    </div>
+                                    <div class="body-text">20 Nov 2023</div>
+                                    <div class="body-text">20 Nov 2023</div>
+                                </div>
+                            </li>
+                            <li class="product-item gap14">
+                                <div class="image small">
+                                    <img src="images/products/13.png" alt="">
+                                </div>
+                                <div class="flex items-center justify-between flex-grow gap10">
+                                    <div class="name">
+                                        <a href="product-list.html" class="body-text">Beneful Baked Delights...</a>
+                                    </div>
+                                    <div class="body-text">20 Nov 2023</div>
+                                    <div class="body-text">20 Nov 2023</div>
+                                </div>
+                            </li>
+                            <li class="product-item gap14">
+                                <div class="image small">
+                                    <img src="images/products/14.png" alt="">
+                                </div>
+                                <div class="flex items-center justify-between flex-grow gap10">
+                                    <div class="name">
+                                        <a href="product-list.html" class="body-text">Taste of the Wild...</a>
+                                    </div>
+                                    <div class="body-text">20 Nov 2023</div>
+                                    <div class="body-text">20 Nov 2023</div>
+                                </div>
+                            </li>
+                            <li class="product-item gap14">
+                                <div class="image small">
+                                    <img src="images/products/15.png" alt="">
+                                </div>
+                                <div class="flex items-center justify-between flex-grow gap10">
+                                    <div class="name">
+                                        <a href="product-list.html" class="body-text">Canagan - Britain's...</a>
+                                    </div>
+                                    <div class="body-text">20 Nov 2023</div>
+                                    <div class="body-text">20 Nov 2023</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>-->
+            <!-- /orders -->
+
+
+
+        </div>
+    </div>
+    <!-- /main-content-wrap -->
+</div>
