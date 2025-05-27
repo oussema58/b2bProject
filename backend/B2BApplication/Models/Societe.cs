@@ -1,0 +1,16 @@
+﻿namespace B2BApplication.Models
+{
+    public class Societe
+    {
+        public int Id { get; set; }
+        public string registreCommerce { get; set; }
+        public string email { get; set; }
+        public bool emailConfirmed { get; set; }=false;
+        public string matriculeFiscal{ get; set; }
+        public string intitule { get; set; }
+        public string matricule { get; set; }
+        public string? adresse { get; set; }
+        public string? codePostale { get; set; }
+        public string telephone { get; set; }
+    }
+}
